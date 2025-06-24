@@ -9,11 +9,554 @@
 
     <title>tcc</title>
 </head>
-<body>
-    <h1>Olá mundo!</h1>
-    <p>Bem vindo ao tcc de Alfredo</p>
+<body data-bs-spy="scroll" data-bs-target="#navbar">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#home">FitCore</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Início</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">Serviços</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#bioimpedance">Bioimpedância</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#trainers">Treinadores</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#pricing">Planos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contato</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="hero-content">
+                        <h1>Transforme Seu Corpo</h1>
+                        <p>Na FitCore, ajudamos você a alcançar seus objetivos de fitness com treinos personalizados, equipamentos de ponta e uma equipe especializada.</p>
+                        <a href="#services" class="btn btn-custom">Comece Agora</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section section-dark">
+        <div class="container">
+            <h2 class="section-title">Nossos Serviços</h2>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                        <h4>Musculação</h4>
+                        <p>Equipamentos modernos e treinos personalizados para ganho de massa muscular e definição.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-running"></i>
+                        </div>
+                        <h4>Cardio</h4>
+                        <p>Área completa de aeróbicos com esteiras, bicicletas e equipamentos cardiovasculares.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h4>Aulas em Grupo</h4>
+                        <p>Pilates, Yoga, Zumba, Spinning e muito mais. Diversão garantida em grupo!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bioimpedance Section -->
+    <section id="bioimpedance" class="section section-purple">
+        <div class="container">
+            <h2 class="section-title">Bioimpedância & Nutrição</h2>
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="service-card text-start">
+                        <div class="service-icon text-start mb-3">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="mb-3">Análise Corporal Completa</h3>
+                        <p class="mb-4">Nossa bioimpedância de última geração oferece uma análise detalhada da sua composição corporal, medindo:</p>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-purple me-2" style="color: var(--primary-purple);"></i> Percentual de gordura corporal</li>
+                            <li><i class="fas fa-check text-purple me-2" style="color: var(--primary-purple);"></i> Massa muscular</li>
+                            <li><i class="fas fa-check text-purple me-2" style="color: var(--primary-purple);"></i> Taxa metabólica basal</li>
+                            <li><i class="fas fa-check text-purple me-2" style="color: var(--primary-purple);"></i> Percentual de água corporal</li>
+                            <li><i class="fas fa-check text-purple me-2" style="color: var(--primary-purple);"></i> Densidade óssea</li>
+                            <li><i class="fas fa-check text-purple me-2" style="color: var(--primary-purple);"></i> Idade metabólica</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="service-card text-start">
+                        <div class="service-icon text-start mb-3">
+                            <i class="fas fa-apple-alt"></i>
+                        </div>
+                        <h3 class="mb-3">Consultoria Nutricional</h3>
+                        <p class="mb-4">Nossa nutricionista especializada oferece acompanhamento personalizado para potencializar seus resultados:</p>
+                        <ul class="list-unstyled mb-4">
+                            <li><i class="fas fa-check text-purple me-2" style="color: var(--primary-purple);"></i> Plano alimentar personalizado</li>
+                            <li><i class="fas fa-check text-purple me-2" style="color: var(--primary-purple);"></i> Acompanhamento mensal</li>
+                            <li><i class="fas fa-check text-purple me-2" style="color: var(--primary-purple);"></i> Reeducação alimentar</li>
+                            <li><i class="fas fa-check text-purple me-2" style="color: var(--primary-purple);"></i> Suplementação orientada</li>
+                        </ul>
+                        <div class="d-flex gap-3">
+                            <button class="btn btn-custom" data-bs-toggle="modal" data-bs-target="#nutritionModal">
+                                <i class="fas fa-calendar-alt me-2"></i>Agendar Avaliação
+                            </button>
+                            <button class="btn btn-outline-light">
+                                <i class="fab fa-whatsapp me-2"></i>WhatsApp
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pricing for Bioimpedance -->
+            <div class="row mt-5">
+                <div class="col-12">
+                    <h3 class="text-center mb-4" style="color: var(--primary-purple);">Pacotes Especiais</h3>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="pricing-card">
+                        <h4>Bioimpedância</h4>
+                        <div class="price">R$ 45</div>
+                        <p class="text-muted">por exame</p>
+                        <ul class="list-unstyled">
+                            <li>✓ Análise completa</li>
+                            <li>✓ Relatório detalhado</li>
+                            <li>✓ Orientações básicas</li>
+                        </ul>
+                        <button class="btn btn-custom mt-3" data-bs-toggle="modal" data-bs-target="#bioModal">Agendar</button>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="pricing-card">
+                        <h4>Consulta Nutricional</h4>
+                        <div class="price">R$ 120</div>
+                        <p class="text-muted">primeira consulta</p>
+                        <ul class="list-unstyled">
+                            <li>✓ Bioimpedância inclusa</li>
+                            <li>✓ Plano alimentar</li>
+                            <li>✓ 60 minutos de consulta</li>
+                        </ul>
+                        <button class="btn btn-custom mt-3" data-bs-toggle="modal" data-bs-target="#nutritionModal">Agendar</button>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="pricing-card">
+                        <h4>Pacote Completo</h4>
+                        <div class="price">R$ 350</div>
+                        <p class="text-muted">3 meses</p>
+                        <ul class="list-unstyled">
+                            <li>✓ 3 Bioimpedâncias</li>
+                            <li>✓ 3 Consultas nutricionais</li>
+                            <li>✓ Acompanhamento WhatsApp</li>
+                        </ul>
+                        <button class="btn btn-custom mt-3" data-bs-toggle="modal" data-bs-target="#packageModal">Contratar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trainers Section -->
+    <section id="trainers" class="section section-purple">
+        <div class="container">
+            <h2 class="section-title">Nossos Treinadores</h2>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="trainer-card">
+                        <div class="trainer-img">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h4>Carlos Silva</h4>
+                        <p>Especialista em Musculação</p>
+                        <p class="text-muted">10 anos de experiência</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="trainer-card">
+                        <div class="trainer-img">
+                            <i class="fas fa-female"></i>
+                        </div>
+                        <h4>Ana Costa</h4>
+                        <p>Instrutora de Pilates</p>
+                        <p class="text-muted">8 anos de experiência</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="trainer-card">
+                        <div class="trainer-img">
+                            <i class="fas fa-male"></i>
+                        </div>
+                        <h4>Roberto Lima</h4>
+                        <p>Personal Trainer</p>
+                        <p class="text-muted">12 anos de experiência</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="trainer-card">
+                        <div class="trainer-img">
+                            <i class="fas fa-user-md"></i>
+                        </div>
+                        <h4>Dra. Marina Santos</h4>
+                        <p>Nutricionista Esportiva</p>
+                        <p class="text-muted">CRN 12345 - 7 anos de experiência</p>
+                        <button class="btn btn-custom btn-sm mt-3" data-bs-toggle="modal" data-bs-target="#nutritionModal">
+                            Agendar Consulta
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="section section-dark">
+        <div class="container">
+            <h2 class="section-title">Nossos Planos</h2>
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="pricing-card">
+                        <h3>Básico</h3>
+                        <div class="price">R$ 89</div>
+                        <p class="text-muted">/mês</p>
+                        <ul class="list-unstyled">
+                            <li>✓ Acesso à musculação</li>
+                            <li>✓ Área de cardio</li>
+                            <li>✓ Vestiário</li>
+                        </ul>
+                        <button class="btn btn-custom mt-3">Escolher Plano</button>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="pricing-card">
+                        <h3>Premium</h3>
+                        <div class="price">R$ 149</div>
+                        <p class="text-muted">/mês</p>
+                        <ul class="list-unstyled">
+                            <li>✓ Tudo do plano Básico</li>
+                            <li>✓ Aulas em grupo</li>
+                            <li>✓ Avaliação física</li>
+                        </ul>
+                        <button class="btn btn-custom mt-3">Escolher Plano</button>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="pricing-card">
+                        <h3>VIP</h3>
+                        <div class="price">R$ 249</div>
+                        <p class="text-muted">/mês</p>
+                        <ul class="list-unstyled">
+                            <li>✓ Tudo do plano Premium</li>
+                            <li>✓ Personal trainer</li>
+                            <li>✓ Acesso 24h</li>
+                        </ul>
+                        <button class="btn btn-custom mt-3">Escolher Plano</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section section-purple">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 class="section-title">Entre em Contato</h2>
+                    <p class="lead mb-4">Pronto para começar sua jornada fitness? Entre em contato conosco!</p>
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <h5>Telefone</h5>
+                                <p>(11) 9999-9999</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <h5>Email</h5>
+                                <p>contato@fitcore.com</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <h5>Endereço</h5>
+                                <p>Rua Fitness, 123<br>São Paulo - SP</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h3 class="mb-3" style="background: var(--gradient-purple); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">FitCore</h3>
+                    <p>Transformando vidas através do fitness desde 2020.</p>
+                </div>
+                <div class="col-lg-6 text-end">
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr style="border-color: rgba(111, 66, 193, 0.3);">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p>&copy; 2025 FitCore. Todos os direitos reservados.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <!-- Bioimpedance Modal -->
+    <div class="modal fade" id="bioModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="background: #111; border: 1px solid var(--primary-purple);">
+                <div class="modal-header" style="border-bottom: 1px solid var(--primary-purple);">
+                    <h5 class="modal-title" style="color: var(--primary-purple);">
+                        <i class="fas fa-chart-line me-2"></i>Agendar Bioimpedância
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label text-white">Nome Completo</label>
+                                <input type="text" class="form-control" style="background: rgba(255,255,255,0.1); border: 1px solid var(--primary-purple); color: white;">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label text-white">Telefone/WhatsApp</label>
+                                <input type="tel" class="form-control" style="background: rgba(255,255,255,0.1); border: 1px solid var(--primary-purple); color: white;">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label text-white">Data Preferida</label>
+                                <input type="date" class="form-control" style="background: rgba(255,255,255,0.1); border: 1px solid var(--primary-purple); color: white;">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label text-white">Horário Preferido</label>
+                                <select class="form-control" style="background: rgba(255,255,255,0.1); border: 1px solid var(--primary-purple); color: white;">
+                                    <option>Manhã (8h às 12h)</option>
+                                    <option>Tarde (13h às 17h)</option>
+                                    <option>Noite (18h às 21h)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-white">Email</label>
+                            <input type="email" class="form-control" style="background: rgba(255,255,255,0.1); border: 1px solid var(--primary-purple); color: white;">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-white">Observações</label>
+                            <textarea class="form-control" rows="3" style="background: rgba(255,255,255,0.1); border: 1px solid var(--primary-purple); color: white;" placeholder="Alguma informação adicional..."></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer" style="border-top: 1px solid var(--primary-purple);">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-custom">
+                        <i class="fas fa-calendar-check me-2"></i>Confirmar Agendamento
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Nutrition Modal -->
+    <div class="modal fade" id="nutritionModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="background: #111; border: 1px solid var(--primary-purple);">
+                <div class="modal-header" style="border-bottom: 1px solid var(--primary-purple);">
+                    <h5 class="modal-title" style="color: var(--primary-purple);">
+                        <i class="fas fa-apple-alt me-2"></i>Agendar Consulta Nutricional
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-info" style="background: rgba(111, 66, 193, 0.1); border: 1px solid var(--primary-purple); color: white;">
+                        <i class="fas fa-info-circle me-2"></i>
+                        <strong>Incluso:</strong> Bioimpedância + Plano Alimentar Personalizado + 60min de consulta
+                    </div>
+                    <form>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label text-white">Nome Completo</label>
+                                <input type="text" class="form-control" style="background: rgba(255,255,255,0.1); border: 1px solid var(--primary-purple); color: white;">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label text-white">Telefone/WhatsApp</label>
+                                <input type="tel" class="form-control" style="background: rgba(255,255,255,0.1); border: 1px solid var(--primary-purple); color: white;">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label text-white">Idade</label>
+                                <input type="number" class="form-control" style="background: rgba(255,255,255,0.1); border: 1px solid var(--primary-purple); color: white;">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label text-white">Peso (kg)</label>
+                                <input type="number" class="form-control" style="background: rgba(255,255,255,0.1); border: 1px solid var(--primary-purple); color: white;">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label text-white">Altura (cm)</label>
+                                <input type="number" class="form-control" style="background: rgba(255,255,255,0.1); border: 1px solid var(--primary-purple); color: white;">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label text-white">Data Preferida</label>
+                                <input type="date" class="form-control" style="background: rgba(255,255,255,0.1); border: 1px solid var(--primary-purple); color: white;">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label text-white">Horário Preferido</label>
+                                <select class="form-control" style="background: rgba(255,255,255,0.1); border: 1px solid var(--primary-purple); color: white;">
+                                    <option>Manhã (8h às 12h)</option>
+                                    <option>Tarde (13h às 17h)</option>
+                                    <option>Noite (18h às 21h)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-white">Objetivo Principal</label>
+                            <select class="form-control" style="background: rgba(255,255,255,0.1); border: 1px solid var(--primary-purple); color: white;">
+                                <option>Perda de peso</option>
+                                <option>Ganho de massa muscular</option>
+                                <option>Melhora da performance</option>
+                                <option>Reeducação alimentar</option>
+                                <option>Manutenção do peso</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-white">Histórico de Saúde e Observações</label>
+                            <textarea class="form-control" rows="3" style="background: rgba(255,255,255,0.1); border: 1px solid var(--primary-purple); color: white;" placeholder="Alergias, restrições alimentares, medicamentos, etc..."></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer" style="border-top: 1px solid var(--primary-purple);">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-custom">
+                        <i class="fas fa-calendar-check me-2"></i>Agendar Consulta - R$ 120
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Package Modal -->
+    <div class="modal fade" id="packageModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="background: #111; border: 1px solid var(--primary-purple);">
+                <div class="modal-header" style="border-bottom: 1px solid var(--primary-purple);">
+                    <h5 class="modal-title" style="color: var(--primary-purple);">
+                        <i class="fas fa-gift me-2"></i>Pacote Completo - 3 Meses
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-success" style="background: rgba(40, 167, 69, 0.1); border: 1px solid #28a745; color: white;">
+                        <i class="fas fa-star me-2"></i>
+                        <strong>Economia de R$ 115!</strong> Valor normal: R$ 465 | Seu preço: R$ 350
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-4">
+                            <div class="text-center p-3" style="background: rgba(111, 66, 193, 0.1); border-radius: 10px;">
+                                <i class="fas fa-chart-line fa-2x mb-2" style="color: var(--primary-purple);"></i>
+                                <h6>3 Bioimpedâncias</h6>
+                                <small class="text-muted">Uma por mês</small>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="text-center p-3" style="background: rgba(111, 66, 193, 0.1); border-radius: 10px;">
+                                <i class="fas fa-apple-alt fa-2x mb-2" style="color: var(--primary-purple);"></i>
+                                <h6>3 Consultas</h6>
+                                <small class="text-muted">Acompanhamento mensal</small>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="text-center p-3" style="background: rgba(111, 66, 193, 0.1); border-radius: 10px;">
+                                <i class="fab fa-whatsapp fa-2x mb-2" style="color: var(--primary-purple);"></i>
+                                <h6>Suporte WhatsApp</h6>
+                                <small class="text-muted">Tiragem de dúvidas</small>
+                            </div>
+                        </div>
+                    </div>
+                    <form>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label text-white">Nome Completo</label>
+                                <input type="text" class="form-control" style="background: rgba(255,255,255,0.1); border: 1px solid var(--primary-purple); color: white;">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label text-white">Telefone/WhatsApp</label>
+                                <input type="tel" class="form-control" style="background: rgba(255,255,255,0.1); border: 1px solid var(--primary-purple); color: white;">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-white">Data para Primeira Consulta</label>
+                            <input type="date" class="form-control" style="background: rgba(255,255,255,0.1); border: 1px solid var(--primary-purple); color: white;">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-white">Forma de Pagamento</label>
+                            <select class="form-control" style="background: rgba(255,255,255,0.1); border: 1px solid var(--primary-purple); color: white;">
+                                <option>À vista - R$ 350 (5% desconto)</option>
+                                <option>2x de R$ 175 (sem juros)</option>
+                                <option>3x de R$ 120 (sem juros)</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer" style="border-top: 1px solid var(--primary-purple);">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-custom">
+                        <i class="fas fa-credit-card me-2"></i>Contratar Pacote - R$ 350
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'js/script.js' %}"></script>
 </body>
+
+
+
 </html>

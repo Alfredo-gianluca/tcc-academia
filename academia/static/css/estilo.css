@@ -163,6 +163,7 @@
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
         }
+        
 
         .service-card:hover, .trainer-card:hover {
             transform: translateY(-10px);

@@ -30,8 +30,6 @@
             font-size: 2rem;
             font-weight: bold;
             background: var(--gradient-purple);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
             background-clip: text;
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -278,4 +276,12 @@
             .section-title {
                 font-size: 2rem;
             }
+        }
+
+        /* Lists */
+
+        .list {
+            color:#fff;
+            text-align: center;
+            margin: 0, auto;
         }

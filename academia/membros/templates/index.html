@@ -20,7 +20,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="#home">Início</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#bioimpedance">Quem somos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#quemsomos">Quem somos</a></li>
                     <li class="nav-item"><a class="nav-link" href="#services">Serviços</a></li>
                     <li class="nav-item"><a class="nav-link" href="#trainers">Treinadores</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contato</a></li>
@@ -37,7 +37,7 @@
                     <div class="hero-content">
                         <h1>Transforme Seu Corpo</h1>
                         <p>Na FitCore, ajudamos você a alcançar seus objetivos de fitness com treinos personalizados, equipamentos de ponta e uma equipe especializada.</p>
-                        <a href="#services" class="btn btn-custom">Comece Agora</a>
+                        <a href="{% url 'cadastro' %}" class="btn btn-custom">Comece Agora</a>
                     </div>
                 </div>
             </div>
@@ -46,10 +46,21 @@
 
    
 
-    <!-- Bioimpedance Section -->
-    <section id="bioimpedance" class="section section-purple">
+    <!-- quemsomos Section -->
+    <section id="quemsomos" class="section section-purple">
         <div class="container">
-            <h2 class="section-title">Bioimpedância & Nutrição</h2>
+            <h2 class="section-title">Quem Somos?</h2>
+            <p class="lead mb-4">A FitCore visa por facilitar o acesso de seus clientes aos recursos
+                da nossa academia, disponibilizando funções como:
+            </p>
+            <div class="list"> 
+                <ul class="list-unstyled">
+                        <li>✓ Agendamento de Aulas</li>
+                        <li>✓ Consulta de presenças</li>
+                        <li>✓ Acompanhamento alimentar</li>
+                        <li>✓ Acompanhamento muscular</li>
+                 </ul>
+            </div>
             <div class="row align-items-center">
                 <div class="col-lg-6">
                     <div class="service-card text-start">

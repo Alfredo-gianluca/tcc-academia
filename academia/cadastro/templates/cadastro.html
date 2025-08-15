@@ -11,12 +11,12 @@
     </head>
     <body data-bs-spy="scroll" data-bs-target="#navbar">
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="{% url 'membros'%}">FitCore</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        </div>
-    </nav>
+            <div class="container d-flex justify-content-center">
+                <a class="navbar-brand mx-auto" href="{% url 'membros' %}">FitCore</a>
+                <button class="navbar-toggler position-absolute end-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </nav>
     </body>
 </html>

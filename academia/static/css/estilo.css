@@ -286,3 +286,69 @@
             text-align: center;
             margin: 0, auto;
         }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(111, 66, 193, 0.3);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(111, 66, 193, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #fff;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(111, 66, 193, 0.3);
+            background-color: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            font-size: 1rem;
+            transition: border 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary-purple);
+            box-shadow: 0 0 10px rgba(111, 66, 193, 0.3);
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: var(--gradient-purple);
+            padding: 15px;
+            border: none;
+            border-radius: 50px;
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            background: var(--dark-purple);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(111, 66, 193, 0.4);
+        }
+
+        select,
+        select option {
+            background-color: #111;
+            color: #fff;
+        }

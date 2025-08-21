@@ -11,6 +11,7 @@
     </head>
     <body data-bs-spy="scroll" data-bs-target="#navbar">
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+<<<<<<< Updated upstream
         <div class="container">
             <a class="navbar-brand" href="{% url 'membros'%}">FitCore</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -18,5 +19,82 @@
             </button>
         </div>
     </nav>
+=======
+            <div class="container d-flex justify-content-center">
+                <a class="navbar-brand mx-auto" href="{% url 'membros' %}">FitCore</a>
+                <button class="navbar-toggler position-absolute end-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </nav>
+         <section class="hero">
+        <div class="container hero-content text-center">
+            <h1>Cadastro de Cliente</h1>
+            <p>Preencha os dados abaixo para acessar suas consultas e fichas.</p>
+        </div>
+    </section>
+
+    <!-- Formulário de Cadastro -->
+    <section class="section section-dark">
+        <div class="container">
+            <div class="form-container fade-in">
+                <form action="#" method="post">
+                    <div class="form-group">
+                        <label for="nome">Nome Completo</label>
+                        <input type="text" id="nome" name="nome" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefone">Telefone</label>
+                        <input type="tel" id="telefone" name="telefone" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="data-nascimento">Data de Nascimento</label>
+                        <input type="date" id="data-nascimento" name="data-nascimento" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="genero">Gênero</label>
+                        <select id="genero" name="genero">
+                            <option value="">Selecione</option>
+                            <option value="masculino">Masculino</option>
+                            <option value="feminino">Feminino</option>
+                            <option value="outro">Outro</option>
+                            <option value="prefiro-nao-dizer">Prefiro não dizer</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="observacoes">Observações</label>
+                        <textarea id="observacoes" name="observacoes" rows="4" placeholder="Condições médicas, restrições, etc..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Cadastrar</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer text-center">
+        <div class="social-links">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <p style="margin-top: 1rem;">&copy; 2025 FichaPro. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- Font Awesome (para ícones das redes sociais) -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/scripts.js' %}"></script>
+>>>>>>> Stashed changes
     </body>
 </html>

@@ -21,25 +21,13 @@
 
             <section class="hero">
                 <div class="container hero-content text-center">
-                    <h1>Cadastro de Cliente</h1>
-                    <p>Preencha os dados abaixo para acessar suas consultas e fichas.</p>
+                    <h1>Cadastro Concluído!</h1>
+                    <a href="{% url 'membros' %}" class="btn btn-custom">Voltar para o Início</a>
                 </div>
             </section>
 
             <!-- Formulário de Cadastro -->
-            <section class="section section-dark">
-                <div class="container">
-                    <div class="form-container fade-in">
-                        <form method="POST" action="{% url 'cadastro' %}">
-                            {% csrf_token %}
-                            {{ form.as_p }}
-                            <button type="submit" class="btn-submit">Cadastrar</button>
-                            <p>Já possui uma conta? <a href="{% url 'login' %}">Login</a></p>
-                        </form>
-                    </div>
-                </div>
-            </section>
-
+           
             <!-- Footer -->
             <footer class="footer text-center">
                 <div class="social-links">

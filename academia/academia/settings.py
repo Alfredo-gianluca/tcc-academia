@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'membros',
-    'cadastro'
+    'cadastro',
+    'login'
 ]
 
 MIDDLEWARE = [

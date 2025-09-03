@@ -39,11 +39,24 @@
                     <div class="error-message" id="firstNameError"></div>
                 </div>
 
+<<<<<<< Updated upstream
                 <div class="form-group">
                     <label for="lastName">Sobrenome <span class="required">*</span></label>
                     <div class="input-wrapper">
                         <input type="text" id="lastName" class="form-input" placeholder="Seu sobrenome" required>
                         <span class="input-icon">👤</span>
+=======
+            <!-- Formulário de Cadastro -->
+            <section class="section section-dark">
+                <div class="container">
+                    <div class="form-container fade-in">
+                        <form method="POST" action="{% url 'cadastro' %}">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button type="submit" class="btn-submit">Cadastrar</button>
+                            <p>Já possui uma conta? <a href="{% url 'login' %}">Login</a></p>
+                        </form>
+>>>>>>> Stashed changes
                     </div>
                 </div>
             </div>
@@ -57,6 +70,11 @@
                     </div>
                     <div class="error-message" id="ageError"></div>
                 </div>
+<<<<<<< Updated upstream
+=======
+                <p style="margin-top: 1rem;">&copy; 2025 FitCore. Todos os direitos reservados.</p>
+            </footer>
+>>>>>>> Stashed changes
 
                 <div class="form-group">
                     <label for="gender">Gênero</label>

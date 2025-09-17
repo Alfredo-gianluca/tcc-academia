@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from cadastro.models import UsuarioC
 from django.http import HttpResponse
+from loginProf.models import Professor
 
-def login(request):
+def loginprof(request):
     erro = None  # variável para guardar a mensagem de erro
 
     if request.method == 'POST':
@@ -10,12 +10,14 @@ def login(request):
         senha = request.POST.get('senha')
 
         try:
-            usuario = UsuarioC.objects.get(email=email, senha=senha)
-            return HttpResponse(f"Bem-vindo, {usuario.nome_completo}!")
-        except UsuarioC.DoesNotExist:
+            professor = Professor.objects.get(email=email, senha=senha)
+            return HttpResponse(f"Bem-vindo, {professor.nome_completo}!")
+        except Professor.DoesNotExist:
             erro = "Email ou senha inválidos."
 
-    return render(request, 'login.html', {
+    return render(request, 'loginprof.html', {
         'centralizar_logo': True,
         'erro': erro
     })
+
+# Create your views here.

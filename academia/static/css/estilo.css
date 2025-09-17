@@ -1,8 +1,8 @@
 :root {
-    --primary-purple: #b08852; /* Roxo + amarelo: tom quente e dourado */
-    --dark-purple: #8e6f3f;    /* Versão mais escura */
-    --light-purple: rgba(176, 136, 82, 0.1); /* Translúcido */
-    --gradient-purple: linear-gradient(135deg, #9b59b6, #f1c40f); /* Roxo para amarelo */
+    --primary-yellow: #b08852; /* Roxo + amarelo: tom quente e dourado */
+    --dark-yellow: #8e6f3f;    /* Versão mais escura */
+    --light-yellow: rgba(176, 136, 82, 0.1); /* Translúcido */
+    --gradient-purple-yellow: linear-gradient(135deg, #9b59b6, #f1c40f); /* Roxo para amarelo */
 }
 
 * {
@@ -29,7 +29,7 @@ body {
 .navbar-brand {
     font-size: 2rem;
     font-weight: bold;
-    background: var(--gradient-purple);
+    background: var(--gradient-purple-yellow);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -46,7 +46,7 @@ body {
 }
 
 .navbar-nav .nav-link:hover {
-    color: var(--primary-purple) !important;
+    color: var(--primary-yellow) !important;
     transform: translateY(-2px);
 }
 
@@ -57,7 +57,7 @@ body {
     height: 2px;
     bottom: -5px;
     left: 50%;
-    background: var(--gradient-purple);
+    background: var(--gradient-purple-yellow);
     transition: all 0.3s ease;
 }
 
@@ -98,7 +98,7 @@ body {
     font-size: 4rem;
     font-weight: bold;
     margin-bottom: 1.5rem;
-    background: var(--gradient-purple);
+    background: var(--gradient-purple-yellow);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -113,7 +113,7 @@ body {
 }
 
 .btn-custom {
-    background: var(--gradient-purple);
+    background: var(--gradient-purple-yellow);
     border: none;
     padding: 15px 40px;
     font-size: 1.1rem;
@@ -128,7 +128,7 @@ body {
 .btn-custom:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 30px rgba(176, 136, 82, 0.4);
-    background: var(--dark-purple);
+    background: var(--dark-yellow);
 }
 
 /* Sections */
@@ -140,7 +140,7 @@ body {
     background-color: #111;
 }
 
-.section-purple {
+.section-yellow {
     background: linear-gradient(135deg, rgba(176, 136, 82, 0.1), rgba(0, 0, 0, 0.8));
 }
 
@@ -149,7 +149,7 @@ body {
     font-weight: bold;
     text-align: center;
     margin-bottom: 3rem;
-    background: var(--gradient-purple);
+    background: var(--gradient-purple-yellow);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -168,13 +168,13 @@ body {
 
 .service-card:hover, .trainer-card:hover {
     transform: translateY(-10px);
-    border-color: var(--primary-purple);
+    border-color: var(--primary-yellow);
     box-shadow: 0 20px 40px rgba(176, 136, 82, 0.2);
 }
 
 .service-icon {
     font-size: 3rem;
-    color: var(--primary-purple);
+    color: var(--primary-yellow);
     margin-bottom: 1rem;
 }
 
@@ -183,7 +183,7 @@ body {
     height: 150px;
     border-radius: 50%;
     margin: 0 auto 1rem;
-    background: var(--gradient-purple);
+    background: var(--gradient-purple-yellow);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -219,14 +219,14 @@ body {
 
 .pricing-card:hover {
     transform: scale(1.05);
-    border-color: var(--primary-purple);
+    border-color: var(--primary-yellow);
     box-shadow: 0 20px 40px rgba(176, 136, 82, 0.3);
 }
 
 .price {
     font-size: 3rem;
     font-weight: bold;
-    color: var(--primary-purple);
+    color: var(--primary-yellow);
     margin: 1rem 0;
 }
 
@@ -245,7 +245,7 @@ body {
 }
 
 .social-links a:hover {
-    color: var(--primary-purple);
+    color: var(--primary-yellow);
     transform: translateY(-3px);
 }
 
@@ -322,13 +322,13 @@ input, select, textarea {
 
 input:focus, select:focus, textarea:focus {
     outline: none;
-    border-color: var(--primary-purple);
+    border-color: var(--primary-yellow);
     box-shadow: 0 0 10px rgba(176, 136, 82, 0.3);
 }
 
 .btn-submit {
     width: 100%;
-    background: var(--gradient-purple);
+    background: var(--gradient-purple-yellow);
     padding: 15px;
     border: none;
     border-radius: 50px;
@@ -342,7 +342,7 @@ input:focus, select:focus, textarea:focus {
 }
 
 .btn-submit:hover {
-    background: var(--dark-purple);
+    background: var(--dark-yellow);
     transform: translateY(-2px);
     box-shadow: 0 10px 30px rgba(176, 136, 82, 0.4);
 }

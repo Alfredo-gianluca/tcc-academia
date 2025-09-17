@@ -19,26 +19,24 @@
             </div>
         </nav>
 
-            <section class="hero">
-                <div class="container hero-content text-center">
-                    <h1>Cadastro Concluído!</h1>
-                    <a href="{% url 'membros' %}" class="btn btn-custom">Voltar para o Início</a>
-                </div>
-            </section>
+        <section class="hero">
+             <div class="container hero-content text-center">
+                <h1>Cadastro Concluído!</h1>
+                <a href="{% url 'membros' %}" class="btn btn-custom">Voltar para o Início</a>
+            </div>
+        </section>
+        <footer class="footer text-center">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <p style="margin-top: 1rem;">&copy; 2025 FitCore. Todos os direitos reservados.</p>
+        </footer>
 
-            <!-- Formulário de Cadastro -->
-           
-            <!-- Footer -->
-            <footer class="footer text-center">
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-whatsapp"></i></a>
-                </div>
-                <p style="margin-top: 1rem;">&copy; 2025 FitCore. Todos os direitos reservados.</p>
-            </footer>
+        <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'js/script.js' %}"></script>
+        <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
-            <!-- Font Awesome (para ícones das redes sociais) -->
-            <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     </body>
 </html>

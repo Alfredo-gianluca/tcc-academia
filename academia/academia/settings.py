@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'membros',
     'cadastro',
-    'login'
+    'login',
+    'loginProf',
 ]
 
 MIDDLEWARE = [

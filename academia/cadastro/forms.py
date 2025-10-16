@@ -1,9 +1,9 @@
 from django import forms
-from .models import UsuarioC
+from .models import Usuario
 
-class UsuarioCForm(forms.ModelForm):
+class UsuarioForm(forms.ModelForm):
     class Meta:
-        model = UsuarioC
+        model = Usuario
         fields = '__all__'
 
     widgets = {

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from cadastro.models import UsuarioC
+from cadastro.models import Usuario
 from django.http import HttpResponse
 
 def login(request):
@@ -10,9 +10,9 @@ def login(request):
         senha = request.POST.get('senha')
 
         try:
-            usuario = UsuarioC.objects.get(email=email, senha=senha)
+            usuario = Usuario.objects.get(email=email, senha=senha)
             return HttpResponse(f"Bem-vindo, {usuario.nome_completo}!")
-        except UsuarioC.DoesNotExist:
+        except Usuario.DoesNotExist:
             erro = "Email ou senha inválidos."
 
     return render(request, 'login.html', {

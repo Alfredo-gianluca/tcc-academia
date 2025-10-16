@@ -1,11 +1,11 @@
 from django.http import HttpResponse
 from django.template import loader
 from django.shortcuts import render
-from .forms import UsuarioCForm
+from .forms import UsuarioForm
 
 def cadastro(request):
     if request.method == 'POST':
-        form = UsuarioCForm(request.POST)
+        form = UsuarioForm(request.POST)
         if form.is_valid():
             usuario = form.save(commit=False)
             usuario.senha = form.cleaned_data['senha']
@@ -13,7 +13,7 @@ def cadastro(request):
             form.save()
             return render(request, 'cadastroSucesso.html')
     else:
-        form = UsuarioCForm()
+        form = UsuarioForm()
     return render(request, 'cadastro.html', {
         'form': form,
         'centralizar_logo': True

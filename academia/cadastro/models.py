@@ -1,6 +1,6 @@
 from django.db import models
 
-class UsuarioC(models.Model):
+class Usuario(models.Model):
     GENERO_CHOICES = [
         ('M', 'Masculino'),
         ('F', 'Feminino'),

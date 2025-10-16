@@ -1,0 +1,52 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/estilo.css' %}" rel="stylesheet">
+    <title>Lista de Alunos</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container d-flex justify-content-center">
+            <a class="navbar-brand mx-auto" href="{% url 'membros' %}">FitCore</a>
+            <button class="navbar-toggler position-absolute end-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+    <section class="hero">
+        <div class="container hero-content text-center">
+            <h1>Lista de Alunos</h1>
+            <p>Abaixo está a lista de alunos cadastrados.</p>
+        </div>
+    </section>
+    <div class="container list-container" style="margin-top: 100px;">
+        <h1>Lista de Alunos</h1>
+        <table class="table custom-table">
+            <thead class="table-dark">
+                <tr class="table-dark">
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+            {% for aluno in alunos %}
+                <tr class="table-dark">
+                    <td class="align-middle">{{ aluno.id }}</td>
+                    <td class="align-middle">{{ aluno.nome_completo }}</td>
+                    <td class="align-middle">{{ aluno.email }}</td>
+                    <td class="align-middle">
+                        <a href="{% url 'TelaProf:editar_aluno' aluno.id %}" class="btn btn-primary">Editar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

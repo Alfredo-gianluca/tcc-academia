@@ -27,6 +27,25 @@
                 <label for="observacoes" class="form-label">Observações</label>
                 <textarea class="form-control bg-dark text-white border border-warning" id="observacoes" name="observacoes">{{ aluno.observacoes }}</textarea>
             </div>
+            <h3 class="mb-3">Frequência</h3>
+            <table class="table custom-table">
+                <thead class="table-dark">
+                    <tr class="table-dark">
+                        <th>Data</th>
+                        <th>Presente</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in calendario %}
+                    <tr>
+                        <td>{{ item.data }}</td>
+                        <td>
+                            <input type="checkbox" name="presente_{{ item.id }}" {% if item.presente %}checked{% endif %}>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
             <button type="submit" class="btn btn-primary">Salvar</button>
         </form>
     </div>

@@ -18,3 +18,11 @@ class Usuario(models.Model):
 
     def __str__(self):
         return self.nome_completo
+
+class CalendarioFrequencia(models.Model):
+    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    data = models.DateField()
+    presente = models.BooleanField(default=False)
+
+    def __str__(self):
+        return '{self.aluno.nome} - {self.data_frequencia}'

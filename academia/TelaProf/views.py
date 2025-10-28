@@ -11,19 +11,20 @@ def lista_alunos(request):
 
 @login_required
 def editar_aluno(request, aluno_id, CalendarioFrequencia_id=None):
-
     aluno = get_object_or_404(Usuario, id=aluno_id)
-    calendario = CalendarioFrequencia.objects.filter(aluno=aluno)
+    calendario = CalendarioFrequencia.objects.filter(usuario=aluno)
+
     if request.method == 'POST':
         aluno.observacoes = request.POST.get('observacoes')
-        calendario = CalendarioFrequencia.objects.filter(aluno=aluno)
+        calendario = CalendarioFrequencia.objects.filter(usuario=aluno)
+
         for data in calendario:
             data.presente = request.POST.get(f'presente_{data.id}') == 'on'
             data.save()
+
         aluno.save()
         return redirect('TelaProf:lista_alunos')
 
     return render(request, 'editar_aluno.html', {'aluno': aluno, 'calendario': calendario})
-
 
 # Create your views here.

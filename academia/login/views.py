@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from cadastro.models import Usuario
 from django.http import HttpResponse
+from TelaAluno.views import TelaAluno
 
 def login(request):
     erro = None  # variável para guardar a mensagem de erro
@@ -11,7 +12,11 @@ def login(request):
 
         try:
             usuario = Usuario.objects.get(email=email, senha=senha)
-            return HttpResponse(f"Bem-vindo, {usuario.nome_completo}!")
+            # salva o nome do usuário na sessão
+            request.session['nome_usuario_completo'] = usuario.nome_completo
+            # redireciona para a tela inicial
+            return redirect('TelaAluno')
+
         except Usuario.DoesNotExist:
             erro = "Email ou senha inválidos."
 

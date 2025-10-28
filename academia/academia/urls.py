@@ -7,5 +7,6 @@ urlpatterns = [
     path('', include('login.urls')),
     path('', include('loginProf.urls')),
     path('', include('TelaProf.urls')),
+    path('', include('TelaAluno.urls')),
     path('admin/', admin.site.urls)
 ]

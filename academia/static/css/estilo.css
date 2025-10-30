@@ -499,3 +499,90 @@ table.custom-table a.btn:hover {
     .main-content { margin-left: 0 !important; padding:1rem; }
 }
 
+.table-frequencia {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(176, 136, 82, 0.3);
+    border-radius: 12px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 0 15px rgba(176, 136, 82, 0.2);
+    color: #fff;
+    overflow: hidden;
+}
+
+.table-frequencia thead {
+    background: linear-gradient(135deg, rgba(176, 136, 82, 0.2), rgba(0, 0, 0, 0.6));
+}
+
+.table-frequencia th {
+    color: var(--primary-yellow);
+    font-weight: 600;
+    border-bottom: 1px solid rgba(176, 136, 82, 0.3);
+    padding: 12px 16px;
+}
+
+.table-frequencia td {
+    padding: 10px 16px;
+    border-bottom: 1px solid rgba(176, 136, 82, 0.15);
+    vertical-align: middle;
+}
+
+.table-frequencia tbody tr:hover {
+    background-color: rgba(176, 136, 82, 0.1);
+    transition: background-color 0.2s ease-in-out;
+}
+
+/* === Botões de ação (adicionar/remover) === */
+.btn-success,
+.btn-warning,
+.btn-danger {
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all 0.25s ease;
+    border: none;
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #28a745, #218838);
+    color: #fff;
+}
+
+.btn-success:hover {
+    background: linear-gradient(135deg, #34d058, #28a745);
+    box-shadow: 0 0 12px rgba(40, 167, 69, 0.5);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #dc3545, #a71d2a);
+    color: #fff;
+}
+
+.btn-danger:hover {
+    background: linear-gradient(135deg, #ff4757, #c92a3b);
+    box-shadow: 0 0 12px rgba(220, 53, 69, 0.5);
+}
+
+.btn-warning {
+    background: linear-gradient(135deg, #b08852, #8e6f3f);
+    color: #fff;
+}
+
+.btn-warning:hover {
+    background: linear-gradient(135deg, #d4a659, #b08852);
+    box-shadow: 0 0 12px rgba(176, 136, 82, 0.4);
+}
+
+/* === Campos de formulário no tema escuro === */
+input[type="date"],
+textarea {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(176, 136, 82, 0.3);
+    color: #fff;
+    border-radius: 8px;
+}
+
+input[type="date"]:focus,
+textarea:focus {
+    border-color: var(--primary-yellow);
+    box-shadow: 0 0 10px rgba(176, 136, 82, 0.3);
+    outline: none;
+}

@@ -1,7 +1,7 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,45 +9,79 @@
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/estilo.css' %}" rel="stylesheet">
 </head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+<body class="bg-dark text-white">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-black border-bottom border-warning">
         <div class="container d-flex justify-content-center">
-            <a class="navbar-brand mx-auto" href="{% url 'membros' %}">FitCore</a>
+            <a class="navbar-brand mx-auto text-warning fw-bold" href="{% url 'membros' %}">FitCore</a>
             <button class="navbar-toggler position-absolute end-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
         </div>
     </nav>
-    <div class="container fade-in" style="margin-top: 100px; ">
+
+    <div class="container fade-in" style="margin-top: 100px;">
+        <h2 class="mb-4 text-center">Editar Aluno: {{ aluno.nome_completo }}</h2>
+
+        <!-- Formulário de observações -->
         <form method="POST" action="{% url 'TelaProf:editar_aluno' aluno.id %}">
             {% csrf_token %}
-            {{ form.as_p }}
-            <h2 class="mb-4">Editar Aluno: {{ aluno.nome_completo }}</h2>
-            <div class="mb-3">
+            <div class="mb-4">
                 <label for="observacoes" class="form-label">Observações</label>
-                <textarea class="form-control bg-dark text-white border border-warning" id="observacoes" name="observacoes">{{ aluno.observacoes }}</textarea>
+                <textarea class="form-control bg-dark text-white border border-warning" id="observacoes" name="observacoes" rows="3">{{ aluno.observacoes }}</textarea>
             </div>
-            <h3 class="mb-3">Frequência</h3>
+            <button type="submit" name="salvar_observacoes" class="btn btn-warning">Salvar Observações</button>
+        </form>
+
+        <hr class="border-warning my-5">
+
+        <!-- Adicionar nova data de frequência -->
+        <h4 class="mb-3">Adicionar Data de Frequência</h4>
+        <form method="POST" action="{% url 'TelaProf:editar_aluno' aluno.id %}" class="row g-3 align-items-center">
+            {% csrf_token %}
+            <div class="col-auto">
+                <input type="date" class="form-control bg-dark text-white border border-warning" name="nova_data" required>
+            </div>
+            <div class="col-auto">
+                <button type="submit" name="adicionar_data" class="btn btn-success">Adicionar</button>
+            </div>
+        </form>
+
+        <hr class="border-warning my-5">
+
+        <!-- Lista de frequências -->
+        <h4 class="mb-3">Frequências Registradas</h4>
+        {% if calendario %}
             <table class="table custom-table">
                 <thead class="table-dark">
                     <tr class="table-dark">
-                        <th>Data</th>
-                        <th>Presente</th>
+                        <th scope="col">Data</th>
+                        <th scope="col" class="text-center">Ações</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for item in calendario %}
-                    <tr>
-                        <td>{{ item.data }}</td>
-                        <td>
-                            <input type="checkbox" name="presente_{{ item.id }}" {% if item.presente %}checked{% endif %}>
-                        </td>
-                    </tr>
+                    {% for freq in calendario %}
+                        <tr class="table-dark">
+                            <td>{{ freq.data|date:"d/m/Y" }}</td>
+                            <td class="text-center">
+                                <form method="POST" action="{% url 'TelaProf:editar_aluno' aluno.id %}" style="display:inline;">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="data_id" value="{{ freq.id }}">
+                                    <button type="submit" name="remover_data" class="btn btn-danger btn-sm" onclick="return confirm('Realizar remoção?')">Remover</button>
+                                </form>
+                            </td>
+                        </tr>
                     {% endfor %}
                 </tbody>
             </table>
-            <button type="submit" class="btn btn-primary">Salvar</button>
-        </form>
+        {% else %}
+            <p class="text-light">Nenhuma frequência registrada ainda.</p>
+        {% endif %}
     </div>
+
+    <div class="container">
+        <a class="btn btn-secondary mt-4" href="{% url 'TelaProf:lista_alunos' %}">Voltar à Lista de Alunos</a>
+    </div>
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 </body>
 </html>

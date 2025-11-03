@@ -586,3 +586,280 @@ textarea:focus {
     box-shadow: 0 0 10px rgba(176, 136, 82, 0.3);
     outline: none;
 }
+
+.calendar-main-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+    color: #ddd;
+}
+
+/* ======== NAVEGAÇÃO ======== */
+.calendar-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin-bottom: 1rem;
+}
+
+.calendar-month-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #cba6ff;
+    text-transform: capitalize;
+}
+
+.calendar-nav-button {
+    background: transparent;
+    border: 1px solid #cba6ff;
+    color: #cba6ff;
+    border-radius: 8px;
+    padding: 0.4rem 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.calendar-nav-button:hover {
+    background-color: #cba6ff;
+    color: #000;
+}
+
+/* ======== CONTAINER DE MÚLTIPLOS MESES ======== */
+#calendarContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+}
+
+/* ======== CADA MÊS ======== */
+.calendar-month-view {
+    background: rgba(20, 20, 25, 0.9);
+    border: 1px solid #7b3ff2;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.2s;
+}
+
+.calendar-month-view:hover {
+    transform: scale(1.02);
+}
+
+/* ======== TÍTULO DO MÊS ======== */
+.calendar-month-view thead {
+    background: #7b3ff2;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.calendar-month-view th {
+    padding: 0.3rem;
+    text-align: center;
+    font-size: 0.85rem;
+}
+
+/* ======== CÉLULAS ======== */
+.calendar-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.calendar-table td {
+    text-align: center;
+    padding: 0.4rem;
+}
+
+.calendar-day-cell {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+/* ======== ESTADOS DAS DATAS ======== */
+.calendar-day-empty {
+    background: transparent;
+}
+
+.calendar-day-normal {
+    background-color: #111;
+    border: 1px solid #7b3ff2;
+    color: #cba6ff;
+}
+
+.calendar-day-presente {
+    background-color: #ff7a1a;
+    border: 1px solid #ff7a1a;
+    color: #fff;
+}
+
+.calendar-day-ausente {
+    background-color: #2b2b2b;
+    border: 1px solid #7b3ff2;
+    opacity: 0.6;
+    color: #bbb;
+}
+
+.calendar-day-cell:hover {
+    transform: scale(1.1);
+}
+
+/* ======== PAGINAÇÃO ======== */
+.calendar-pagination {
+    margin-top: 1rem;
+    display: flex;
+    gap: 0.4rem;
+    justify-content: center;
+}
+
+.pagination-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #444;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.pagination-dot.active {
+    background: #cba6ff;
+}
+
+/* ======== LEGENDA ======== */
+.calendar-legend {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.legend-box {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.calendar-day-presente.legend-box {
+    background-color: #ff7a1a;
+}
+
+.calendar-day-ausente.legend-box {
+    background-color: #2b2b2b;
+    border: 1px solid #7b3ff2;
+}
+
+.calendar-day-normal.legend-box {
+    background-color: #000;
+    border: 1px solid #7b3ff2;
+}
+
+.calendar-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+    gap: 12px;
+    justify-items: center;
+    margin-top: 2rem;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(176,136,82,0.2);
+    padding: 1.5rem;
+    border-radius: 16px;
+    box-shadow: 0 0 15px rgba(176,136,82,0.15);
+}
+
+.day-btn {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 1px solid rgba(176,136,82,0.4);
+    background: rgba(255,255,255,0.05);
+    color: #fff;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    font-size: 0.9rem;
+}
+
+.day-btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 10px rgba(176,136,82,0.3);
+}
+
+/* Estado Presente (frequente) */
+.day-btn.presente {
+    background-color: #ff7a1a;
+    border-color: #ff7a1a;
+    color: #fff;
+    box-shadow: 0 0 10px rgba(255,122,26,0.5);
+}
+
+/* Estado Ausente (sem presença) */
+.day-btn.ausente {
+    background-color: rgba(255,255,255,0.05);
+    border-color: rgba(176,136,82,0.3);
+    color: #bbb;
+    opacity: 0.7;
+}
+
+/* Botão principal usado no formulário */
+.btn-salvar {
+    background: var(--gradient-purple-yellow);
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    padding: 12px 30px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.btn-salvar:hover {
+    background: var(--dark-yellow);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(176,136,82,0.4);
+}
+
+.calendar-month-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #cba6ff;
+    margin-bottom: 1rem;
+}
+
+.calendar-month-title {
+    font-weight: bold;
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+
+.calendar-month-container {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1rem;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(176,136,82,0.2);
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(176,136,82,0.15);
+}

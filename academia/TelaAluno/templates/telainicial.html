@@ -59,26 +59,106 @@
             <p>Vamos continuar sua jornada fitness hoje!</p>
         </div>
 
-        <!-- Streak Section -->
-        <div class="row mb-4">
-            <div class="col-lg-8">
-                <div class="streak-section glass-bg">
-                    <div class="streak-fire">🔥</div>
-                    <div class="streak-number" id="streakNumber">15</div>
-                    <h4 style="margin-top:.25rem;color:#ddd;">Dias de Ofensiva!</h4>
-                    <p style="color:#bbb;">Continue assim! Você está no seu melhor momento!</p>
+        <!-- Calendar Section -->
+         
+            <h5 class="mb-4" style="color:#b57aff; font-weight:700; text-align:center; font-size:1.8rem;">
+                <i class="fas fa-calendar-alt me-2"></i>Calendário de Presenças
+            </h5>
 
-                    <div class="streak-days" style="display:flex;gap:10px;margin-top:1rem;">
-                        <div class="streak-day completed glass-bg" style="width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;">S</div>
-                        <div class="streak-day completed glass-bg" style="width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;">T</div>
-                        <div class="streak-day completed glass-bg" style="width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;">Q</div>
-                        <div class="streak-day completed glass-bg" style="width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;">Q</div>
-                        <div class="streak-day completed glass-bg" style="width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;">S</div>
-                        <div class="streak-day completed glass-bg" style="width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;">S</div>
-                        <div class="streak-day current glass-bg" style="width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;">D</div>
+            {% if calendario_dados %}
+            <div class="calendar-main-container">
+                
+                <!-- Navegação -->
+                <div class="calendar-navigation">
+                    <button class="calendar-nav-button" onclick="changeCalendarMonth(-1)">
+                        <i class="fas fa-chevron-left"></i> Anterior
+                    </button>
+                    <div class="calendar-month-title" id="monthTitle">
+                        {{ calendario_dados.0.mes }} {{ calendario_dados.0.ano }}
+                    </div>
+                    <button class="calendar-nav-button" onclick="changeCalendarMonth(1)">
+                        Próximo <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+
+                <!-- Container dos meses -->
+                <div id="calendarContainer">
+                    {% for mes_data in calendario_dados %}
+                    <div class="calendar-month-view" data-month="{{ forloop.counter0 }}" style="{% if not forloop.first %}display:none;{% endif %}">
+                        <table class="calendar-table">
+                            <thead>
+                                <tr>
+                                    <th>Seg</th>
+                                    <th>Ter</th>
+                                    <th>Qua</th>
+                                    <th>Qui</th>
+                                    <th>Sex</th>
+                                    <th>Sáb</th>
+                                    <th>Dom</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <!-- Espaço antes do primeiro dia -->
+                                    {% for i in "x"|rjust:mes_data.offset %}
+                                    <td><div class="calendar-day-cell calendar-day-empty"></div></td>
+                                    {% endfor %}
+
+                                    <!-- Dias -->
+                                    {% for dia in mes_data.dias %}
+                                        {% if forloop.counter0|add:mes_data.offset|divisibleby:7 and forloop.counter0 > 0 %}
+                                            </tr><tr>
+                                        {% endif %}
+                                        <td>
+                                            {% if dia.tem_registro %}
+                                                <div class="calendar-day-cell {% if dia.presente %}calendar-day-presente{% else %}calendar-day-ausente{% endif %}" 
+                                                    title="{% if dia.presente %}Presente{% else %}Ausente{% endif %} - {{ dia.dia }}/{{ mes_data.mes }}/{{ mes_data.ano }}">
+                                                    {{ dia.dia }}
+                                                </div>
+                                            {% else %}
+                                                <div class="calendar-day-cell calendar-day-normal" 
+                                                    title="Sem registro - {{ dia.dia }}/{{ mes_data.mes }}/{{ mes_data.ano }}">
+                                                    {{ dia.dia }}
+                                                </div>
+                                            {% endif %}
+                                        </td>
+                                    {% endfor %}
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <!-- Paginação -->
+                <div class="calendar-pagination">
+                    {% for mes_data in calendario_dados %}
+                    <span class="pagination-dot {% if forloop.first %}active{% endif %}" 
+                        onclick="goToCalendarMonth({{ forloop.counter0 }})"></span>
+                    {% endfor %}
+                </div>
+
+                <!-- Legenda -->
+                <div class="calendar-legend">
+                    <div class="legend-item">
+                        <div class="legend-box calendar-day-presente"></div>
+                        <span class="legend-text">Presente</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-box calendar-day-ausente"></div>
+                        <span class="legend-text">Ausente</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-box calendar-day-normal"></div>
+                        <span class="legend-text">Sem registro</span>
                     </div>
                 </div>
             </div>
+            {% else %}
+            <p style="color:#bbb; text-align:center; padding:3rem; font-size:1.1rem;">
+                <i class="fas fa-info-circle me-2"></i>Nenhuma data registrada no calendário.
+            </p>
+            {% endif %}
 
             <div class="col-lg-4">
                 <div class="glass-card glass-bg h-100">
@@ -174,6 +254,63 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script>
+        let currentCalendarMonth = 0;
+        const totalCalendarMonths = {{ calendario_dados|length|default:0 }};
+        const mesesData = [
+            {% for mes_data in calendario_dados %}
+                {mes: "{{ mes_data.mes }}", ano: {{ mes_data.ano }} },
+            {% endfor %}
+        ];
+
+        function updateCalendarDisplay() {
+            if (totalCalendarMonths === 0) return;
+            
+            // Atualizar visualização dos meses
+            document.querySelectorAll('.calendar-month-view').forEach((month, index) => {
+                month.style.display = index === currentCalendarMonth ? 'block' : 'none';
+            });
+            
+            // Atualizar título
+            if (mesesData[currentCalendarMonth]) {
+                document.getElementById('monthTitle').textContent = 
+                    mesesData[currentCalendarMonth].mes + ' ' + mesesData[currentCalendarMonth].ano;
+            }
+            
+            // Atualizar dots
+            document.querySelectorAll('.pagination-dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentCalendarMonth);
+            });
+            
+            // Atualizar botões
+            document.getElementById('prevBtn').disabled = currentCalendarMonth === 0;
+            document.getElementById('nextBtn').disabled = currentCalendarMonth === totalCalendarMonths - 1;
+        }
+
+        function changeCalendarMonth(direction) {
+            if (totalCalendarMonths === 0) return;
+            
+            const newMonth = currentCalendarMonth + direction;
+            if (newMonth >= 0 && newMonth < totalCalendarMonths) {
+                currentCalendarMonth = newMonth;
+                updateCalendarDisplay();
+            }
+        }
+
+        function goToCalendarMonth(index) {
+            if (totalCalendarMonths === 0) return;
+            currentCalendarMonth = index;
+            updateCalendarDisplay();
+        }
+
+        // Navegação por teclado
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') changeCalendarMonth(-1);
+            if (e.key === 'ArrowRight') changeCalendarMonth(1);
+        });
+
+        // Inicializar
+        updateCalendarDisplay();
+
         // Mobile sidebar toggle
         document.getElementById('sidebarToggle').addEventListener('click', function() {
             document.getElementById('sidebar').classList.toggle('active');

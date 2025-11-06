@@ -839,6 +839,25 @@ textarea:focus {
     box-shadow: 0 10px 25px rgba(176,136,82,0.4);
 }
 
+.btn-voltar {
+    background: transparent;
+    border: 2px solid #b57aff;
+    border-radius: 10px;
+    color: #b57aff;
+    padding: 10px 25px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    margin-left: 15px;
+}
+
+.btn-voltar:hover {
+    background: rgba(181, 122, 255, 0.2);
+    color: #fff;
+    box-shadow: 0 8px 20px rgba(181, 122, 255, 0.4);
+}
+
 .calendar-month-navigation {
     display: flex;
     justify-content: space-between;
@@ -862,4 +881,28 @@ textarea:focus {
     padding: 1rem;
     border-radius: 10px;
     box-shadow: 0 0 15px rgba(176,136,82,0.15);
+}
+
+.calendar-table {
+    background-color: #111;
+    border-radius: 10px;
+}
+
+.day-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    margin: 3px;
+    cursor: pointer;
+}
+
+.day-btn.presente {
+    background-color: #ffc107; /* amarelo */
+    color: #000;
+}
+
+.day-btn.ausente {
+    background-color: #222;
+    color: #aaa;
 }

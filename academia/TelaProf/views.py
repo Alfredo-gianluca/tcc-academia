@@ -1,6 +1,6 @@
 import json
 from django.shortcuts import render, get_object_or_404, redirect
-from cadastro.models import Usuario, CalendarioFrequencia
+from cadastro.models import Usuario, CalendarioFrequencia, Cargas
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
 
@@ -15,6 +15,7 @@ def lista_alunos(request):
 def editar_aluno(request, aluno_id):
     aluno = get_object_or_404(Usuario, id=aluno_id)
     calendario = CalendarioFrequencia.objects.filter(usuario=aluno).order_by('-data')
+    cargas = Cargas.objects.filter(usuario=aluno)
 
     if request.method == 'POST':
 
@@ -37,6 +38,10 @@ def editar_aluno(request, aluno_id):
         # --- Salvar observações e presenças ---
         else:
             aluno.observacoes = request.POST.get('observacoes', '')
+            cargas_pernas = request.POST.get('cargas_pernas', '')
+            cargas_bracos = request.POST.get('cargas_bracos', '')
+            cargas_peitos = request.POST.get('cargas_peitos', '')
+            cargas_costas = request.POST.get('cargas_costas', '')
             aluno.save()
 
             presencas_json = request.POST.get('presencas_json', '{}')

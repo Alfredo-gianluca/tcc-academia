@@ -3,7 +3,7 @@ from django.template import loader
 from django.shortcuts import render
 from .forms import UsuarioForm
 from datetime import date, timedelta
-from .models import CalendarioFrequencia
+from .models import CalendarioFrequencia, Cargas
 
 def cadastro(request):
     if request.method == 'POST':
@@ -18,6 +18,15 @@ def cadastro(request):
             fim = date(2025, 12, 31)
             delta = timedelta(days=1)
             data_atual = inicio
+
+            # Gera as cargas iniciais automaticamente
+            Cargas.objects.create(
+                usuario=usuario,
+                pernas=0,
+                bracos=0,
+                costas=0,
+                peito=0
+            )
 
             while data_atual <= fim:
                 # opcional: pula finais de semana

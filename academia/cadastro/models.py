@@ -26,3 +26,12 @@ class CalendarioFrequencia(models.Model):
 
     def __str__(self):
         return '{self.usuario.nome_completo} - {self.data}'
+
+class Cargas(models.Model):
+    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    pernas = models.IntegerField()
+    bracos = models.IntegerField()
+    costas = models.IntegerField()
+    peito = models.IntegerField()
+    def __str__(self):
+        return f'{self.usuario.nome_completo} - Cargas'

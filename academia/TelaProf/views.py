@@ -16,6 +16,8 @@ def editar_aluno(request, aluno_id):
     aluno = get_object_or_404(Usuario, id=aluno_id)
     calendario = CalendarioFrequencia.objects.filter(usuario=aluno).order_by('-data')
     cargas = Cargas.objects.filter(usuario=aluno)
+    mes = int(request.GET.get('mes', datetime.now().month))
+    ano = int(request.GET.get('ano', datetime.now().year))
 
     if request.method == 'POST':
 
@@ -62,4 +64,7 @@ def editar_aluno(request, aluno_id):
     return render(request, 'editar_aluno.html', {
         'aluno': aluno,
         'calendario': calendario,
+        'mes': mes,
+        'ano': ano,
+
     })

@@ -1,0 +1,140 @@
+Date : 2025-11-07 14:16:58
+Directory : c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia
+Total : 82 files,  2666 codes, 165 comments, 498 blanks, all 3329 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| HTML       |          9 |      1,136 |         28 |         88 |      1,252 |
+| PostCSS    |          3 |        918 |         34 |        139 |      1,091 |
+| Python     |         68 |        611 |         97 |        270 |        978 |
+| JavaScript |          2 |          1 |          6 |          1 |          8 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++---------------------------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                                                    | files      | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                                                       |         82 |      2,666 |        165 |        498 |      3,329 |
+| . (Files)                                                                                                                                               |          1 |         15 |          3 |          5 |         23 |
+| TelaAluno                                                                                                                                               |          9 |        385 |         24 |         65 |        474 |
+| TelaAluno (Files)                                                                                                                                       |          7 |         74 |         11 |         26 |        111 |
+| TelaAluno\migrations                                                                                                                                    |          1 |          0 |          0 |          1 |          1 |
+| TelaAluno\templates                                                                                                                                     |          1 |        311 |         13 |         38 |        362 |
+| TelaProf                                                                                                                                                |         10 |        180 |          9 |         36 |        225 |
+| TelaProf (Files)                                                                                                                                        |          7 |         60 |          8 |         23 |         91 |
+| TelaProf\migrations                                                                                                                                     |          1 |          0 |          0 |          1 |          1 |
+| TelaProf\templates                                                                                                                                      |          2 |        120 |          1 |         12 |        133 |
+| academia                                                                                                                                                |          5 |         95 |         44 |         49 |        188 |
+| cadastro                                                                                                                                                |         20 |        305 |         14 |         90 |        409 |
+| cadastro (Files)                                                                                                                                        |          8 |         89 |          6 |         26 |        121 |
+| cadastro\migrations                                                                                                                                     |         10 |        131 |          8 |         52 |        191 |
+| cadastro\migrations (Files)                                                                                                                             |          9 |        106 |          8 |         50 |        164 |
+| cadastro\migrations\templates                                                                                                                           |          1 |         25 |          0 |          2 |         27 |
+| cadastro\templates                                                                                                                                      |          2 |         85 |          0 |         12 |         97 |
+| login                                                                                                                                                   |         10 |        111 |          7 |         32 |        150 |
+| login (Files)                                                                                                                                           |          7 |         39 |          5 |         18 |         62 |
+| loginProf                                                                                                                                               |         10 |        111 |          6 |         33 |        150 |
+| loginProf (Files)                                                                                                                                       |          7 |         42 |          4 |         21 |         67 |
+| loginProf\migrations                                                                                                                                    |          2 |         16 |          1 |          8 |         25 |
+| loginProf\templates                                                                                                                                     |          1 |         53 |          1 |          4 |         58 |
+| login\migrations                                                                                                                                        |          2 |         16 |          1 |          8 |         25 |
+| login\templates                                                                                                                                         |          1 |         56 |          1 |          6 |         63 |
+| membros                                                                                                                                                 |         12 |        545 |         18 |         48 |        611 |
+| membros (Files)                                                                                                                                         |          7 |         18 |          3 |         14 |         35 |
+| membros\migrations                                                                                                                                      |          4 |         41 |          3 |         20 |         64 |
+| membros\templates                                                                                                                                       |          1 |        486 |         12 |         14 |        512 |
+| static                                                                                                                                                  |          5 |        919 |         40 |        140 |      1,099 |
+| static\css                                                                                                                                              |          3 |        918 |         34 |        139 |      1,091 |
+| static\js                                                                                                                                               |          2 |          1 |          6 |          1 |          8 |
++---------------------------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++---------------------------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                                                                                                | language   | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\TelaAluno\__init__.py                                                           | Python     |          0 |          0 |          1 |          1 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\TelaAluno\admin.py                                                              | Python     |          1 |          1 |          2 |          4 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\TelaAluno\apps.py                                                               | Python     |          4 |          0 |          3 |          7 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\TelaAluno\migrations\__init__.py                                                | Python     |          0 |          0 |          1 |          1 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\TelaAluno\models.py                                                             | Python     |          1 |          1 |          2 |          4 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\TelaAluno\templates\telainicial.html                                            | HTML       |        311 |         13 |         38 |        362 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\TelaAluno\tests.py                                                              | Python     |          1 |          1 |          2 |          4 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\TelaAluno\urls.py                                                               | Python     |          5 |          0 |          2 |          7 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\TelaAluno\views.py                                                              | Python     |         62 |          8 |         14 |         84 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\TelaProf\__init__.py                                                            | Python     |          0 |          0 |          1 |          1 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\TelaProf\admin.py                                                               | Python     |          1 |          1 |          2 |          4 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\TelaProf\apps.py                                                                | Python     |          4 |          0 |          3 |          7 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\TelaProf\migrations\__init__.py                                                 | Python     |          0 |          0 |          1 |          1 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\TelaProf\models.py                                                              | Python     |          1 |          1 |          2 |          4 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\TelaProf\templates\editar_aluno.html                                            | HTML       |         67 |          1 |         11 |         79 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\TelaProf\templates\lista_alunos.html                                            | HTML       |         53 |          0 |          1 |         54 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\TelaProf\tests.py                                                               | Python     |          1 |          1 |          2 |          4 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\TelaProf\urls.py                                                                | Python     |          7 |          2 |          2 |         11 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\TelaProf\views.py                                                               | Python     |         46 |          3 |         11 |         60 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\academia\__init__.py                                                            | Python     |          0 |          0 |          1 |          1 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\academia\asgi.py                                                                | Python     |          4 |          8 |          5 |         17 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\academia\settings.py                                                            | Python     |         76 |         28 |         36 |        140 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\academia\urls.py                                                                | Python     |         11 |          0 |          2 |         13 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\academia\wsgi.py                                                                | Python     |          4 |          8 |          5 |         17 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\cadastro\__init__.py                                                            | Python     |          0 |          0 |          1 |          1 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\cadastro\admin.py                                                               | Python     |          4 |          0 |          1 |          5 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\cadastro\apps.py                                                                | Python     |          4 |          0 |          3 |          7 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\cadastro\forms.py                                                               | Python     |         21 |          2 |          6 |         29 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\cadastro\migrations\0001_initial.py                                             | Python     |         19 |          1 |          7 |         27 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\cadastro\migrations\0002_usuarioc_senha.py                                      | Python     |         13 |          1 |          6 |         20 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\cadastro\migrations\0003_rename_usuarioc_usuario.py                             | Python     |         11 |          1 |          6 |         18 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\cadastro\migrations\0004_calendariofrequencia.py                                | Python     |         17 |          1 |          6 |         24 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\cadastro\migrations\0005_alter_calendariofrequencia_unique_together.py          | Python     |         11 |          1 |          6 |         18 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\cadastro\migrations\0005_remove_calendariofrequencia_presente.py                | Python     |         11 |          1 |          6 |         18 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\cadastro\migrations\0006_merge_20251103_1049.py                                 | Python     |          8 |          1 |          6 |         15 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\cadastro\migrations\0007_alter_calendariofrequencia_unique_together_and_more.py | Python     |         16 |          1 |          6 |         23 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\cadastro\migrations\__init__.py                                                 | Python     |          0 |          0 |          1 |          1 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\cadastro\migrations\templates\cadastro.html                                     | HTML       |         25 |          0 |          2 |         27 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\cadastro\models.py                                                              | Python     |         23 |          0 |          6 |         29 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\cadastro\templates\cadastro.html                                                | HTML       |         48 |          0 |          7 |         55 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\cadastro\templates\cadastroSucesso.html                                         | HTML       |         37 |          0 |          5 |         42 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\cadastro\tests.py                                                               | Python     |          1 |          1 |          2 |          4 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\cadastro\urls.py                                                                | Python     |          5 |          0 |          1 |          6 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\cadastro\views.py                                                               | Python     |         31 |          3 |          6 |         40 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\loginProf\__init__.py                                                           | Python     |          0 |          0 |          1 |          1 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\loginProf\admin.py                                                              | Python     |          3 |          1 |          3 |          7 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\loginProf\apps.py                                                               | Python     |          4 |          0 |          3 |          7 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\loginProf\migrations\0001_initial.py                                            | Python     |         16 |          1 |          7 |         24 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\loginProf\migrations\__init__.py                                                | Python     |          0 |          0 |          1 |          1 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\loginProf\models.py                                                             | Python     |          7 |          1 |          4 |         12 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\loginProf\templates\loginprof.html                                              | HTML       |         53 |          1 |          4 |         58 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\loginProf\tests.py                                                              | Python     |          1 |          1 |          2 |          4 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\loginProf\urls.py                                                               | Python     |          5 |          0 |          2 |          7 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\loginProf\views.py                                                              | Python     |         22 |          1 |          6 |         29 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\login\__init__.py                                                               | Python     |          0 |          0 |          1 |          1 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\login\admin.py                                                                  | Python     |          1 |          1 |          2 |          4 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\login\apps.py                                                                   | Python     |          4 |          0 |          3 |          7 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\login\migrations\0001_initial.py                                                | Python     |         16 |          1 |          7 |         24 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\login\migrations\__init__.py                                                    | Python     |          0 |          0 |          1 |          1 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\login\models.py                                                                 | Python     |          7 |          1 |          4 |         12 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\login\templates\login.html                                                      | HTML       |         56 |          1 |          6 |         63 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\login\tests.py                                                                  | Python     |          1 |          1 |          2 |          4 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\login\urls.py                                                                   | Python     |          5 |          0 |          1 |          6 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\login\views.py                                                                  | Python     |         21 |          2 |          5 |         28 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\manage.py                                                                       | Python     |         15 |          3 |          5 |         23 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\membros\__init__.py                                                             | Python     |          0 |          0 |          1 |          1 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\membros\admin.py                                                                | Python     |          1 |          1 |          2 |          4 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\membros\apps.py                                                                 | Python     |          4 |          0 |          3 |          7 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\membros\migrations\0001_initial.py                                              | Python     |         19 |          1 |          7 |         27 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\membros\migrations\0002_membro_peso.py                                          | Python     |         12 |          1 |          6 |         19 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\membros\migrations\0003_delete_membro.py                                        | Python     |         10 |          1 |          6 |         17 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\membros\migrations\__init__.py                                                  | Python     |          0 |          0 |          1 |          1 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\membros\models.py                                                               | Python     |          1 |          0 |          2 |          3 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\membros\templates\index.html                                                    | HTML       |        486 |         12 |         14 |        512 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\membros\tests.py                                                                | Python     |          1 |          1 |          2 |          4 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\membros\urls.py                                                                 | Python     |          5 |          0 |          1 |          6 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\membros\views.py                                                                | Python     |          6 |          1 |          3 |         10 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\static\css\bootstrap.min.css                                                    | PostCSS    |          5 |          1 |          0 |          6 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\static\css\calendar.css                                                         | PostCSS    |        155 |          0 |         22 |        177 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\static\css\estilo.css                                                           | PostCSS    |        758 |         33 |        117 |        908 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\static\js\bootstrap.bundle.min.js                                               | JavaScript |          1 |          6 |          0 |          7 |
+| c:\Users\alfre_yoe38xz\OneDrive\Documentos\GitHub\tcc-academia\academia\static\js\script.js                                                             | JavaScript |          0 |          0 |          1 |          1 |
+| Total                                                                                                                                                   |            |      2,666 |        165 |        498 |      3,329 |
++---------------------------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+

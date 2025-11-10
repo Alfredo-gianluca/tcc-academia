@@ -28,18 +28,26 @@
 
             <h3 class="section-title" style="margin-top: 2rem;">Calendário de Frequência</h3>
 
-            <div class="calendar-container">
-                {% for item in calendario %}
-                    <button type="button"
-                        class="day-btn {% if item.presente %}presente{% else %}ausente{% endif %}"
-                        data-id="{{ item.id }}"
-                        data-name="presente_{{ item.id }}"
-                        data-presente="{{ item.presente|yesno:'true,false' }}">
-                        {{ item.data|date:"d/m" }}
-                    </button>
-                {% endfor %}
-            </div>
 
+                <!-- Navegação -->
+                <div class="calendar-month-navigation">
+                    <button id="prevMonth" class="calendar-nav-button">◀ Anterior</button>
+                    <span id="monthTitle" class="calendar-month-title"></span>
+                    <button id="nextMonth" class="calendar-nav-button">Próximo ▶</button>
+                </div>
+
+                <!-- Container dos dias -->
+                <div id="calendarContainer" class="calendar-container"></div>
+
+                <!-- Legenda -->
+                <div class="calendar-legend">
+                    <div class="legend-item">
+                        <span class="legend-box day-btn presente"></span> Presente
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-box day-btn ausente"></span> Ausente
+                    </div>
+                </div>
             <!-- Campo oculto para enviar dados de presenças -->
             <input type="hidden" name="presencas_json" id="presencas_json">
 
@@ -49,30 +57,116 @@
                     <a href="{% url 'TelaProf:lista_alunos' %}" class="text-white text-decoration-none">Voltar</a>
                 </button>
             </div>
+
         </form>
     </main>
 
     <script>
-        const botoes = document.querySelectorAll('.day-btn');
-        const inputPresencas = document.getElementById('presencas_json');
+        const botoes = [
+            {% for item in calendario %}
+            {
+                id: "{{ item.id }}",
+                data: "{{ item.data|date:'Y-m-d' }}",
+                presente: {{ item.presente|yesno:'true,false'|lower }}
+            },
+            {% endfor %}
+        ];
+
         const presencas = {};
+        botoes.forEach(btn => presencas[btn.id] = btn.presente);
 
-        botoes.forEach(btn => {
-            const id = btn.dataset.id;
-            const presente = btn.dataset.presente === 'true';
-            presencas[id] = presente;
+        const calendarContainer = document.getElementById('calendarContainer');
+        const monthTitle = document.getElementById('monthTitle');
+        const inputPresencas = document.getElementById('presencas_json');
 
-            btn.addEventListener('click', () => {
-                presencas[id] = !presencas[id];
-                btn.classList.toggle('presente', presencas[id]);
-                btn.classList.toggle('ausente', !presencas[id]);
-                btn.dataset.presente = presencas[id];
-            });
+        // Agrupa os dias por mês
+        const meses = {};
+        botoes.forEach(b => {
+            const data = new Date(b.data);
+            const key = `${data.getFullYear()}-${String(data.getMonth()).padStart(2, '0')}`;
+            if (!meses[key]) meses[key] = [];
+            meses[key].push(b);
         });
 
+        // Determina o ano base (pega o ano do primeiro registro ou o atual)
+        const anoBase = botoes.length > 0 ? new Date(botoes[0].data).getFullYear() : new Date().getFullYear();
+
+        // Garante os 12 meses
+        const todosMeses = [];
+        for (let m = 0; m < 12; m++) {
+            const chave = `${anoBase}-${String(m).padStart(2, '0')}`;
+            todosMeses.push(chave);
+            if (!meses[chave]) meses[chave] = [];
+        }
+
+        let indiceAtual = 0;
+
+        function renderMes() {
+            const chave = todosMeses[indiceAtual];
+            const dias = meses[chave];
+            const [ano, mes] = chave.split('-');
+            const nomeMes = new Date(ano, mes).toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' });
+
+            monthTitle.textContent = nomeMes.charAt(0).toUpperCase() + nomeMes.slice(1);
+            calendarContainer.innerHTML = '';
+
+            const divMes = document.createElement('div');
+            divMes.classList.add('calendar-month-container');
+
+            if (dias.length === 0) {
+                const vazio = document.createElement('p');
+                vazio.textContent = 'Sem registros neste mês.';
+                vazio.style.opacity = '0.6';
+                vazio.style.fontStyle = 'italic';
+                vazio.style.textAlign = 'center';
+                vazio.style.gridColumn = '1 / -1';
+                divMes.appendChild(vazio);
+            } else {
+                dias.forEach(item => {
+                    const d = new Date(item.data);
+                    const dia = String(d.getDate()).padStart(2, '0');
+
+                    const btn = document.createElement('button');
+                    btn.classList.add('day-btn');
+                    btn.classList.toggle('presente', item.presente);
+                    btn.classList.toggle('ausente', !item.presente);
+                    btn.textContent = dia;
+
+                    btn.addEventListener('click', () => {
+                        item.presente = !item.presente;
+                        presencas[item.id] = item.presente;
+                        btn.classList.toggle('presente', item.presente);
+                        btn.classList.toggle('ausente', !item.presente);
+                    });
+
+                    divMes.appendChild(btn);
+                });
+            }
+
+            calendarContainer.appendChild(divMes);
+        }
+
+        document.getElementById('prevMonth').addEventListener('click', () => {
+            if (indiceAtual > 0) {
+                indiceAtual--;
+                renderMes();
+            }
+        });
+
+        document.getElementById('nextMonth').addEventListener('click', () => {
+            if (indiceAtual < todosMeses.length - 1) {
+                indiceAtual++;
+                renderMes();
+            }
+        });
+
+        // Ao enviar o formulário
         document.querySelector('form').addEventListener('submit', () => {
             inputPresencas.value = JSON.stringify(presencas);
         });
+
+        // Render inicial (Janeiro)
+        renderMes();
     </script>
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 </body>

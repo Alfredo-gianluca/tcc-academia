@@ -29,12 +29,11 @@ def cadastro(request):
             )
 
             while data_atual <= fim:
-                # opcional: pula finais de semana
-                if data_atual.weekday() < 5:  # 0=segunda, 6=domingo
-                    CalendarioFrequencia.objects.create(
-                        usuario=usuario,
-                        data=data_atual
-                    )
+                # Remove a condição do weekday para criar todos os dias
+                CalendarioFrequencia.objects.create(
+                    usuario=usuario,
+                    data=data_atual
+                )
                 data_atual += delta
 
             return render(request, 'cadastroSucesso.html')

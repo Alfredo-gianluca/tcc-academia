@@ -15,13 +15,12 @@ def lista_alunos(request):
 def editar_aluno(request, aluno_id):
     aluno = get_object_or_404(Usuario, id=aluno_id)
     calendario = CalendarioFrequencia.objects.filter(usuario=aluno).order_by('-data')
-    cargas = Cargas.objects.filter(usuario=aluno)
+    cargas, _ = Cargas.objects.get_or_create(usuario=aluno)
     mes = int(request.GET.get('mes', datetime.now().month))
     ano = int(request.GET.get('ano', datetime.now().year))
 
     if request.method == 'POST':
 
-        # --- Adicionar nova data ---
         if 'adicionar_data' in request.POST:
             data_str = request.POST.get('nova_data')
             if data_str:
@@ -29,21 +28,20 @@ def editar_aluno(request, aluno_id):
                     data = datetime.strptime(data_str, '%Y-%m-%d').date()
                     CalendarioFrequencia.objects.get_or_create(usuario=aluno, data=data)
                 except ValueError:
-                    pass  # Data inválida
+                    pass
 
-        # --- Remover data ---
         elif 'remover_data' in request.POST:
             data_id = request.POST.get('data_id')
             if data_id:
                 CalendarioFrequencia.objects.filter(id=data_id, usuario=aluno).delete()
 
-        # --- Salvar observações e presenças ---
         else:
             aluno.observacoes = request.POST.get('observacoes', '')
-            cargas_pernas = request.POST.get('cargas_pernas', '')
-            cargas_bracos = request.POST.get('cargas_bracos', '')
-            cargas_peitos = request.POST.get('cargas_peitos', '')
-            cargas_costas = request.POST.get('cargas_costas', '')
+            cargas.pernas = request.POST.get('pernas', '') or 0
+            cargas.bracos = request.POST.get('bracos', '') or 0
+            cargas.peito = request.POST.get('peito', '') or 0
+            cargas.costas = request.POST.get('costas', '') or 0
+            cargas.save()
             aluno.save()
 
             presencas_json = request.POST.get('presencas_json', '{}')
@@ -57,14 +55,14 @@ def editar_aluno(request, aluno_id):
                     except CalendarioFrequencia.DoesNotExist:
                         pass
             except json.JSONDecodeError:
-                pass  # Ignora se o JSON vier malformado
+                pass
 
         return redirect('TelaProf:editar_aluno', aluno_id=aluno.id)
 
     return render(request, 'editar_aluno.html', {
         'aluno': aluno,
         'calendario': calendario,
+        'cargas': cargas,
         'mes': mes,
         'ano': ano,
-
     })

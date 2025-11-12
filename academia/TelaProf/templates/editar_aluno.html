@@ -106,11 +106,11 @@
         });
 
         // Determina o ano base (pega o ano do primeiro registro ou o atual)
-        const anoBase = botoes.length > 0 ? new Date(botoes[0].data).getFullYear() : new Date().getFullYear();
+        const anoBase = botoes.length > 0 ? new Date(botoes[0].data + 'T00:00:00').getFullYear() : new Date().getFullYear();
 
         // Garante os 12 meses
         const todosMeses = [];
-        for (let m = 0; m < 12; m++) {
+        for (let m = 1; m <= 12; m++) { // Meses de 1 a 12
             const chave = `${anoBase}-${String(m).padStart(2, '0')}`;
             todosMeses.push(chave);
             if (!meses[chave]) meses[chave] = [];

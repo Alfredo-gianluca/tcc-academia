@@ -82,3 +82,6 @@ def TelaAluno(request):
         'frequencias': frequencias,
         'calendario_dados': calendario_dados
     })
+
+def nutricao(request):
+    return render(request, 'nutrição.html', {})

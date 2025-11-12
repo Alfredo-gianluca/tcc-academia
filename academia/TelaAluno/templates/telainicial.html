@@ -160,20 +160,25 @@
             </p>
             {% endif %}
 
-            <div class="col-lg-4">
-                <div class="glass-card glass-bg h-100">
-                    <h5 class="mb-3"><i class="fas fa-target me-2 accent-purple"></i>Meta Semanal</h5>
-
-                    <div class="progress-container">
-                        <div class="goal-header" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.75rem;">
-                            <span class="goal-title" style="font-weight:700;color:#ddd;">Treinos</span>
-                            <span class="goal-percentage gradient-purple" style="font-weight:700;">83%</span>
-                        </div>
-                        <div class="progress-bar-custom">
-                            <div class="progress-fill" style="width:83%"></div>
-                        </div>
-                        <small class="text-muted" style="color:#bbb;">5 de 6 treinos completados</small>
-                    </div>
+            <div class="cargas-container glass-bg" style="margin-top:2rem; margin-bottom:2rem; padding:1.5rem; border-radius:12px; text-align:center;">
+                <h5 class="mb-4" style="color:#b57aff; font-weight:700; font-size:1.8rem;">
+                    <i class="fas fa-dumbbell me-2"></i>Cargas Atuais
+                </h5>
+                <div class="carga-item" style="margin-bottom:1rem;">
+                    <span class="carga-label" style="font-weight:600;color:#ddd;">Pernas:</span>
+                    <span class="carga-value" style="font-size:1.2rem;font-weight:700;color:#9d4edd;" id="carga-pernas"> {{ cargas.pernas }} kg</span>
+                </div>
+                <div class="carga-item" style="margin-bottom:1rem;">
+                    <span class="carga-label" style="font-weight:600;color:#ddd;">Braços:</span>
+                    <span class="carga-value" style="font-size:1.2rem;font-weight:700;color:#9d4edd;" id="carga-bracos"> {{ cargas.bracos }} kg</span>
+                </div>
+                <div class="carga-item" style="margin-bottom:1rem;">
+                    <span class="carga-label" style="font-weight:600;color:#ddd;">Peito:</span>
+                    <span class="carga-value" style="font-size:1.2rem;font-weight:700;color:#9d4edd;" id="carga-peito"> {{ cargas.peito }} kg</span>
+                </div>
+                <div class="carga-item" style="margin-bottom:1rem;">
+                    <span class="carga-label" style="font-weight:600;color:#ddd;">Costas:</span>
+                    <span class="carga-value" style="font-size:1.2rem;font-weight:700;color:#9d4edd;" id="carga-costas"> {{ cargas.costas }} kg</span>
                 </div>
             </div>
         </div>

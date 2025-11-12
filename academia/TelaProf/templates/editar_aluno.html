@@ -51,6 +51,23 @@
             <!-- Campo oculto para enviar dados de presenças -->
             <input type="hidden" name="presencas_json" id="presencas_json">
 
+            <div class="form-group">
+                <label for='pernas' class="mt-4">Cargas - Pernas (kg)</label>
+                <input type="number" id="pernas" name="pernas" value="{{ cargas.pernas }}" class="inputcarga" min="0" step="0.1">
+            </div>
+            <div class="form-group">
+                <label for='bracos' class="mt-4">Cargas - Braços (kg)</label>
+                <input type="number" id="bracos" name="bracos" value="{{ cargas.bracos }}" class="inputcarga" min="0" step="0.1">
+            </div>
+            <div class="form-group">
+                <label for='peito' class="mt-4">Cargas - Peito (kg)</label>
+                <input type="number" id="peito" name="peito" value="{{ cargas.peito }}" class="inputcarga" min="0" step="0.1">
+            </div>
+            <div class="form-group">
+                <label for='costas' class="mt-4">Cargas - Costas (kg)</label>
+                <input type="number" id="costas" name="costas" value="{{ cargas.costas }}" class="inputcarga" min="0" step="0.1">
+            </div>
+
             <div class="text-center mt-4">
                 <button type="submit" class="btn-salvar">Salvar Alterações</button>
                 <button type="button" class="btn-voltar">
@@ -82,8 +99,8 @@
         // Agrupa os dias por mês
         const meses = {};
         botoes.forEach(b => {
-            const data = new Date(b.data);
-            const key = `${data.getFullYear()}-${String(data.getMonth()).padStart(2, '0')}`;
+            const data = new Date(b.data + 'T00:00:00'); // Força timezone local
+            const key = `${data.getFullYear()}-${String(data.getMonth() + 1).padStart(2, '0')}`; // +1 no mês
             if (!meses[key]) meses[key] = [];
             meses[key].push(b);
         });
@@ -105,7 +122,7 @@
             const chave = todosMeses[indiceAtual];
             const dias = meses[chave];
             const [ano, mes] = chave.split('-');
-            const nomeMes = new Date(ano, mes).toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' });
+            const nomeMes = new Date(ano, parseInt(mes) - 1).toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' }); // -1 no mês
 
             monthTitle.textContent = nomeMes.charAt(0).toUpperCase() + nomeMes.slice(1);
             calendarContainer.innerHTML = '';
@@ -122,11 +139,15 @@
                 vazio.style.gridColumn = '1 / -1';
                 divMes.appendChild(vazio);
             } else {
+                // Ordena os dias em ordem crescente
+                dias.sort((a, b) => new Date(a.data + 'T00:00:00') - new Date(b.data + 'T00:00:00'));
+                
                 dias.forEach(item => {
-                    const d = new Date(item.data);
+                    const d = new Date(item.data + 'T00:00:00'); // Força timezone local
                     const dia = String(d.getDate()).padStart(2, '0');
 
                     const btn = document.createElement('button');
+                    btn.type = 'button';
                     btn.classList.add('day-btn');
                     btn.classList.toggle('presente', item.presente);
                     btn.classList.toggle('ausente', !item.presente);

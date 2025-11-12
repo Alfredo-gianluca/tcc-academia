@@ -31,9 +31,9 @@
 
                 <!-- Navegação -->
                 <div class="calendar-month-navigation">
-                    <button id="prevMonth" class="calendar-nav-button">◀ Anterior</button>
+                    <button id="prevMonth" class="calendar-nav-button" type="button">◀ Anterior</button>
                     <span id="monthTitle" class="calendar-month-title"></span>
-                    <button id="nextMonth" class="calendar-nav-button">Próximo ▶</button>
+                    <button id="nextMonth" class="calendar-nav-button" type="button">Próximo ▶</button>
                 </div>
 
                 <!-- Container dos dias -->
@@ -76,8 +76,11 @@
             </div>
 
         </form>
+        
     </main>
-
+    <footer class="footer text-center mt-5">
+        <p style="margin-top: 10px;">&copy; 2025 FitCore. Todos os direitos reservados.</p>
+    </footer>
     <script>
         const botoes = [
             {% for item in calendario %}

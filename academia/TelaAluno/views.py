@@ -1,11 +1,13 @@
 from django.shortcuts import render
-from cadastro.models import Usuario, CalendarioFrequencia
+from cadastro.models import Usuario, CalendarioFrequencia, Cargas
 from datetime import datetime
 from calendar import monthrange
 
 def TelaAluno(request):
     nome = request.session.get('nome_usuario_completo', 'Usuário')
     usuario_id = request.session.get('usuario_id')
+    cargas, _ = Cargas.objects.get_or_create(usuario_id=usuario_id)
+
     
     # TESTE TEMPORÁRIO - remova depois de ajustar o login
     if not request.session.get('usuario_id'):
@@ -16,6 +18,7 @@ def TelaAluno(request):
     usuario_id = request.session.get('usuario_id')
     frequencias = []
     calendario_dados = []
+    cargas = []
 
     if usuario_id:
         try:
@@ -23,6 +26,7 @@ def TelaAluno(request):
             frequencias = CalendarioFrequencia.objects.filter(
                 usuario=usuario
             ).order_by('data')
+            cargas, _ = Cargas.objects.get_or_create(usuario=usuario)
             
             # Organiza por mês
             if frequencias.exists():
@@ -46,7 +50,7 @@ def TelaAluno(request):
                     nome_mes = meses_pt[mes - 1]
                     
                     # Primeiro dia da semana (0=segunda, 6=domingo)
-                    primeiro_dia_semana = datetime(ano, mes, 1).weekday()
+                    primeiro_dia_semana = (datetime(ano, mes, 1).weekday() + 1) % 7
                     
                     dias_mes = []
                     for dia in range(1, dias_no_mes + 1):

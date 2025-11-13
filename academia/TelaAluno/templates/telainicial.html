@@ -33,10 +33,11 @@
             <i class="fas fa-calendar-alt"></i>
             histórico de Treinos
         </a>
-        <a href="#" class="sidebar-item">
+        <a href="{% url 'TelaAluno:nutricao' %}" class="sidebar-item">
             <i class="fas fa-apple-alt"></i>
             Nutrição
         </a>
+
         <a href="#" class="sidebar-item">
             <i class="fas fa-cog"></i>
             Configurações
@@ -180,6 +181,7 @@
                     <span class="carga-value" style="font-size:1.2rem;font-weight:700;color:#9d4edd;" id="carga-costas"> {{ cargas.costas }} kg</span>
                 </div>
             </div>
+
         </div>
 
         <!-- Stats Cards -->

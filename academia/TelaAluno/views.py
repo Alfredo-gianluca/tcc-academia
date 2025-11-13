@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from cadastro.models import Usuario, CalendarioFrequencia
+from cadastro.models import Usuario, CalendarioFrequencia, Cargas
 from datetime import datetime
 from calendar import monthrange
 
@@ -16,10 +16,35 @@ def TelaAluno(request):
     usuario_id = request.session.get('usuario_id')
     frequencias = []
     calendario_dados = []
+    cargas = {
+        'pernas': 0,
+        'bracos': 0,
+        'peito': 0,
+        'costas': 0
+    }
 
     if usuario_id:
         try:
             usuario = Usuario.objects.get(id=usuario_id)
+            
+            # Busca as cargas do usuário no model Cargas
+            try:
+                cargas_obj = Cargas.objects.get(usuario=usuario)
+                cargas = {
+                    'pernas': cargas_obj.pernas,
+                    'bracos': cargas_obj.bracos,
+                    'peito': cargas_obj.peito,
+                    'costas': cargas_obj.costas
+                }
+            except Cargas.DoesNotExist:
+                # Se não existir registro de cargas, usa valores padrão
+                cargas = {
+                    'pernas': 0,
+                    'bracos': 0,
+                    'peito': 0,
+                    'costas': 0
+                }
+            
             frequencias = CalendarioFrequencia.objects.filter(
                 usuario=usuario
             ).order_by('data')
@@ -62,7 +87,7 @@ def TelaAluno(request):
                         'mes': nome_mes,
                         'ano': ano,
                         'dias': dias_mes,
-                        'offset': primeiro_dia_semana  # Offset para começar no dia certo
+                        'offset': primeiro_dia_semana
                     })
                     
                     # Próximo mês
@@ -80,5 +105,17 @@ def TelaAluno(request):
         'centralizar_logo': False,
         'nome_usuario': nome,
         'frequencias': frequencias,
-        'calendario_dados': calendario_dados
+
+        'calendario_dados': calendario_dados,
+        'cargas': cargas
     })
+
+def nutricao(request):
+    return render(request, 'nutrição.html', {})
+
+def configuracoes(request):
+    return render(request, 'configurações.html', {})
+
+def treinos(request):
+    return render(request, 'treinos.html', {})
+

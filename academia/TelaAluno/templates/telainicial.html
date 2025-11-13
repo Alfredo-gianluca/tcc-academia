@@ -27,19 +27,11 @@
         </a>
         <a href="#" class="sidebar-item">
             <i class="fas fa-dumbbell"></i>
-            Meus Treinos
+            Treinos
         </a>
-        <a href="#" class="sidebar-item">
-            <i class="fas fa-chart-line"></i>
-            Progresso
-        </a>
-        <a href="#" class="sidebar-item">
-            <i class="fas fa-trophy"></i>
-            Conquistas
-        </a>
-        <a href="#" class="sidebar-item">
+        <a href="#historico" class="sidebar-item">
             <i class="fas fa-calendar-alt"></i>
-            Agenda
+            histórico de Treinos
         </a>
         <a href="#" class="sidebar-item">
             <i class="fas fa-apple-alt"></i>
@@ -99,16 +91,22 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <!-- Espaço antes do primeiro dia -->
-                                    {% for i in "x"|rjust:mes_data.offset %}
-                                    <td><div class="calendar-day-cell calendar-day-empty"></div></td>
-                                    {% endfor %}
-
-                                    <!-- Dias -->
+                                <!-- Espaços vazios antes do primeiro dia (offset ajustado) -->
+                                {% with offset_ajustado=mes_data.offset|default:0 %}
+                                    {% if offset_ajustado > 0 %}
+                                        {% for i in "x"|rjust:offset_ajustado %}
+                                        <td><div class="calendar-day-cell calendar-day-empty"></div></td>
+                                        {% endfor %}
+                                    {% endif %}
+                                
+                                    <!-- Dias do mês -->
                                     {% for dia in mes_data.dias %}
-                                        {% if forloop.counter0|add:mes_data.offset|divisibleby:7 and forloop.counter0 > 0 %}
-                                            </tr><tr>
-                                        {% endif %}
+                                        {% with posicao=forloop.counter0|add:offset_ajustado %}
+                                            {% if posicao > 0 and posicao|divisibleby:7 %}
+                                                </tr><tr>
+                                            {% endif %}
+                                        {% endwith %}
+                                        
                                         <td>
                                             {% if dia.tem_registro %}
                                                 <div class="calendar-day-cell {% if dia.presente %}calendar-day-presente{% else %}calendar-day-ausente{% endif %}" 
@@ -123,6 +121,7 @@
                                             {% endif %}
                                         </td>
                                     {% endfor %}
+                                {% endwith %}
                                 </tr>
                             </tbody>
                         </table>
@@ -215,47 +214,42 @@
         </div>
 
         <!-- Workout History and Achievements -->
-        <div class="row">
-            <div class="col-lg-8">
-                <div class="glass-card glass-bg">
-                    <h5 class="mb-4"><i class="fas fa-history me-2 accent-purple"></i>Histórico de Treinos</h5>
+        <section class="mb-4" id="historico">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="glass-card glass-bg">
+                        <h5 class="mb-4"><i class="fas fa-history me-2 accent-purple"></i>Histórico de Treinos</h5>
 
-                    <div class="workout-item glass-bg" style="display:flex;align-items:center;padding:1rem;border-radius:12px;margin-bottom:1rem;">
-                        <div class="workout-icon gradient-purple" style="width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;">
-                            <i class="fas fa-dumbbell"></i>
-                        </div>
-                        <div class="workout-details" style="flex:1;margin-left:1rem;">
-                            <div class="workout-name" style="font-weight:700;">Treino de Peito e Tríceps</div>
-                            <div class="workout-meta" style="color:#bbb;font-size:.9rem;">
-                                <span><i class="fas fa-calendar me-1"></i>Hoje</span>
-                                <span style="margin-left:1rem;"><i class="fas fa-check me-1"></i>8 exercícios</span>
+                        <div class="workout-item glass-bg" style="display:flex;align-items:center;padding:1rem;border-radius:12px;margin-bottom:1rem;">
+                            <div class="workout-icon gradient-purple" style="width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;">
+                                <i class="fas fa-dumbbell"></i>
                             </div>
+                            <div class="workout-details" style="flex:1;margin-left:1rem;">
+                                <div class="workout-name" style="font-weight:700;">Treino de Peito e Tríceps</div>
+                                <div class="workout-meta" style="color:#bbb;font-size:.9rem;">
+                                    <span><i class="fas fa-calendar me-1"></i>Hoje</span>
+                                    <span style="margin-left:1rem;"><i class="fas fa-check me-1"></i>8 exercícios</span>
+                                </div>
+                            </div>
+                            <div class="workout-status status-completed" style="padding:6px 12px;border-radius:20px;background:linear-gradient(45deg,#28a745,#20c997);color:#fff;font-weight:700;">Concluído</div>
                         </div>
-                        <div class="workout-status status-completed" style="padding:6px 12px;border-radius:20px;background:linear-gradient(45deg,#28a745,#20c997);color:#fff;font-weight:700;">Concluído</div>
-                    </div>
 
-                    <!-- repeat similar items... -->
-                </div>
+                        <!-- repeat similar items... -->
+                    </div>
+                </div>                
             </div>
-
-            <div class="col-lg-4">
-                <div class="glass-card glass-bg">
-                    <h5 class="mb-4"><i class="fas fa-medal me-2 accent-purple"></i>Conquistas Recentes</h5>
-
-                    <div class="achievement-badge badge-new glass-bg" style="display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:22px;margin:6px;border:1px solid rgba(111,66,193,0.12);">
-                        <span class="badge-icon">🔥</span>
-                        <span>Ofensiva de 15 dias</span>
-                    </div>
-
-                    <div class="text-center mt-3">
-                        <button class="btn btn-outline-light btn-sm">
-                            <i class="fas fa-eye me-2"></i>Ver Todas
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </section>
     </div>
+<footer class="footer text-center">
+    <div class="footer-content">
+        <a href="https://instagram.com/dra.marinasantos.nutri" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://linkedin.com/in/marina-santos-nutricionista" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://wa.me/5511987654321" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://youtube.com/dra.marinasantos" target="_blank"><i class="fab fa-youtube"></i></a>
+        <a href="https://tiktok.com/@dra.marinasantos" target="_blank"><i class="fab fa-tiktok"></i></a>
+        <p class="mb-0">&copy; 2024 FitCore. Todos os direitos reservados.</p>
+    </div>
+</footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script>

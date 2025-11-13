@@ -22,35 +22,10 @@ def TelaAluno(request):
         'peito': 0,
         'costas': 0
     }
-    cargas = {
-        'pernas': 0,
-        'bracos': 0,
-        'peito': 0,
-        'costas': 0
-    }
 
     if usuario_id:
         try:
             usuario = Usuario.objects.get(id=usuario_id)
-            
-            # Busca as cargas do usuário no model Cargas
-            try:
-                cargas_obj = Cargas.objects.get(usuario=usuario)
-                cargas = {
-                    'pernas': cargas_obj.pernas,
-                    'bracos': cargas_obj.bracos,
-                    'peito': cargas_obj.peito,
-                    'costas': cargas_obj.costas
-                }
-            except Cargas.DoesNotExist:
-                # Se não existir registro de cargas, usa valores padrão
-                cargas = {
-                    'pernas': 0,
-                    'bracos': 0,
-                    'peito': 0,
-                    'costas': 0
-                }
-            
             
             # Busca as cargas do usuário no model Cargas
             try:
@@ -130,7 +105,8 @@ def TelaAluno(request):
         'centralizar_logo': False,
         'nome_usuario': nome,
         'frequencias': frequencias,
-        'calendario_dados': calendario_dados
+        'calendario_dados': calendario_dados,
+        'cargas': cargas
     })
 
 def nutricao(request):

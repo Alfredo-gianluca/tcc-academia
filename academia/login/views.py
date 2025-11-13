@@ -19,7 +19,7 @@ def login(request):
                 request.session['usuario_id'] = usuario.id  # ← IMPORTANTE
                 request.session['nome_usuario_completo'] = usuario.nome_completo
                 
-                return redirect('telaaluno')
+                return redirect('TelaAluno:telaaluno')
             else:
                 messages.error(request, 'Senha incorreta')
         except Usuario.DoesNotExist:

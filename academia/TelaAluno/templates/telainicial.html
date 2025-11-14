@@ -11,44 +11,31 @@
 
 <body data-bs-spy="scroll" data-bs-target="#navbar">
     <!-- Navbar -->
-   <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container d-flex justify-content-center">
-            <a class="navbar-brand mx-auto" href="{% url 'membros' %}">FitCore</a>
-            <button class="navbar-toggler position-absolute end-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'membros' %}">FitCore</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#cargas">Cargas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#historico">Histórico</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'TelaAluno:nutricao' %}">Nutrição</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'TelaAluno:treinos' %}">Treinos</a></li>
+                </ul>
+            </div>
         </div>
     </nav>
 
-      <div class="sidebar" id="sidebar">
-        <a href="#" class="sidebar-item active">
-            <i class="fas fa-home"></i>
-            Dashboard
-        </a>
-        <a href="#" class="sidebar-item">
-            <i class="fas fa-dumbbell"></i>
-            Treinos
-        </a>
-        <a href="#historico" class="sidebar-item">
-            <i class="fas fa-calendar-alt"></i>
-            histórico de Treinos
-        </a>
-        <a href="{% url 'TelaAluno:nutricao' %}" class="sidebar-item">
-            <i class="fas fa-apple-alt"></i>
-            Nutrição
-        </a>
-
-        <a href="#" class="sidebar-item">
-            <i class="fas fa-cog"></i>
-            Configurações
-        </a>
-    </div>
-
     <!-- Main Content -->
-    <div class="main-content" style="margin-left:260px;padding:2rem;min-height:calc(100vh - 76px);">
+    <div class="main-content" style="margin-left:0px auto;padding:2rem;min-height:calc(100vh - 76px);">
         <h1 class="page-title gradient-purple" style="text-align:center;margin-bottom:1.5rem;font-size:2.4rem;">Dashboard</h1>
         <div class="welcome-text" style="text-align:center;margin-bottom:2rem;opacity:.95;">
-            <h4>Bem-vindo de volta, {{ nome_usuario }}! 💪</h4>
+        <div style="display:flex;justify-content:center;align-items:center; gap:0.5rem; font-size:1.5rem; font-weight:500; color:#ddd;">
+            <h4>Bem-vindo de volta,</h4><h4 style="color:#9d4edd; font-weight: bold;"> {{ nome_usuario }}! 💪</h4>
+        </div>
             <p>Vamos continuar sua jornada fitness hoje!</p>
         </div>
 

@@ -119,8 +119,3 @@ def treinos(request):
     return render(request, 'treinos.html', {})
 
 
-def configuracoes(request):
-    return render(request, 'configurações.html', {})
-
-def treinos(request):
-    return render(request, 'treinos.html', {})

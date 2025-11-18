@@ -178,7 +178,32 @@ body {
     margin-bottom: 1rem;
 }
 
-.trainer-img {
+.trainer-img1{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    background: var(--gradient-purple-yellow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    
+}
+
+.trainer-img2{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    background: var(--gradient-purple-yellow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+}
+
+.trainer-img3{
     width: 150px;
     height: 150px;
     border-radius: 50%;

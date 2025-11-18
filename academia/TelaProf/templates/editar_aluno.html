@@ -21,11 +21,6 @@
 
         <form method="POST" action="{% url 'TelaProf:editar_aluno' aluno.id %}">
             {% csrf_token %}
-            <div class="form-group">
-                <label for="observacoes">Observações</label>
-                <textarea id="observacoes" name="observacoes">{{ aluno.observacoes }}</textarea>
-            </div>
-
             <h3 class="section-title" style="margin-top: 2rem;">Calendário de Frequência</h3>
 
 

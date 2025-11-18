@@ -11,20 +11,11 @@
         
         <!-- Estilos adicionais -->
         <style>
-            .header {
-                background: rgba(0, 0, 0, 0.95);
-                backdrop-filter: blur(10px);
-                padding: 1.5rem 0;
-                border-bottom: 1px solid rgba(176, 136, 82, 0.3);
-                position: sticky;
-                top: 0;
-                z-index: 1000;
-            }
-
             .header-container {
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                margin-bottom: 1rem;
             }
 
             .logo {
@@ -147,17 +138,17 @@
     <body>
 
     <!-- ========================= HEADER ========================= -->
-        <header class="header">
-            <div class="header-container container">
-                <div class="logo">FitCore - Biblioteca de Exercícios</div>
-            </div>
-        </header>
-
-
-
+    <nav class="navbar navbar-custom fixed-top">
+        <div class="container">
+            <a class="navbar-brand brand-gradient mx-auto" href="{% url 'TelaAluno:telaaluno' %}">Voltar</a>
+        </div>
+    </nav>
         <!-- ========================= FILTRO ========================= -->
         <section class="section section-dark">
-            <div class="container filter-container">
+            <div class="container filter-container" style="margin-top: 62px;">
+                <div class="header-container container">
+                    <div class="logo">Biblioteca de Exercícios</div>
+                </div>
                 <span class="filter-label">Filtrar por Grupo Muscular:</span>
 
                 <button class="filter-btn active" onclick="filterExercises('todos')">Todos</button>

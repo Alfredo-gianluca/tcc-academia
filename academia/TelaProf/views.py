@@ -36,7 +36,6 @@ def editar_aluno(request, aluno_id):
                 CalendarioFrequencia.objects.filter(id=data_id, usuario=aluno).delete()
 
         else:
-            aluno.observacoes = request.POST.get('observacoes', '')
             cargas.pernas = request.POST.get('pernas', '') or 0
             cargas.bracos = request.POST.get('bracos', '') or 0
             cargas.peito = request.POST.get('peito', '') or 0

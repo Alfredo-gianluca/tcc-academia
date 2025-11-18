@@ -35,3 +35,12 @@ class Cargas(models.Model):
     peito = models.IntegerField()
     def __str__(self):
         return f'{self.usuario.nome_completo} - Cargas'
+    
+class HistoricoAtividades(models.Model):
+    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    data = models.DateField(auto_now_add=True)
+    Treino = models.TextField()
+    qtdexercicios = models.CharField(max_length=20)
+
+    def __str__(self):
+        return f'{self.usuario.nome_completo} - {self.data}'

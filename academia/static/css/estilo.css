@@ -945,3 +945,95 @@ textarea:focus {
     width: 100%;
     height: auto;
 }
+
+.config-form-container {
+    max-width: 650px;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(157, 78, 221, 0.25); /* roxo suave */
+    border-radius: 18px;
+    padding: 2.5rem;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 18px rgba(157, 78, 221, 0.15);
+}
+
+/* Labels */
+.config-form-container label {
+    color: #cba6ff !important;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+/* Inputs */
+.config-form-container input,
+.config-form-container textarea {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(157, 78, 221, 0.35);
+    color: #e8d9ff;
+    border-radius: 12px;
+    padding: 12px 14px;
+    transition: all .25s ease;
+}
+
+.config-form-container input:focus,
+.config-form-container textarea:focus {
+    border-color: #9d4edd;
+    box-shadow: 0 0 12px rgba(157, 78, 221, 0.4);
+    outline: none;
+    background: rgba(255,255,255,0.09);
+}
+
+/* Botão salvar */
+.btn-salvar-config {
+    background: linear-gradient(135deg,#6f42c1,#9d4edd);
+    border: none;
+    padding: 12px 28px;
+    font-weight: bold;
+    border-radius: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #fff;
+    transition: all .25s ease;
+}
+
+.btn-salvar-config:hover {
+    background: linear-gradient(135deg,#8757d8,#b084ff);
+    transform: translateY(-2px);
+    box-shadow: 0 0 18px rgba(157, 78, 221, 0.35);
+}
+
+/* Botão deletar */
+.btn-delete-config {
+    background: transparent;
+    border: 2px solid #ff5c5c;
+    color: #ff5c5c;
+    padding: 10px 24px;
+    font-weight: bold;
+    border-radius: 10px;
+    transition: all .25s ease;
+}
+
+.btn-delete-config:hover {
+    background: rgba(255, 92, 92, .2);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 0 14px rgba(255, 92, 92, .4);
+}
+
+/* Título */
+.config-title {
+    background: linear-gradient(135deg,#6f42c1,#9d4edd);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 2.4rem;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 1.8rem;
+}
+
+.config-instructions {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    color: #bbb;
+    font-size: 1rem;
+}

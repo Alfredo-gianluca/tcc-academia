@@ -13,7 +13,6 @@ def TelaAluno(request):
         if primeiro_usuario:
             request.session['usuario_id'] = primeiro_usuario.id
     
-    usuario_id = request.session.get('usuario_id')
     frequencias = []
     calendario_dados = []
     cargas = {
@@ -113,6 +112,36 @@ def nutricao(request):
     return render(request, 'nutrição.html', {})
 
 def configuracoes(request):
+    usuario_id = request.session.get('usuario_id')
+    nome = request.session.get('nome_usuario_completo', 'Usuário')
+    usuario = Usuario.objects.get(id=usuario_id) if usuario_id else None
+
+    if request.method == 'POST':
+        if usuario_id:
+            try:
+                usuario = Usuario.objects.get(id=usuario_id)
+                observacoes = request.POST.get('observacoes', '')
+                email = request.POST.get('email', '')
+                telefone = request.POST.get('telefone', '')
+                nova_senha = request.POST.get('nova_senha')
+                confirmar_senha = request.POST.get('confirmar_senha')
+                usuario.observacoes = observacoes
+                usuario.email = email
+                
+                if nova_senha and nova_senha == confirmar_senha:
+                    usuario.senha = nova_senha
+                    usuario.save()
+                    mensagem = "Senha atualizada com sucesso."
+                else:
+                    mensagem = "As senhas não coincidem."
+            except Usuario.DoesNotExist:
+                mensagem = "Usuário não encontrado."
+        else:
+            mensagem = "Nenhum usuário logado."
+
+        return render(request, 'configurações.html', {
+            'mensagem': mensagem
+        })
     return render(request, 'configurações.html', {})
 
 def treinos(request):

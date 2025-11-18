@@ -7,4 +7,5 @@ urlpatterns = [
     path('Interface_de_usuário/', views.TelaAluno, name='telaaluno'),
     path('nutricao/', views.nutricao, name='nutricao'),
     path('treinos/', views.treinos, name='treinos'),
+    path('configuracoes/', views.configuracoes, name='configuracoes'),
 ]

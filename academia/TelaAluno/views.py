@@ -1,7 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from cadastro.models import Usuario, CalendarioFrequencia, Cargas
 from datetime import datetime
 from calendar import monthrange
+from django.core.exceptions import ValidationError
+from django.core.validators import validate_email
+from django.contrib import messages
 
 def TelaAluno(request):
     nome = request.session.get('nome_usuario_completo', 'Usuário')
@@ -114,35 +117,49 @@ def nutricao(request):
 def configuracoes(request):
     usuario_id = request.session.get('usuario_id')
     nome = request.session.get('nome_usuario_completo', 'Usuário')
+
     usuario = Usuario.objects.get(id=usuario_id) if usuario_id else None
 
+    # ===========================
+    #         POST
+    # ===========================
     if request.method == 'POST':
-        if usuario_id:
-            try:
-                usuario = Usuario.objects.get(id=usuario_id)
-                observacoes = request.POST.get('observacoes', '')
-                email = request.POST.get('email', '')
-                telefone = request.POST.get('telefone', '')
-                nova_senha = request.POST.get('nova_senha')
-                confirmar_senha = request.POST.get('confirmar_senha')
-                usuario.observacoes = observacoes
-                usuario.email = email
-                
-                if nova_senha and nova_senha == confirmar_senha:
-                    usuario.senha = nova_senha
-                    usuario.save()
-                    mensagem = "Senha atualizada com sucesso."
-                else:
-                    mensagem = "As senhas não coincidem."
-            except Usuario.DoesNotExist:
-                mensagem = "Usuário não encontrado."
-        else:
-            mensagem = "Nenhum usuário logado."
+        if usuario:
+            observacoes = request.POST.get('observacoes', '')
+            email = request.POST.get('email', '')
+            nova_senha = request.POST.get('nova_senha')
+            confirmar_senha = request.POST.get('confirmar_senha')
 
-        return render(request, 'configurações.html', {
-            'mensagem': mensagem
-        })
-    return render(request, 'configurações.html', {})
+            usuario.observacoes = observacoes
+
+            # Validação do email
+            try:
+                validate_email(email)
+                usuario.email = email
+            except ValidationError:
+                messages.warning(request, "E-mail inválido. Mantendo o e-mail anterior.")
+
+            # Validação da senha
+            if nova_senha:
+                if nova_senha == confirmar_senha:
+                    usuario.senha = nova_senha
+                    messages.success(request, "Senha atualizada com sucesso.")
+                else:
+                    messages.error(request, "As senhas não coincidem. A senha não foi alterada.")
+
+            usuario.save()
+            messages.success(request, "Configurações salvas com sucesso.")
+
+        return redirect('TelaAluno:configuracoes')
+
+    # ==========================
+    #          GET
+    # ==========================
+    return render(request, 'configurações.html', {
+        'usuario': usuario,
+        'aluno': usuario,  # se você usa aluno no template
+        'nome_usuario': nome,
+    })
 
 def treinos(request):
     return render(request, 'treinos.html', {})

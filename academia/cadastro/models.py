@@ -25,7 +25,7 @@ class CalendarioFrequencia(models.Model):
     presente = models.BooleanField(default=False)
 
     def __str__(self):
-        return '{self.usuario.nome_completo} - {self.data}'
+        return f'{self.usuario.nome_completo} - {self.data}'
 
 class Cargas(models.Model):
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
@@ -44,3 +44,11 @@ class HistoricoAtividades(models.Model):
 
     def __str__(self):
         return f'{self.usuario.nome_completo} - {self.data}'
+
+class RequisicaoExclusao(models.Model):
+    aluno = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    data_requisicao = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=20, choices=[('pendente', 'Pendente'), ('aprovada', 'Aprovada'), ('recusada', 'Recusada')], default='pendente')
+
+    def __str__(self):
+        return f"Requisição de {self.aluno.nome_completo} em {self.data_requisicao} - {self.status}"

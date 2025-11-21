@@ -8,6 +8,129 @@
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/estilo.css' %}" rel="stylesheet">
     <title>Lista de Alunos</title>
+    <style>
+        .tab-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #444;
+        }
+        
+        .tab-btn {
+            padding: 12px 24px;
+            background: transparent;
+            border: none;
+            color: #999;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .tab-btn:hover {
+            color: #fff;
+        }
+        
+        .tab-btn.active {
+            color: #fff;
+            border-bottom-color: #007bff;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .badge-requisicoes {
+            background: #dc3545;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            margin-left: 8px;
+        }
+        
+        .requisicao-card {
+            background: #2a2a2a;
+            border: 1px solid #444;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .requisicao-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .requisicao-info {
+            flex: 1;
+        }
+        
+        .requisicao-nome {
+            font-size: 20px;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 5px;
+        }
+        
+        .requisicao-data {
+            color: #999;
+            font-size: 14px;
+        }
+        
+        .requisicao-motivo {
+            background: #1a1a1a;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            color: #ddd;
+        }
+        
+        .requisicao-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn-aprovar {
+            background: #28a745;
+            color: white;
+            padding: 8px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .btn-aprovar:hover {
+            background: #218838;
+        }
+        
+        .btn-rejeitar {
+            background: #dc3545;
+            color: white;
+            padding: 8px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .btn-rejeitar:hover {
+            background: #c82333;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
@@ -18,37 +141,142 @@
             </button>
         </div>
     </nav>
+    
     <section class="hero">
         <div class="container hero-content text-center">
-            <h1>Lista de Alunos</h1>
-            <p>Abaixo está a lista de alunos cadastrados.</p>
+            <h1>Gerenciamento de Alunos</h1>
+            <p>Gerencie alunos e requisições de exclusão de conta.</p>
         </div>
     </section>
+    
     <div class="container list-container" style="margin-top: 100px;">
-        <h1>Lista de Alunos</h1>
-        <table class="table custom-table">
-            <thead class="table-dark">
-                <tr class="table-dark">
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>Email</th>
-                </tr>
-            </thead>
-            <tbody class="table-group-divider">
-            {% for aluno in alunos %}
-                <tr class="table-dark">
-                    <td class="align-middle">{{ aluno.id }}</td>
-                    <td class="align-middle">{{ aluno.nome_completo }}</td>
-                    <td class="align-middle">{{ aluno.email }}</td>
-                    <td class="align-middle">
-                        <a href="{% url 'TelaProf:editar_aluno' aluno.id %}" class="btn btn-primary">Editar</a>
-                    </td>
-                </tr>
+        {% if messages %}
+        <div class="alert-container mb-4">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
             {% endfor %}
-            </tbody>
-        </table>
+        </div>
+        {% endif %}
+        
+        <div class="tab-container">
+            <button class="tab-btn {% if aba_ativa == 'alunos' %}active{% endif %}" onclick="switchTab('alunos')">
+                Lista de Alunos
+            </button>
+            <button class="tab-btn {% if aba_ativa == 'requisicoes' %}active{% endif %}" onclick="switchTab('requisicoes')">
+                Requisições de Exclusão
+                {% if requisicoes %}
+                <span class="badge-requisicoes">{{ requisicoes|length }}</span>
+                {% endif %}
+            </button>
+        </div>
+        
+        <!-- Tab de Lista de Alunos -->
+        <div id="alunos-tab" class="tab-content {% if aba_ativa == 'alunos' %}active{% endif %}">
+            <h2>Lista de Alunos</h2>
+            <table class="table custom-table">
+                <thead class="table-dark">
+                    <tr class="table-dark">
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                {% for aluno in alunos %}
+                    <tr class="table-dark">
+                        <td class="align-middle">{{ aluno.id }}</td>
+                        <td class="align-middle">{{ aluno.nome_completo }}</td>
+                        <td class="align-middle">{{ aluno.email }}</td>
+                        <td class="align-middle">
+                            <a href="{% url 'TelaProf:editar_aluno' aluno.id %}" class="btn btn-primary">Editar</a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr class="table-dark">
+                        <td colspan="4" class="text-center">Nenhum aluno cadastrado.</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Tab de Requisições -->
+        <div id="requisicoes-tab" class="tab-content {% if aba_ativa == 'requisicoes' %}active{% endif %}">
+            <h2>Requisições de Exclusão Pendentes</h2>
+            
+            {% if requisicoes %}
+                {% for req in requisicoes %}
+                <div class="requisicao-card">
+                    <div class="requisicao-header">
+                        <div class="requisicao-info">
+                            <div class="requisicao-nome">{{ req.usuario.nome_completo }}</div>
+                            <div class="requisicao-data">
+                                Email: {{ req.usuario.email }} | 
+                                Solicitado em: {{ req.data_requisicao|date:"d/m/Y às H:i" }}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    {% if req.motivo %}
+                    <div class="requisicao-motivo">
+                        <strong>Motivo:</strong><br>
+                        {{ req.motivo }}
+                    </div>
+                    {% endif %}
+                    
+                    <div class="requisicao-actions">
+                        <form method="POST" style="display: inline;">
+                            {% csrf_token %}
+                            <input type="hidden" name="requisicao_id" value="{{ req.id }}">
+                            <button type="submit" name="aprovar_requisicao" class="btn-aprovar" 
+                                    onclick="return confirm('Tem certeza que deseja APROVAR a exclusão da conta de {{ req.usuario.nome_completo }}? Esta ação é irreversível!')">
+                                ✓ Aprovar Exclusão
+                            </button>
+                        </form>
+                        
+                        <form method="POST" style="display: inline;">
+                            {% csrf_token %}
+                            <input type="hidden" name="requisicao_id" value="{{ req.id }}">
+                            <button type="submit" name="rejeitar_requisicao" class="btn-rejeitar"
+                                    onclick="return confirm('Tem certeza que deseja REJEITAR a requisição de {{ req.usuario.nome_completo }}?')">
+                                ✗ Rejeitar
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="empty-state">
+                    <p>Não há requisições de exclusão pendentes no momento.</p>
+                </div>
+            {% endif %}
+        </div>
     </div>
+    
     <footer class="footer text-center">
         <p style="margin-top: 10px;">&copy; 2025 FitCore. Todos os direitos reservados.</p>
+    </footer>
+    
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script>
+        function switchTab(tabName) {
+            // Remove active de todos os botões e conteúdos
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            // Adiciona active ao botão e conteúdo selecionados
+            event.target.classList.add('active');
+            document.getElementById(tabName + '-tab').classList.add('active');
+            
+            // Atualiza a URL sem recarregar a página
+            const url = new URL(window.location);
+            url.searchParams.set('aba', tabName);
+            window.history.pushState({}, '', url);
+        }
+    </script>
 </body>
 </html>

@@ -46,9 +46,23 @@ class HistoricoAtividades(models.Model):
         return f'{self.usuario.nome_completo} - {self.data}'
 
 class RequisicaoExclusao(models.Model):
-    aluno = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='requisicoes_exclusao')
     data_requisicao = models.DateTimeField(auto_now_add=True)
-    status = models.CharField(max_length=20, choices=[('pendente', 'Pendente'), ('aprovada', 'Aprovada'), ('recusada', 'Recusada')], default='pendente')
-
+    motivo = models.TextField(blank=True, null=True)
+    status = models.CharField(
+        max_length=20,
+        choices=[
+            ('pendente', 'Pendente'),
+            ('aprovada', 'Aprovada'),
+            ('rejeitada', 'Rejeitada')
+        ],
+        default='pendente'
+    )
+    
+    class Meta:
+        verbose_name = 'Requisição de Exclusão'
+        verbose_name_plural = 'Requisições de Exclusão'
+        ordering = ['-data_requisicao']
+    
     def __str__(self):
-        return f"Requisição de {self.aluno.nome_completo} em {self.data_requisicao} - {self.status}"
+        return f"Requisição de {self.usuario.nome_completo} - {self.status}"

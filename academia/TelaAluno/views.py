@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from cadastro.models import Usuario, CalendarioFrequencia, Cargas
+from cadastro.models import Usuario, CalendarioFrequencia, Cargas, RequisicaoExclusao
 from datetime import datetime
 from calendar import monthrange
 from django.core.exceptions import ValidationError
@@ -125,6 +125,28 @@ def configuracoes(request):
     # ===========================
     if request.method == 'POST':
         if usuario:
+            # Requisição de exclusão de conta
+            if 'requisitar_exclusao' in request.POST:
+                motivo = request.POST.get('motivo_exclusao', '')
+                
+                # Verifica se já existe requisição pendente
+                requisicao_existente = RequisicaoExclusao.objects.filter(
+                    usuario=usuario,
+                    status='pendente'
+                ).exists()
+                
+                if requisicao_existente:
+                    messages.warning(request, "Você já possui uma requisição de exclusão pendente.")
+                else:
+                    RequisicaoExclusao.objects.create(
+                        usuario=usuario,
+                        motivo=motivo
+                    )
+                    messages.success(request, "Requisição de exclusão enviada ao professor com sucesso!")
+                
+                return redirect('TelaAluno:configuracoes')
+            
+            # Atualização de configurações normais
             observacoes = request.POST.get('observacoes', '')
             email = request.POST.get('email', '')
             nova_senha = request.POST.get('nova_senha')
@@ -155,13 +177,20 @@ def configuracoes(request):
     # ==========================
     #          GET
     # ==========================
+    # Verifica se há requisição pendente
+    requisicao_pendente = None
+    if usuario:
+        requisicao_pendente = RequisicaoExclusao.objects.filter(
+            usuario=usuario,
+            status='pendente'
+        ).first()
+    
     return render(request, 'configurações.html', {
         'usuario': usuario,
-        'aluno': usuario,  # se você usa aluno no template
+        'aluno': usuario,
         'nome_usuario': nome,
+        'requisicao_pendente': requisicao_pendente,
     })
 
 def treinos(request):
     return render(request, 'treinos.html', {})
-
-

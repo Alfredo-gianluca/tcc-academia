@@ -1,14 +1,50 @@
 import json
 from django.shortcuts import render, get_object_or_404, redirect
-from cadastro.models import Usuario, CalendarioFrequencia, Cargas
+from cadastro.models import Usuario, CalendarioFrequencia, Cargas, RequisicaoExclusao
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from datetime import datetime
 
 
 @login_required
 def lista_alunos(request):
     alunos = Usuario.objects.all()
-    return render(request, 'lista_alunos.html', {'alunos': alunos})
+    requisicoes = RequisicaoExclusao.objects.filter(status='pendente').select_related('usuario')
+    
+    # Pega a aba ativa (alunos ou requisicoes)
+    aba_ativa = request.GET.get('aba', 'alunos')
+    
+    # Processa aprovação ou rejeição de requisição
+    if request.method == 'POST':
+        if 'aprovar_requisicao' in request.POST:
+            requisicao_id = request.POST.get('requisicao_id')
+            requisicao = get_object_or_404(RequisicaoExclusao, id=requisicao_id)
+            
+            # Deleta o usuário e marca a requisição como aprovada
+            usuario = requisicao.usuario
+            nome_usuario = usuario.nome_completo
+            requisicao.status = 'aprovada'
+            requisicao.save()
+            usuario.delete()
+            
+            messages.success(request, f"Conta de {nome_usuario} excluída com sucesso.")
+            return redirect('TelaProf:lista_alunos')
+        
+        elif 'rejeitar_requisicao' in request.POST:
+            requisicao_id = request.POST.get('requisicao_id')
+            requisicao = get_object_or_404(RequisicaoExclusao, id=requisicao_id)
+            
+            requisicao.status = 'rejeitada'
+            requisicao.save()
+            
+            messages.info(request, f"Requisição de {requisicao.usuario.nome_completo} foi rejeitada.")
+            return redirect('TelaProf:lista_alunos')
+    
+    return render(request, 'lista_alunos.html', {
+        'alunos': alunos,
+        'requisicoes': requisicoes,
+        'aba_ativa': aba_ativa,
+    })
 
 
 @login_required

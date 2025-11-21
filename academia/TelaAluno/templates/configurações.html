@@ -9,6 +9,7 @@
     <link href="{% static 'css/estilo.css' %}" rel="stylesheet">
 </head>
 
+<!-- Modal de Confirmação de Alterações -->
 <div id="confirmModal" class="modal-overlay">
     <div class="modal-content glass-bg modal-anim">
         <h2 class="modal-title">Confirmar Alterações</h2>
@@ -21,6 +22,29 @@
     </div>
 </div>
 
+<!-- Modal de Requisição de Exclusão -->
+<div id="deleteModal" class="modal-overlay">
+    <div class="modal-content glass-bg modal-anim">
+        <h2 class="modal-title">Requisitar Exclusão de Conta</h2>
+        <p class="modal-text">Sua conta não será excluída imediatamente. Uma requisição será enviada ao professor para aprovação.</p>
+        
+        <form id="deleteForm" method="POST" action="{% url 'TelaAluno:configuracoes' %}">
+            {% csrf_token %}
+            <input type="hidden" name="requisitar_exclusao" value="1">
+            
+            <div class="form-group mt-3">
+                <label for="motivo_exclusao" class="text-white">Motivo (opcional):</label>
+                <textarea id="motivo_exclusao" name="motivo_exclusao" class="form-control text-dark" rows="3" placeholder="Deseja informar o motivo?"></textarea>
+            </div>
+
+            <div class="modal-buttons mt-3">
+                <button type="submit" class="modal-btn-confirm">Enviar Requisição</button>
+                <button type="button" id="cancelDeleteBtn" class="modal-btn-cancel">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
 <body class="bg-dark text-white">
     <nav class="navbar navbar-custom fixed-top">
         <div class="container d-flex justify-content-center">
@@ -30,6 +54,7 @@
 
     <main class="container fade-in" style="margin-top: 120px;">
         <h1 class="config-title">Configurações de {{ nome_usuario }}</h1>
+        
         {% if messages %}
         <div class="msg-container mt-3">
             {% for message in messages %}
@@ -39,8 +64,15 @@
             {% endfor %}
         </div>
         {% endif %}
+
+        {% if requisicao_pendente %}
+        <div class="alert alert-warning mt-3">
+            <strong>Atenção:</strong> Você possui uma requisição de exclusão de conta pendente, aguardando aprovação do professor.
+        </div>
+        {% endif %}
+        
         <div class="config-instructions">
-            <p>Aqui você pode atualizar suas informações pessoais, alterar sua senha ou deletar sua conta.</p>
+            <p>Aqui você pode atualizar suas informações pessoais, alterar sua senha ou requisitar a exclusão de sua conta.</p>
         </div>
 
         <div class="config-form-container mt-4">
@@ -48,7 +80,7 @@
                 {% csrf_token %}
                 <div class="form-group">
                     <label for="observacoes">Observações</label>
-                    <input type="text" id="observacoes" name="observacoes" value="{{ usuario.observacoes }}"  placeholder="Escreva suas observações aqui" class="form-control text-white">
+                    <input type="text" id="observacoes" name="observacoes" value="{{ usuario.observacoes }}" placeholder="Escreva suas observações aqui" class="form-control text-white">
                 </div>
 
                 <div class="form-group">
@@ -67,35 +99,53 @@
                 </div>
 
                 <button type="submit" class="btn-salvar-config mt-3">Salvar Configurações</button>
-                <button type="button" class="btn-delete-config mt-3 float-right">Deletar Conta</button>
+                <button type="button" class="btn-delete-config mt-3 float-right" {% if requisicao_pendente %}disabled{% endif %}>
+                    {% if requisicao_pendente %}Requisição Pendente{% else %}Deletar Conta{% endif %}
+                </button>
             </form>
         </div>
     </main>
+    
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-    const form = document.querySelector("form");
-    const saveBtn = document.querySelector(".btn-salvar-config");
-    const modal = document.getElementById("confirmModal");
-    const confirmBtn = document.getElementById("confirmBtn");
-    const cancelBtn = document.getElementById("cancelBtn");
+            const form = document.querySelector("form");
+            const saveBtn = document.querySelector(".btn-salvar-config");
+            const deleteBtn = document.querySelector(".btn-delete-config");
+            
+            const confirmModal = document.getElementById("confirmModal");
+            const confirmBtn = document.getElementById("confirmBtn");
+            const cancelBtn = document.getElementById("cancelBtn");
+            
+            const deleteModal = document.getElementById("deleteModal");
+            const cancelDeleteBtn = document.getElementById("cancelDeleteBtn");
 
-    // Abrir modal ao clicar no botão
-    saveBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        modal.classList.add("active");
-    });
+            // Modal de salvar configurações
+            saveBtn.addEventListener("click", (e) => {
+                e.preventDefault();
+                confirmModal.classList.add("active");
+            });
 
-    // Confirmar -> envia formulário
-    confirmBtn.addEventListener("click", () => {
-        modal.classList.remove("active");
-        form.submit();
-    });
+            confirmBtn.addEventListener("click", () => {
+                confirmModal.classList.remove("active");
+                form.submit();
+            });
 
-    // Cancelar -> fecha modal
-    cancelBtn.addEventListener("click", () => {
-        modal.classList.remove("active");
-    });
-});
+            cancelBtn.addEventListener("click", () => {
+                confirmModal.classList.remove("active");
+            });
+
+            // Modal de exclusão de conta
+            deleteBtn.addEventListener("click", (e) => {
+                e.preventDefault();
+                if (!deleteBtn.disabled) {
+                    deleteModal.classList.add("active");
+                }
+            });
+
+            cancelDeleteBtn.addEventListener("click", () => {
+                deleteModal.classList.remove("active");
+            });
+        });
     </script>
 </body>
 </html>

@@ -183,8 +183,6 @@ body {
     width: 100px;
     border-radius: 50%;
     margin: 0 auto 1rem;
-    background-image: url('../img/Carlos.jpg');
-    background-size: cover;
     font-size: 3rem;
     color: var(--primary-yellow);
     margin-bottom: 1rem;

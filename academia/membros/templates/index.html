@@ -4,8 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {%load static%}
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/estilo.css' %}" rel="stylesheet">
+
 
     <title>tcc</title>
 </head>
@@ -19,12 +21,12 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#home">Início</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#quemsomos">Quem somos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#services">Serviços</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#trainers">Treinadores</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contato</a></li>
-                    <li class="nav-item"><a href="{% url 'login' %}" class="btn btn-outline-light">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#home"><strong>Início</strong></a></li>
+                    <li class="nav-item"><a class="nav-link" href="#quemsomos"><strong>Quem somos</strong></a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services"><strong>Serviços</strong></a></li>
+                    <li class="nav-item"><a class="nav-link" href="#trainers"><strong>Treinadores</strong></a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact"><strong>Contato</strong></a></li>
+                    <li class="nav-item"><a class="nav-link"href="{% url 'login' %}" class="btn btn-outline-light "><strong>Login</strong></a></li>
                 </ul>
             </div>
         </div>
@@ -56,49 +58,20 @@
             </p>
             <div class="list"> 
                 <ul class="list-unstyled">
-                        <li>✓ Agendamento de Aulas</li>
-                        <li>✓ Consulta de presenças</li>
-                        <li>✓ Acompanhamento alimentar</li>
-                        <li>✓ Acompanhamento muscular</li>
+                    
                  </ul>
+
             </div>
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <div class="service-card text-start">
-                        <div class="service-icon text-start mb-3">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <h3 class="mb-3">Análise Corporal Completa</h3>
-                        <p class="mb-4">Nossa bioimpedância de última geração oferece uma análise detalhada da sua composição corporal, medindo:</p>
-                        <ul class="list-unstyled">
-                            <li><i class="fas fa-check text-purple me-2" style="color: var(--primary-purple);"></i> Percentual de gordura corporal</li>
-                            <li><i class="fas fa-check text-purple me-2" style="color: var(--primary-purple);"></i> Massa muscular</li>
-                            <li><i class="fas fa-check text-purple me-2" style="color: var(--primary-purple);"></i> Taxa metabólica basal</li>
-                            <li><i class="fas fa-check text-purple me-2" style="color: var(--primary-purple);"></i> Percentual de água corporal</li>
-                            <li><i class="fas fa-check text-purple me-2" style="color: var(--primary-purple);"></i> Densidade óssea</li>
-                            <li><i class="fas fa-check text-purple me-2" style="color: var(--primary-purple);"></i> Idade metabólica</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-6">
+                <div class="col-lg-14">
                     <div class="service-card text-start">
                         <div class="service-icon text-start mb-3">
                             <i class="fas fa-apple-alt"></i>
                         </div>
-                        <h3 class="mb-3">Consultoria Nutricional</h3>
-                        <p class="mb-4">Nossa nutricionista especializada oferece acompanhamento personalizado para potencializar seus resultados:</p>
-                        <ul class="list-unstyled mb-4">
-                            <li><i class="fas fa-check text-purple me-2" style="color: var(--primary-purple);"></i> Plano alimentar personalizado</li>
-                            <li><i class="fas fa-check text-purple me-2" style="color: var(--primary-purple);"></i> Acompanhamento mensal</li>
-                            <li><i class="fas fa-check text-purple me-2" style="color: var(--primary-purple);"></i> Reeducação alimentar</li>
-                            <li><i class="fas fa-check text-purple me-2" style="color: var(--primary-purple);"></i> Suplementação orientada</li>
-                        </ul>
+                        <h3 class="mb-3">Consultoria Nutricional </h3>
+                        <p class="mb-4">Conte com nossa nutricionista parceira para turbinar seus resultados de forma saudável e constante. Ela te ajuda a montar uma alimentação que acompanha teu ritmo, melhora o desempenho e faz cada treino render muito mais.</p>
                         <div class="d-flex gap-3">
-                            <button class="btn btn-custom" data-bs-toggle="modal" data-bs-target="#nutritionModal">
-                                <i class="fas fa-calendar-alt me-2"></i>Agendar Avaliação
-                            </button>
-                            <button class="btn btn-outline-light">
-                                <i class="fab fa-whatsapp me-2"></i>WhatsApp
+                            <button class="btn btn-custom" >
+                                <i class="fas fa-calendar-alt me-2"></i>Conheça Nossa Parceira
                             </button>
                         </div>
                     </div>
@@ -106,37 +79,37 @@
             </div>
             
             <!-- Pricing for Bioimpedance -->
-            <div class="row mt-5">
-                <div class="col-12">
-                    <h3 class="text-center mb-4" style="color: var(--primary-purple);">Pacotes Especiais</h3>
+            <div class="row mt-4 m-2">
+                <div class="col-10">
+                    <h3 class="text-center section-title" style="color: var(--primary-purple); margin: 50px 0 50px 300px;">Formas de treino</h3>
                 </div>
-                <div class="col-lg-4 mb-4">
+                <div class="col-lg-3 mb-4" style="margin-left: 200px;"> 
                     <div class="pricing-card">
-                        <h4>Bioimpedância</h4>
-                        <div class="price">R$ 45</div>
-                        <p class="text-muted">por exame</p>
+                        <h4>Diário</h4>
+                        <div class="price">R$ 5</div>
+                        <p class="text-light">24 Horas</p>
                         <ul class="list-unstyled">
-                            <li>✓ Análise completa</li>
-                            <li>✓ Relatório detalhado</li>
-                            <li>✓ Orientações básicas</li>
+                            <li>Academia completa</li>
+                            <li></li>
+                            <li></li>
                         </ul>
                         <button class="btn btn-custom mt-3" data-bs-toggle="modal" data-bs-target="#bioModal">Agendar</button>
                     </div>
                 </div>
-                <div class="col-lg-4 mb-4">
+                <div class="col-lg-3 mb-4">
                     <div class="pricing-card">
-                        <h4>Consulta Nutricional</h4>
+                        <h4>Mensalidade</h4>
                         <div class="price">R$ 120</div>
-                        <p class="text-muted">primeira consulta</p>
+                        <p class="text-light">Interprase</p>
                         <ul class="list-unstyled">
-                            <li>✓ Bioimpedância inclusa</li>
-                            <li>✓ Plano alimentar</li>
-                            <li>✓ 60 minutos de consulta</li>
+                            <li>Academia completa</li>
+                            <li>Treino Personalizados</li>
+                            <li> </li>
                         </ul>
                         <button class="btn btn-custom mt-3" data-bs-toggle="modal" data-bs-target="#nutritionModal">Agendar</button>
                     </div>
                 </div>
-                <div class="col-lg-4 mb-4">
+                <div class="col-lg-3 mb-4">
                     <div class="pricing-card">
                         <h4>Pacote Completo</h4>
                         <div class="price">R$ 350</div>
@@ -160,29 +133,29 @@
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6">
                     <div class="service-card">
-                        <div class="service-icon">
+                        <div class="service-icon-musculacao">
                             <i class="fas fa-dumbbell"></i>
                         </div>
                         <h4>Musculação</h4>
-                        <p>Equipamentos modernos e treinos personalizados para ganho de massa muscular e definição.</p>
+                        <p>Treino de hipertrofia e ganha de força com fichas de treino desenvolvida por um time de profissionais especializados</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="service-card">
-                        <div class="service-icon">
+                        <div class="service-icon-cardio">
                             <i class="fas fa-running"></i>
                         </div>
                         <h4>Cardio</h4>
-                        <p>Área completa de aeróbicos com esteiras, bicicletas e equipamentos cardiovasculares.</p>
+                        <p>Aumente seu saude cardio vascular com treinos eficientes alinhados com a ciencia do esporte</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="service-card">
-                        <div class="service-icon">
+                        <div class="service-icon-funcional">
                             <i class="fas fa-users"></i>
                         </div>
-                        <h4>Aulas em Grupo</h4>
-                        <p>Pilates, Yoga, Zumba, Spinning e muito mais. Diversão garantida em grupo!</p>
+                        <h4>Funcional</h4>
+                        <p>Aumente sua força e sua qualidade de vida com nossos treinos ideais para seu biotipo</p>
                     </div>
                 </div>
             </div>
@@ -196,27 +169,27 @@
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6">
                     <div class="trainer-card">
-                        <div class="trainer-img">
-                            <i class="fas fa-user"></i>
+                        <div class="trainer-img1">
+                            
                         </div>
                         <h4>Carlos Silva</h4>
                         <p>Especialista em Musculação</p>
-                        <p class="text-secondary">10 anos de experiência</p>
+                        <p class="text-secondary">3 anos de experiência</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="trainer-card">
-                        <div class="trainer-img">
+                        <div class="trainer-img2">
                             <i class="fas fa-female"></i>
                         </div>
                         <h4>Ana Costa</h4>
                         <p>Instrutora de Pilates</p>
-                        <p class="text-secondary">8 anos de experiência</p>
+                        <p class="text-secondary">5 anos de experiência</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="trainer-card">
-                        <div class="trainer-img">
+                        <div class="trainer-img3">
                             <i class="fas fa-male"></i>
                         </div>
                         <h4>Roberto Lima</h4>
@@ -238,7 +211,7 @@
                     <div class="row g-4">
                         <div class="col-md-4">
                             <div class="service-card">
-                                <div class="service-icon">
+                                <div class="service-icon-contato-telefone">
                                     <i class="fas fa-phone"></i>
                                 </div>
                                 <h5>Telefone</h5>
@@ -247,7 +220,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="service-card">
-                                <div class="service-icon">
+                                <div class="service-icon-contato-e-mail">
                                     <i class="fas fa-envelope"></i>
                                 </div>
                                 <h5>Email</h5>
@@ -256,7 +229,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="service-card">
-                                <div class="service-icon">
+                                <div class="service-icon-contato-endereco">
                                     <i class="fas fa-map-marker-alt"></i>
                                 </div>
                                 <h5>Endereço</h5>

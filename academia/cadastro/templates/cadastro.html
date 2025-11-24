@@ -41,8 +41,8 @@
                     <form method="POST" action="{% url 'cadastro' %}">
                         {% csrf_token %}
                         {{ form.as_p }}
-                        <button type="submit" class="btn btn-primary">Cadastrar</button>
-                        <p>Já possui uma conta? <a href="{% url 'login' %}">Login</a></p>
+                        <button type="submit" class="btn btn entrar"><strong>Cadastrar</strong></button>
+                        <p>Já possui uma conta? <a class="cadastro" href="{% url 'login' %}">Login</a></p>
                     </form>
                 </div>
             </section>

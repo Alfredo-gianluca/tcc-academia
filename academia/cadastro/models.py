@@ -38,7 +38,7 @@ class Cargas(models.Model):
     
 class HistoricoAtividades(models.Model):
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
-    data = models.DateField(auto_now_add=True)
+    data = models.DateField()
     Treino = models.TextField()
     qtdexercicios = models.CharField(max_length=20)
 

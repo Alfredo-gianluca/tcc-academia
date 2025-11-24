@@ -43,7 +43,7 @@ def TelaAluno(request):
             # Busca histórico de atividades (ordenado por data decrescente)
             historico_atividades = HistoricoAtividades.objects.filter(
                 usuario=usuario
-            ).order_by('-data')[:10]  # Últimas 10 atividades
+            ).order_by('-data')[:3]  # Últimas 3 atividades
             
             frequencias = CalendarioFrequencia.objects.filter(
                 usuario=usuario
@@ -175,3 +175,21 @@ def configuracoes(request):
 
 def treinos(request):
     return render(request, 'treinos.html', {})
+
+def historico_completo(request):
+    usuario_id = request.session.get('usuario_id')
+    historico_atividades = []
+
+    if not usuario_id:
+        return redirect('TelaAluno:TelaAluno')
+
+    usuario = Usuario.objects.get(id=usuario_id)
+
+    historico = HistoricoAtividades.objects.filter(
+        usuario=usuario
+    ).order_by('-data')
+
+    return render(request, 'historico.html', {
+        'historico': historico,
+        'nome_usuario': request.session.get('nome_usuario_completo', 'Usuário')
+    })

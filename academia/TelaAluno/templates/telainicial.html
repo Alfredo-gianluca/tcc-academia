@@ -193,15 +193,33 @@
                                 <div class="workout-status status-completed" style="padding:6px 12px;border-radius:20px;background:linear-gradient(45deg,#28a745,#20c997);color:#fff;font-weight:700;">Concluído</div>
                             </div>
                             {% endfor %}
+
+                            <!-- Botão Ver Mais -->
+                            <div style="text-align:center; margin-top:1rem;">
+                                <a href="{% url 'TelaAluno:historico' %}" 
+                                class="btn" 
+                                style="background:#9d4edd;color:#fff;padding:0.7rem 1.5rem;border-radius:8px;">
+                                Ver mais
+                                </a>
+                            </div>
+
                         {% else %}
                         <div style="text-align:center;padding:3rem;color:#bbb;">
                             <i class="fas fa-inbox" style="font-size:3rem;margin-bottom:1rem;opacity:0.5;"></i>
                             <p style="font-size:1.1rem;">Sem dados de histórico de treinos ainda.</p>
                             <p style="font-size:0.9rem;opacity:0.8;">Seu professor adicionará suas atividades em breve!</p>
+
+                            <div style="text-align:center; margin-top:1rem;">
+                                <a href="{% url 'TelaAluno:historico' %}" 
+                                class="btn" 
+                                style="background:#9d4edd;color:#fff;padding:0.7rem 1.5rem;border-radius:8px;">
+                                Ver mais
+                                </a>
+                            </div>
                         </div>
                         {% endif %}
                     </div>
-                </div>                
+                </div>
             </div>
         </section>
     </div>

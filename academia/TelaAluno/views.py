@@ -9,13 +9,6 @@ from django.contrib import messages
 def TelaAluno(request):
     nome = request.session.get('nome_usuario_completo', 'Usuário')
     usuario_id = request.session.get('usuario_id')
-    
-    # TESTE TEMPORÁRIO - remova depois de ajustar o login
-    if not request.session.get('usuario_id'):
-        primeiro_usuario = Usuario.objects.first()
-        if primeiro_usuario:
-            request.session['usuario_id'] = primeiro_usuario.id
-    
     frequencias = []
     calendario_dados = []
     cargas = {

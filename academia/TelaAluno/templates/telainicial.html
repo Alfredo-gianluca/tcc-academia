@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>FitCore - Dashboard</title>
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/estilo.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
 <body data-bs-spy="scroll" data-bs-target="#navbar">
@@ -34,181 +35,187 @@
     <div class="main-content" style="margin-left:0px auto;padding:2rem;min-height:calc(100vh - 76px);">
         <h1 class="page-title gradient-purple" style="text-align:center;margin-bottom:1.5rem;font-size:2.4rem;">Dashboard</h1>
         <div class="welcome-text" style="text-align:center;margin-bottom:2rem;opacity:.95;">
-        <div style="display:flex;justify-content:center;align-items:center; gap:0.5rem; font-size:1.5rem; font-weight:500; color:#ddd;">
-            <h4>Bem-vindo de volta,</h4><h4 style="color:#9d4edd; font-weight: bold;"> {{ nome_usuario }}! 💪</h4>
-        </div>
+            <div style="display:flex;justify-content:center;align-items:center; gap:0.5rem; font-size:1.5rem; font-weight:500; color:#ddd;">
+                <h4>Bem-vindo de volta,</h4><h4 style="color:#9d4edd; font-weight: bold;"> {{ nome_usuario }}! 💪</h4>
+            </div>
             <p>Vamos continuar sua jornada fitness hoje!</p>
         </div>
 
         <!-- Calendar Section -->
-         
-            <h5 class="mb-4" style="color:#b57aff; font-weight:700; text-align:center; font-size:1.8rem;">
-                <i class="fas fa-calendar-alt me-2"></i>Calendário de Presenças
-            </h5>
+        <h5 class="mb-4" style="color:#b57aff; font-weight:700; text-align:center; font-size:1.8rem;">
+            <i class="fas fa-calendar-alt me-2"></i>Calendário de Presenças
+        </h5>
 
-            {% if calendario_dados %}
-            <div class="calendar-main-container">
-                
-                <!-- Navegação -->
-                <div class="calendar-navigation">
-                    <button class="calendar-nav-button" onclick="changeCalendarMonth(-1)">
-                        <i class="fas fa-chevron-left"></i> Anterior
-                    </button>
-                    <div class="calendar-month-title" id="monthTitle">
-                        {{ calendario_dados.0.mes }} {{ calendario_dados.0.ano }}
-                    </div>
-                    <button class="calendar-nav-button" onclick="changeCalendarMonth(1)">
-                        Próximo <i class="fas fa-chevron-right"></i>
-                    </button>
+        {% if calendario_dados %}
+        <div class="calendar-main-container">
+            <!-- Navegação -->
+            <div class="calendar-navigation">
+                <button class="calendar-nav-button" onclick="changeCalendarMonth(-1)">
+                    <i class="fas fa-chevron-left"></i> Anterior
+                </button>
+                <div class="calendar-month-title" id="monthTitle">
+                    {{ calendario_dados.0.mes }} {{ calendario_dados.0.ano }}
                 </div>
+                <button class="calendar-nav-button" onclick="changeCalendarMonth(1)">
+                    Próximo <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
 
-                <!-- Container dos meses -->
-                <div id="calendarContainer">
-                    {% for mes_data in calendario_dados %}
-                    <div class="calendar-month-view" data-month="{{ forloop.counter0 }}" style="{% if not forloop.first %}display:none;{% endif %}">
-                        <table class="calendar-table">
-                            <thead>
-                                <tr>
-                                    <th>Seg</th>
-                                    <th>Ter</th>
-                                    <th>Qua</th>
-                                    <th>Qui</th>
-                                    <th>Sex</th>
-                                    <th>Sáb</th>
-                                    <th>Dom</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                <!-- Espaços vazios antes do primeiro dia (offset ajustado) -->
-                                {% with offset_ajustado=mes_data.offset|default:0 %}
-                                    {% if offset_ajustado > 0 %}
-                                        {% for i in "x"|rjust:offset_ajustado %}
-                                        <td><div class="calendar-day-cell calendar-day-empty"></div></td>
-                                        {% endfor %}
-                                    {% endif %}
-                                
-                                    <!-- Dias do mês -->
-                                    {% for dia in mes_data.dias %}
-                                        {% with posicao=forloop.counter0|add:offset_ajustado %}
-                                            {% if posicao > 0 and posicao|divisibleby:7 %}
-                                                </tr><tr>
-                                            {% endif %}
-                                        {% endwith %}
-                                        
-                                        <td>
-                                            {% if dia.tem_registro %}
-                                                <div class="calendar-day-cell {% if dia.presente %}calendar-day-presente{% else %}calendar-day-ausente{% endif %}" 
-                                                    title="{% if dia.presente %}Presente{% else %}Ausente{% endif %} - {{ dia.dia }}/{{ mes_data.mes }}/{{ mes_data.ano }}">
-                                                    {{ dia.dia }}
-                                                </div>
-                                            {% else %}
-                                                <div class="calendar-day-cell calendar-day-normal" 
-                                                    title="Sem registro - {{ dia.dia }}/{{ mes_data.mes }}/{{ mes_data.ano }}">
-                                                    {{ dia.dia }}
-                                                </div>
-                                            {% endif %}
-                                        </td>
+            <!-- Container dos meses -->
+            <div id="calendarContainer">
+                {% for mes_data in calendario_dados %}
+                <div class="calendar-month-view" data-month="{{ forloop.counter0 }}" style="{% if not forloop.first %}display:none;{% endif %}">
+                    <table class="calendar-table">
+                        <thead>
+                            <tr>
+                                <th>Seg</th>
+                                <th>Ter</th>
+                                <th>Qua</th>
+                                <th>Qui</th>
+                                <th>Sex</th>
+                                <th>Sáb</th>
+                                <th>Dom</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            {% with offset_ajustado=mes_data.offset|default:0 %}
+                                {% if offset_ajustado > 0 %}
+                                    {% for i in "x"|rjust:offset_ajustado %}
+                                    <td><div class="calendar-day-cell calendar-day-empty"></div></td>
                                     {% endfor %}
-                                {% endwith %}
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    {% endfor %}
+                                {% endif %}
+                            
+                                {% for dia in mes_data.dias %}
+                                    {% with posicao=forloop.counter0|add:offset_ajustado %}
+                                        {% if posicao > 0 and posicao|divisibleby:7 %}
+                                            </tr><tr>
+                                        {% endif %}
+                                    {% endwith %}
+                                    
+                                    <td>
+                                        {% if dia.tem_registro %}
+                                            <div class="calendar-day-cell {% if dia.presente %}calendar-day-presente{% else %}calendar-day-ausente{% endif %}" 
+                                                title="{% if dia.presente %}Presente{% else %}Ausente{% endif %} - {{ dia.dia }}/{{ mes_data.mes }}/{{ mes_data.ano }}">
+                                                {{ dia.dia }}
+                                            </div>
+                                        {% else %}
+                                            <div class="calendar-day-cell calendar-day-normal" 
+                                                title="Sem registro - {{ dia.dia }}/{{ mes_data.mes }}/{{ mes_data.ano }}">
+                                                {{ dia.dia }}
+                                            </div>
+                                        {% endif %}
+                                    </td>
+                                {% endfor %}
+                            {% endwith %}
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-
-                <!-- Paginação -->
-                <div class="calendar-pagination">
-                    {% for mes_data in calendario_dados %}
-                    <span class="pagination-dot {% if forloop.first %}active{% endif %}" 
-                        onclick="goToCalendarMonth({{ forloop.counter0 }})"></span>
-                    {% endfor %}
-                </div>
-
-                <!-- Legenda -->
-                <div class="calendar-legend">
-                    <div class="legend-item">
-                        <div class="legend-box calendar-day-presente"></div>
-                        <span class="legend-text">Presente</span>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-box calendar-day-ausente"></div>
-                        <span class="legend-text">Ausente</span>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-box calendar-day-normal"></div>
-                        <span class="legend-text">Sem registro</span>
-                    </div>
-                </div>
-            </div>
-            {% else %}
-            <p style="color:#bbb; text-align:center; padding:3rem; font-size:1.1rem;">
-                <i class="fas fa-info-circle me-2"></i>Nenhuma data registrada no calendário.
-            </p>
-            {% endif %}
-
-            <div class="cargas-container glass-bg" style="margin-top:2rem; margin-bottom:2rem; padding:1.5rem; border-radius:12px; text-align:center;">
-                <h5 class="mb-4" style="color:#b57aff; font-weight:700; font-size:1.8rem;">
-                    <i class="fas fa-dumbbell me-2"></i>Cargas Atuais
-                </h5>
-                <div class="carga-item" style="margin-bottom:1rem;">
-                    <span class="carga-label" style="font-weight:600;color:#ddd;">Pernas:</span>
-                    <span class="carga-value" style="font-size:1.2rem;font-weight:700;color:#9d4edd;" id="carga-pernas"> {{ cargas.pernas }} kg</span>
-                </div>
-                <div class="carga-item" style="margin-bottom:1rem;">
-                    <span class="carga-label" style="font-weight:600;color:#ddd;">Braços:</span>
-                    <span class="carga-value" style="font-size:1.2rem;font-weight:700;color:#9d4edd;" id="carga-bracos"> {{ cargas.bracos }} kg</span>
-                </div>
-                <div class="carga-item" style="margin-bottom:1rem;">
-                    <span class="carga-label" style="font-weight:600;color:#ddd;">Peito:</span>
-                    <span class="carga-value" style="font-size:1.2rem;font-weight:700;color:#9d4edd;" id="carga-peito"> {{ cargas.peito }} kg</span>
-                </div>
-                <div class="carga-item" style="margin-bottom:1rem;">
-                    <span class="carga-label" style="font-weight:600;color:#ddd;">Costas:</span>
-                    <span class="carga-value" style="font-size:1.2rem;font-weight:700;color:#9d4edd;" id="carga-costas"> {{ cargas.costas }} kg</span>
-                </div>
+                {% endfor %}
             </div>
 
+            <!-- Paginação -->
+            <div class="calendar-pagination">
+                {% for mes_data in calendario_dados %}
+                <span class="pagination-dot {% if forloop.first %}active{% endif %}" 
+                    onclick="goToCalendarMonth({{ forloop.counter0 }})"></span>
+                {% endfor %}
+            </div>
+
+            <!-- Legenda -->
+            <div class="calendar-legend">
+                <div class="legend-item">
+                    <div class="legend-box calendar-day-presente"></div>
+                    <span class="legend-text">Presente</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-box calendar-day-ausente"></div>
+                    <span class="legend-text">Ausente</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-box calendar-day-normal"></div>
+                    <span class="legend-text">Sem registro</span>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <p style="color:#bbb; text-align:center; padding:3rem; font-size:1.1rem;">
+            <i class="fas fa-info-circle me-2"></i>Nenhuma data registrada no calendário.
+        </p>
+        {% endif %}
+
+        <!-- Cargas Section -->
+        <div class="cargas-container glass-bg" id="cargas" style="margin-top:2rem; margin-bottom:2rem; padding:1.5rem; border-radius:12px; text-align:center;">
+            <h5 class="mb-4" style="color:#b57aff; font-weight:700; font-size:1.8rem;">
+                <i class="fas fa-dumbbell me-2"></i>Cargas Atuais
+            </h5>
+            <div class="carga-item" style="margin-bottom:1rem;">
+                <span class="carga-label" style="font-weight:600;color:#ddd;">Pernas:</span>
+                <span class="carga-value" style="font-size:1.2rem;font-weight:700;color:#9d4edd;" id="carga-pernas"> {{ cargas.pernas }} kg</span>
+            </div>
+            <div class="carga-item" style="margin-bottom:1rem;">
+                <span class="carga-label" style="font-weight:600;color:#ddd;">Braços:</span>
+                <span class="carga-value" style="font-size:1.2rem;font-weight:700;color:#9d4edd;" id="carga-bracos"> {{ cargas.bracos }} kg</span>
+            </div>
+            <div class="carga-item" style="margin-bottom:1rem;">
+                <span class="carga-label" style="font-weight:600;color:#ddd;">Peito:</span>
+                <span class="carga-value" style="font-size:1.2rem;font-weight:700;color:#9d4edd;" id="carga-peito"> {{ cargas.peito }} kg</span>
+            </div>
+            <div class="carga-item" style="margin-bottom:1rem;">
+                <span class="carga-label" style="font-weight:600;color:#ddd;">Costas:</span>
+                <span class="carga-value" style="font-size:1.2rem;font-weight:700;color:#9d4edd;" id="carga-costas"> {{ cargas.costas }} kg</span>
+            </div>
         </div>
 
-        <!-- Workout History and Achievements -->
+        <!-- Workout History Section -->
         <section class="mb-4" id="historico">
             <div class="row">
-                <div class="col-lg-8">
+                <div class="col-lg-12">
                     <div class="glass-card glass-bg">
-                        <h5 class="mb-4"><i class="fas fa-history me-2 accent-purple"></i>Histórico de Treinos</h5>
+                        <h5 class="mb-4" style="color:#b57aff; font-weight:700; font-size:1.8rem;">
+                            <i class="fas fa-history me-2"></i>Histórico de Treinos
+                        </h5>
 
-                        <div class="workout-item glass-bg" style="display:flex;align-items:center;padding:1rem;border-radius:12px;margin-bottom:1rem;">
-                            <div class="workout-icon gradient-purple" style="width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;">
-                                <i class="fas fa-dumbbell"></i>
-                            </div>
-                            <div class="workout-details" style="flex:1;margin-left:1rem;">
-                                <div class="workout-name" style="font-weight:700;">Treino de Peito e Tríceps</div>
-                                <div class="workout-meta" style="color:#bbb;font-size:.9rem;">
-                                    <span><i class="fas fa-calendar me-1"></i>Hoje</span>
-                                    <span style="margin-left:1rem;"><i class="fas fa-check me-1"></i>8 exercícios</span>
+                        {% if historico_atividades %}
+                            {% for atividade in historico_atividades %}
+                            <div class="workout-item glass-bg" style="display:flex;align-items:center;padding:1rem;border-radius:12px;margin-bottom:1rem;">
+                                <div class="workout-icon gradient-purple" style="width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;">
+                                    <i class="fas fa-dumbbell"></i>
                                 </div>
+                                <div class="workout-details" style="flex:1;margin-left:1rem;">
+                                    <div class="workout-name" style="font-weight:700;color:#e8d9ff;">{{ atividade.Treino }}</div>
+                                    <div class="workout-meta" style="color:#bbb;font-size:.9rem;">
+                                        <span><i class="fas fa-calendar me-1"></i>{{ atividade.data|date:"d/m/Y" }}</span>
+                                        <span style="margin-left:1rem;"><i class="fas fa-check me-1"></i>{{ atividade.qtdexercicios }} exercícios</span>
+                                    </div>
+                                </div>
+                                <div class="workout-status status-completed" style="padding:6px 12px;border-radius:20px;background:linear-gradient(45deg,#28a745,#20c997);color:#fff;font-weight:700;">Concluído</div>
                             </div>
-                            <div class="workout-status status-completed" style="padding:6px 12px;border-radius:20px;background:linear-gradient(45deg,#28a745,#20c997);color:#fff;font-weight:700;">Concluído</div>
+                            {% endfor %}
+                        {% else %}
+                        <div style="text-align:center;padding:3rem;color:#bbb;">
+                            <i class="fas fa-inbox" style="font-size:3rem;margin-bottom:1rem;opacity:0.5;"></i>
+                            <p style="font-size:1.1rem;">Sem dados de histórico de treinos ainda.</p>
+                            <p style="font-size:0.9rem;opacity:0.8;">Seu professor adicionará suas atividades em breve!</p>
                         </div>
-
-                        <!-- repeat similar items... -->
+                        {% endif %}
                     </div>
                 </div>                
             </div>
         </section>
     </div>
-<footer class="footer text-center">
-    <div class="footer-content">
-        <a href="https://instagram.com/dra.marinasantos.nutri" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="https://linkedin.com/in/marina-santos-nutricionista" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-        <a href="https://wa.me/5511987654321" target="_blank"><i class="fab fa-whatsapp"></i></a>
-        <a href="https://youtube.com/dra.marinasantos" target="_blank"><i class="fab fa-youtube"></i></a>
-        <a href="https://tiktok.com/@dra.marinasantos" target="_blank"><i class="fab fa-tiktok"></i></a>
-        <p class="mb-0">&copy; 2024 FitCore. Todos os direitos reservados.</p>
-    </div>
-</footer>
+
+    <footer class="footer text-center">
+        <div class="footer-content">
+            <a href="https://instagram.com/dra.marinasantos.nutri" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://linkedin.com/in/marina-santos-nutricionista" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://wa.me/5511987654321" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://youtube.com/dra.marinasantos" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://tiktok.com/@dra.marinasantos" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <p class="mb-0">&copy; 2024 FitCore. Todos os direitos reservados.</p>
+        </div>
+    </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script>
@@ -223,25 +230,18 @@
         function updateCalendarDisplay() {
             if (totalCalendarMonths === 0) return;
             
-            // Atualizar visualização dos meses
             document.querySelectorAll('.calendar-month-view').forEach((month, index) => {
                 month.style.display = index === currentCalendarMonth ? 'block' : 'none';
             });
             
-            // Atualizar título
             if (mesesData[currentCalendarMonth]) {
                 document.getElementById('monthTitle').textContent = 
                     mesesData[currentCalendarMonth].mes + ' ' + mesesData[currentCalendarMonth].ano;
             }
             
-            // Atualizar dots
             document.querySelectorAll('.pagination-dot').forEach((dot, index) => {
                 dot.classList.toggle('active', index === currentCalendarMonth);
             });
-            
-            // Atualizar botões
-            document.getElementById('prevBtn').disabled = currentCalendarMonth === 0;
-            document.getElementById('nextBtn').disabled = currentCalendarMonth === totalCalendarMonths - 1;
         }
 
         function changeCalendarMonth(direction) {
@@ -260,53 +260,21 @@
             updateCalendarDisplay();
         }
 
-        // Navegação por teclado
         document.addEventListener('keydown', function(e) {
             if (e.key === 'ArrowLeft') changeCalendarMonth(-1);
             if (e.key === 'ArrowRight') changeCalendarMonth(1);
         });
 
-        // Inicializar
         updateCalendarDisplay();
 
-        // Mobile sidebar toggle
-        document.getElementById('sidebarToggle').addEventListener('click', function() {
-            document.getElementById('sidebar').classList.toggle('active');
-        });
-
-        // Animate progress bars on load
-        window.addEventListener('load', function() {
-            const progressBars = document.querySelectorAll('.progress-fill');
-            progressBars.forEach(bar => {
-                const width = bar.style.width || '0%';
-                bar.style.width = '0%';
-                setTimeout(() => bar.style.width = width, 200);
-            });
-        });
-
-        // Animate streak number
-        function animateStreak(target = 15) {
-            const streakNumber = document.getElementById('streakNumber');
-            let current = 0;
-            const increment = Math.max(1, Math.floor(target / 30));
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= target) { current = target; clearInterval(timer); }
-                streakNumber.textContent = Math.floor(current);
-            }, 40);
-        }
-
-        setTimeout(() => animateStreak(), 800);
-
-        // Small interactions
+        // Animações sutis
         document.querySelectorAll('.workout-item').forEach(item => {
             item.addEventListener('click', function() {
-                this.style.transform = 'translateX(12px)';
+                this.style.transform = 'translateX(8px)';
                 setTimeout(() => this.style.transform = '', 200);
             });
         });
 
-        // periodic subtle glow on purple elements
         setInterval(() => {
             document.querySelectorAll('.gradient-purple').forEach(el => {
                 el.style.filter = 'drop-shadow(0 0 12px rgba(157,78,221,0.25))';
@@ -314,7 +282,5 @@
             });
         }, 4000);
     </script>
-
-    <!-- Sidebar -->
 </body>
 </html>

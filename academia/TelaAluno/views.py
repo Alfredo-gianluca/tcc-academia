@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from cadastro.models import Usuario, CalendarioFrequencia, Cargas, RequisicaoExclusao
+from cadastro.models import Usuario, CalendarioFrequencia, Cargas, RequisicaoExclusao, HistoricoAtividades
 from datetime import datetime
 from calendar import monthrange
 from django.core.exceptions import ValidationError
@@ -11,6 +11,7 @@ def TelaAluno(request):
     usuario_id = request.session.get('usuario_id')
     frequencias = []
     calendario_dados = []
+    historico_atividades = []
     cargas = {
         'pernas': 0,
         'bracos': 0,
@@ -32,7 +33,6 @@ def TelaAluno(request):
                     'costas': cargas_obj.costas
                 }
             except Cargas.DoesNotExist:
-                # Se não existir registro de cargas, usa valores padrão
                 cargas = {
                     'pernas': 0,
                     'bracos': 0,
@@ -40,32 +40,32 @@ def TelaAluno(request):
                     'costas': 0
                 }
             
+            # Busca histórico de atividades (ordenado por data decrescente)
+            historico_atividades = HistoricoAtividades.objects.filter(
+                usuario=usuario
+            ).order_by('-data')[:10]  # Últimas 10 atividades
+            
             frequencias = CalendarioFrequencia.objects.filter(
                 usuario=usuario
             ).order_by('data')
             
             # Organiza por mês
             if frequencias.exists():
-                # Pega o intervalo de datas
                 primeira_data = frequencias.first().data
                 ultima_data = frequencias.last().data
                 
-                # Cria dicionário de frequências para lookup rápido
                 freq_dict = {f.data: f.presente for f in frequencias}
                 
-                # Gera calendário mês a mês
                 data_atual = primeira_data.replace(day=1)
                 while data_atual <= ultima_data:
                     ano = data_atual.year
                     mes = data_atual.month
                     dias_no_mes = monthrange(ano, mes)[1]
                     
-                    # Nome do mês em português
                     meses_pt = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
                                 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
                     nome_mes = meses_pt[mes - 1]
                     
-                    # Primeiro dia da semana (0=segunda, 6=domingo)
                     primeiro_dia_semana = datetime(ano, mes, 1).weekday()
                     
                     dias_mes = []
@@ -85,7 +85,6 @@ def TelaAluno(request):
                         'offset': primeiro_dia_semana
                     })
                     
-                    # Próximo mês
                     if mes == 12:
                         data_atual = datetime(ano + 1, 1, 1).date()
                     else:
@@ -101,7 +100,8 @@ def TelaAluno(request):
         'nome_usuario': nome,
         'frequencias': frequencias,
         'calendario_dados': calendario_dados,
-        'cargas': cargas
+        'cargas': cargas,
+        'historico_atividades': historico_atividades
     })
 
 def nutricao(request):
@@ -113,16 +113,11 @@ def configuracoes(request):
 
     usuario = Usuario.objects.get(id=usuario_id) if usuario_id else None
 
-    # ===========================
-    #         POST
-    # ===========================
     if request.method == 'POST':
         if usuario:
-            # Requisição de exclusão de conta
             if 'requisitar_exclusao' in request.POST:
                 motivo = request.POST.get('motivo_exclusao', '')
                 
-                # Verifica se já existe requisição pendente
                 requisicao_existente = RequisicaoExclusao.objects.filter(
                     usuario=usuario,
                     status='pendente'
@@ -139,7 +134,6 @@ def configuracoes(request):
                 
                 return redirect('TelaAluno:configuracoes')
             
-            # Atualização de configurações normais
             observacoes = request.POST.get('observacoes', '')
             email = request.POST.get('email', '')
             nova_senha = request.POST.get('nova_senha')
@@ -147,14 +141,12 @@ def configuracoes(request):
 
             usuario.observacoes = observacoes
 
-            # Validação do email
             try:
                 validate_email(email)
                 usuario.email = email
             except ValidationError:
                 messages.warning(request, "E-mail inválido. Mantendo o e-mail anterior.")
 
-            # Validação da senha
             if nova_senha:
                 if nova_senha == confirmar_senha:
                     usuario.senha = nova_senha
@@ -167,10 +159,6 @@ def configuracoes(request):
 
         return redirect('TelaAluno:configuracoes')
 
-    # ==========================
-    #          GET
-    # ==========================
-    # Verifica se há requisição pendente
     requisicao_pendente = None
     if usuario:
         requisicao_pendente = RequisicaoExclusao.objects.filter(

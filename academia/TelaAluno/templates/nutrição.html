@@ -1,0 +1,246 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutrição</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/estilo.css' %}" rel="stylesheet">
+
+    <style>
+        :root {
+            --green-emerald: #00b37e;
+            --dark-green: #00845f;
+            --light-green: rgba(0, 179, 126, 0.15);
+            --purple: #8a4fff;
+            --gradient-green-purple: linear-gradient(135deg, #00b37e, #8a4fff);
+        }
+
+        .navbar-custom {
+            background: rgba(0, 0, 0, 0.9);
+            border-bottom: 1px solid rgba(138, 79, 255, 0.2);
+        }
+
+        .brand-gradient {
+            background: var(--gradient-green-purple);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 179, 126, 0.25)),
+                        url('https://images.unsplash.com/photo-1556912998-c57cc6b63cd7?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-green-purple); /* alterado para verde + roxo */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease;
+        }
+
+        .btn-custom {
+            background: var(--gradient-green-purple);
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 40px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            background: var(--dark-green);
+            box-shadow: 0 0 20px rgba(0, 179, 126, 0.4);
+            transform: translateY(-3px);
+        }
+
+        .section-yellow {
+            background: linear-gradient(135deg, rgba(0, 179, 126, 0.1), rgba(0, 0, 0, 0.9));
+        }
+
+        .section-title {
+            background: var(--gradient-green-purple);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .service-card {
+            border: 1px solid rgba(0, 179, 126, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--green-emerald);
+            box-shadow: 0 20px 40px rgba(0, 179, 126, 0.2);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--green-emerald);
+        }
+
+        .glass-bg {
+            border: 1px solid rgba(138, 79, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(138, 79, 255, 0.2);
+        }
+
+        .gradient-purple {
+            background: var(--gradient-green-purple);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .form-container {
+            border: 1px solid rgba(0, 179, 126, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 179, 126, 0.2);
+        }
+
+        .btn-submit {
+            background: var(--gradient-green-purple);
+        }
+
+        .btn-submit:hover {
+            background: var(--dark-green);
+            box-shadow: 0 10px 30px rgba(0, 179, 126, 0.4);
+        }
+
+        .footer {
+            border-top: 1px solid rgba(138, 79, 255, 0.3);
+        }
+
+        .social-links a:hover {
+            color: var(--green-emerald);
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-custom fixed-top">
+        <div class="container">
+            <a class="navbar-brand brand-gradient mx-auto" href="{% url 'TelaAluno:telaaluno' %}">Voltar</a>
+        </div>
+    </nav>
+        
+
+    <section class="hero text-center text-light">
+        <div class="container hero-content">
+            <h1>Dra. Marina Santos</h1>
+            <p>Nutricionista Clínica & Esportiva — transformando vidas através da alimentação saudável há mais de 8 anos.</p>
+            <a href="#" class="btn btn-custom mt-3" onclick="openWhatsApp()">
+                <i class="fab fa-whatsapp"></i> Agendar Consulta Gratuita
+            </a>
+        </div>
+    </section>
+
+    <!-- Sobre -->
+    <section id="sobre" class="section section-yellow">
+        <div class="container text-center fade-in">
+            <h2 class="section-title">Sobre Mim</h2>
+            <p class="mb-5">Sou nutricionista clínica e esportiva apaixonada por ajudar pessoas a alcançarem seus objetivos de forma saudável e equilibrada.</p>
+
+            <div class="row d-flex justify-content-center gap-4">
+                <div class="service-card col-md-3">
+                    <div class="service-icon">🥗</div>
+                    <h3>Emagrecimento Saudável</h3>
+                    <p>Reeducação alimentar personalizada, sem restrições extremas, com resultados duradouros.</p>
+                </div>
+
+                <div class="service-card col-md-3">
+                    <div class="service-icon">💪</div>
+                    <h3>Nutrição Esportiva</h3>
+                    <p>Desempenho máximo e recuperação otimizada através de estratégias nutricionais específicas.</p>
+                </div>
+
+                <div class="service-card col-md-3">
+                    <div class="service-icon">📱</div>
+                    <h3>Consultoria Online</h3>
+                    <p>Atendimento completo no conforto da sua casa, com suporte digital e acompanhamento contínuo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resultados -->
+    <section id="resultados" class="section section-dark text-center">
+        <div class="container fade-in">
+            <h2 class="section-title">Resultados que Inspiram</h2>
+            <div class="row justify-content-center gap-5">
+                <div class="glass-bg glass-card col-md-3">
+                    <h3 class="gradient-purple">847</h3>
+                    <p>Pacientes Atendidos</p>
+                </div>
+                <div class="glass-bg glass-card col-md-3">
+                    <h3 class="gradient-purple">8+</h3>
+                    <p>Anos de Experiência</p>
+                </div>
+                <div class="glass-bg glass-card col-md-3">
+                    <h3 class="gradient-purple">95%</h3>
+                    <p>Índice de Sucesso</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contato" class="section section-yellow">
+        <div class="container fade-in">
+            <h2 class="section-title">Entre em Contato</h2>
+            <div class="row justify-content-center">
+                <div class="form-container">
+                    <form onsubmit="openWhatsApp(); return false;">
+                        <div class="form-group">
+                            <label for="nome">Nome</label>
+                            <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" name="email" placeholder="seuemail@exemplo.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="mensagem">Mensagem</label>
+                            <textarea id="mensagem" name="mensagem" rows="4" placeholder="Como posso te ajudar?"></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">Enviar Mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="footer text-center">
+        <div class="container fade-in">
+            <h3 class="brand-gradient mb-3">Vamos nos Conectar!</h3>
+            <p class="mb-4">Siga-me nas redes sociais para dicas, receitas e mais conteúdo sobre nutrição.</p>
+
+            <div class="social-links mb-4">
+                <a href="https://instagram.com/dra.marinasantos.nutri" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://linkedin.com/in/marina-santos-nutricionista" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://wa.me/5511987654321" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://youtube.com/dra.marinasantos" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="https://tiktok.com/@dra.marinasantos" target="_blank"><i class="fab fa-tiktok"></i></a>
+            </div>
+
+            <small>&copy; 2025 Dra. Marina Santos - Nutricionista CRN 12345. Todos os direitos reservados.</small>
+        </div>
+    </footer>
+
+    <script>
+        function openWhatsApp() {
+            const message = "Olá Dra. Marina! Gostaria de agendar uma consulta nutricional gratuita. 🥗";
+            const phone = "5511987654321";
+            const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>

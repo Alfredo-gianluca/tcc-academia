@@ -65,6 +65,38 @@ body {
     transition: all 0.3s ease;
 }
 
+.cadastro {
+    text-decoration: none;
+    color:white;
+}
+
+.cadastro:hover {
+    text-decoration: none;
+    color: rgb(133, 0, 133);
+    transition: all 0.3s ease;
+     
+}
+
+.entrar {
+    text-decoration: none;
+    background: var(--gradient-purple-yellow);
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+.login {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 50%;
+    background: var(--gradient-purple-yellow);
+    transition: all 0.3s ease;
+}
+
+
 .navbar-nav .nav-link:hover::after {
     width: 100%;
     left: 0;
@@ -188,12 +220,85 @@ body {
     margin-bottom: 1rem;
 }
 
+.service-icon-funcional {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    background-image: url('../img/Icons/funcional-icon.png');
+    background-size: cover;
+    font-size: 3rem;
+    color: var(--primary-yellow);
+    margin-bottom: 1rem;
+}
+
+.service-icon-cardio {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    background-image: url('../img/Icons/cardio-icon.png');
+    background-size: cover;
+    font-size: 3rem;
+    color: var(--primary-yellow);
+    margin-bottom: 1rem;
+}
+
+.service-icon-musculacao {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    background-image: url('../img/Icons/musculacao.png');
+    background-size: cover;
+    font-size: 3rem;
+    color: var(--primary-yellow);
+    margin-bottom: 1rem;
+}
+
+
+.service-icon-contato-telefone {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    font-size: 3rem;
+    background-image: url('../img/Icons/telefone-icon.png');
+    background-size: cover;
+    color: var(--primary-yellow);
+    margin-bottom: 1rem;
+}
+
+.service-icon-contato-e-mail {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    font-size: 3rem;
+    background-image: url('../img/Icons/e-mail-icon.png');
+    background-size: cover;
+    color: var(--primary-yellow);
+    margin-bottom: 1rem;
+}
+
+.service-icon-contato-endereco {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    font-size: 3rem;
+    background-image: url('../img/Icons/home-icon.png');
+    background-size: cover;
+    color: var(--primary-yellow);
+    margin-bottom: 1rem;
+}
+
 .trainer-img1 {
     width: 150px;
     height: 150px;
     border-radius: 50%;
     margin: 0 auto 1rem;
-    background-image: url('../img/Carlos.jpg');
+    background-image: url('../img/trainers/Carlos.jpg');
     background-size: cover;
     display: flex;
     align-items: center;
@@ -207,7 +312,7 @@ body {
     height: 150px;
     border-radius: 50%;
     margin: 0 auto 1rem;
-    background-image: url('../img/Ana.jpg');
+    background-image: url('../img/trainers/Ana.jpg');
     background-size: cover;
     display: flex;
     align-items: center;
@@ -220,7 +325,7 @@ body {
     height: 150px;
     border-radius: 50%;
     margin: 0 auto 1rem;
-    background-image: url('../img/Roberto.jpg');
+    background-image: url('../img/trainers/Roberto.jpg');
     background-size: cover;
     display: flex;
     align-items: center;
@@ -533,7 +638,10 @@ table.custom-table a.btn:hover {
 .gradient-purple {
     background: linear-gradient(135deg, #6f42c1, #9d4edd);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
+    color: transparent;
+    display: inline-block;
 }
 
 /* Streak + progress */
@@ -547,12 +655,15 @@ table.custom-table a.btn:hover {
     filter: drop-shadow(0 0 18px #ff7a1a);
 }
 
-.streak-number {
-    font-size: 2.8rem;
-    font-weight: 700;
-    background: linear-gradient(45deg, #ff8a00, #ffd166);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+ .streak-number {     
+    font-size: 2.8rem;     
+    font-weight: 700;     
+    background: linear-gradient(45deg, #ff8a00, #ffd166);     
+    -webkit-background-clip: text;     
+    background-clip: text;     
+    -webkit-text-fill-color: transparent;     
+    color: transparent;     /* opcional: garante melhor consistência em alguns layouts */     
+    display: inline-block; 
 }
 
 .progress-bar-custom {

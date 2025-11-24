@@ -41,193 +41,193 @@
 </head>
 
 <body class="app-bg">
-    <div class="container" style="padding-top:100px; padding-bottom:60px;">
-        
-        {% if messages %}
-        <div class="msg-container">
-            {% for message in messages %}
-            <div class="msg-item {{ message.tags }}">
-                {{ message }}
-            </div>
-            {% endfor %}
+<div class="container" style="padding-top:100px; padding-bottom:60px;">
+
+    {% if messages %}
+    <div class="msg-container">
+        {% for message in messages %}
+        <div class="msg-item {{ message.tags }}">
+            {{ message }}
         </div>
-        {% endif %}
+        {% endfor %}
+    </div>
+    {% endif %}
 
-        <div class="config-form-container" style="max-width:900px;">
-            <h2 class="config-title">
-                <i class="fas fa-user-edit me-2"></i>Editar Aluno
-            </h2>
+    <div class="config-form-container" style="max-width:900px;">
+        <h2 class="config-title">
+            <i class="fas fa-user-edit me-2"></i>Editar Aluno
+        </h2>
 
-            <p style="text-align:center;color:#cba6ff;margin-bottom:2rem;">
-                {{ aluno.nome_completo }}
-            </p>
+        <p style="text-align:center;color:#cba6ff;margin-bottom:2rem;">
+            {{ aluno.nome_completo }}
+        </p>
 
-            <form method="POST" id="formPrincipal">
-                {% csrf_token %}
+        <!-- FORM PRINCIPAL (CARGAS + CALENDÁRIO) -->
+        <form method="POST" id="formPrincipal">
+            {% csrf_token %}
 
-                <!-- CARGAS -->
-                <div class="mb-4">
-                    <h5 style="color:#b57aff;font-weight:700;margin-bottom:1rem;">
-                        <i class="fas fa-dumbbell me-2"></i>Cargas
-                    </h5>
+            <!-- CARGAS -->
+            <div class="mb-4">
+                <h5 style="color:#b57aff;font-weight:700;margin-bottom:1rem;">
+                    <i class="fas fa-dumbbell me-2"></i>Cargas
+                </h5>
 
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="pernas">Pernas (kg)</label>
-                            <input type="number" id="pernas" name="pernas" class="inputcarga" 
-                                value="{{ cargas.pernas }}" min="0" step="0.5">
-                        </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="pernas">Pernas (kg)</label>
+                        <input type="number" id="pernas" name="pernas" class="inputcarga"
+                               value="{{ cargas.pernas }}" min="0" step="0.5">
+                    </div>
 
-                        <div class="col-md-6 mb-3">
-                            <label for="bracos">Braços (kg)</label>
-                            <input type="number" id="bracos" name="bracos" class="inputcarga" 
-                                value="{{ cargas.bracos }}" min="0" step="0.5">
-                        </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="bracos">Braços (kg)</label>
+                        <input type="number" id="bracos" name="bracos" class="inputcarga"
+                               value="{{ cargas.bracos }}" min="0" step="0.5">
+                    </div>
 
-                        <div class="col-md-6 mb-3">
-                            <label for="peito">Peito (kg)</label>
-                            <input type="number" id="peito" name="peito" class="inputcarga" 
-                                value="{{ cargas.peito }}" min="0" step="0.5">
-                        </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="peito">Peito (kg)</label>
+                        <input type="number" id="peito" name="peito" class="inputcarga"
+                               value="{{ cargas.peito }}" min="0" step="0.5">
+                    </div>
 
-                        <div class="col-md-6 mb-3">
-                            <label for="costas">Costas (kg)</label>
-                            <input type="number" id="costas" name="costas" class="inputcarga" 
-                                value="{{ cargas.costas }}" min="0" step="0.5">
-                        </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="costas">Costas (kg)</label>
+                        <input type="number" id="costas" name="costas" class="inputcarga"
+                               value="{{ cargas.costas }}" min="0" step="0.5">
                     </div>
                 </div>
+            </div>
 
-                <!-- CALENDÁRIO -->
-                <div class="mb-4">
-                    <h5 style="color:#b57aff;font-weight:700;margin-bottom:1rem;">
-                        <i class="fas fa-calendar-check me-2"></i>Calendário de Frequência
-                    </h5>
-                    
-                    <div class="month-selector">
-                        <button type="button" onclick="changeMonth(-1)">
-                            <i class="fas fa-chevron-left"></i>
-                        </button>
+            <!-- CALENDÁRIO -->
+            <div class="mb-4">
+                <h5 style="color:#b57aff;font-weight:700;margin-bottom:1rem;">
+                    <i class="fas fa-calendar-check me-2"></i>Calendário de Frequência
+                </h5>
 
-                        <span id="currentMonthYear"></span>
+                <div class="month-selector">
+                    <button type="button" onclick="changeMonth(-1)">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
 
-                        <button type="button" onclick="changeMonth(1)">
-                            <i class="fas fa-chevron-right"></i>
-                        </button>
-                    </div>
+                    <span id="currentMonthYear"></span>
 
-                    <div id="calendar-container" class="calendar-container"></div>
-
-                    <input type="hidden" id="presencas_json" name="presencas_json">
-
-                    <div class="calendar-legend" style="margin-top:1.5rem;">
-                        <div class="legend-item">
-                            <div class="legend-box" style="background-color:#ff7a1a;border-radius:50%;"></div>
-                            <span class="legend-text">Presente</span>
-                        </div>
-
-                        <div class="legend-item">
-                            <div class="legend-box" style="background-color:rgba(255,255,255,0.05);
-                                border:1px solid rgba(176,136,82,0.3);border-radius:50%;"></div>
-                            <span class="legend-text">Ausente</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- HISTÓRICO -->
-                <div class="mb-4">
-                    <h5 style="color:#b57aff;font-weight:700;margin-bottom:1rem;">
-                        <i class="fas fa-history me-2"></i>Histórico de Atividades
-                    </h5>
-
-                    <!-- adicionar histórico -->
-                    <div class="glass-bg" style="padding:1rem;margin-bottom:1rem;border-radius:10px;">
-
-                        <label style="color:#cba6ff;margin-bottom:0.5rem;">Adicionar nova atividade:</label>
-
-                        <div class="row g-2">
-                            <div class="col-md-4">
-                                <input type="date" name="data_historico" id="data_historico" class="inputcarga">
-                            </div>
-
-                            <div class="col-md-4">
-                                <input type="text" name="treino_historico" 
-                                       class="inputcarga" placeholder="Treino">
-                            </div>
-
-                            <div class="col-md-2">
-                                <input type="text" name="qtd_exercicios" 
-                                       class="inputcarga" placeholder="Qtd Ex.">
-                            </div>
-
-                            <div class="col-md-2">
-                                <button type="submit" name="adicionar_historico" 
-                                        class="btn btn-success w-100">
-                                    <i class="fas fa-plus"></i>
-                                </button>
-                            </div>
-                        </div>
-
-                        <small style="color:#ff9999;display:block;margin-top:0.5rem;font-weight:600;">
-                            <i class="fas fa-exclamation-triangle"></i>
-                            A data DEVE estar marcada como PRESENTE no calendário!
-                        </small>
-                    </div>
-
-                    {% if historico %}
-                    <div class="table-responsive">
-                        <table class="table-frequencia">
-                            <thead>
-                                <tr>
-                                    <th>Data</th>
-                                    <th>Treino</th>
-                                    <th>Exercícios</th>
-                                    <th>Ações</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                {% for hist in historico %}
-                                <tr>
-                                    <td>{{ hist.data|date:"d/m/Y" }}</td>
-                                    <td>{{ hist.Treino }}</td>
-                                    <td>{{ hist.qtdexercicios }}</td>
-
-                                    <td>
-                                        <button type="submit" 
-                                                name="remover_historico" 
-                                                value="{{ hist.id }}"
-                                                onclick="return confirm('Deseja remover este histórico?')"
-                                                class="btn btn-danger btn-sm">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-
-                                        <input type="hidden" name="historico_id" value="{{ hist.id }}">
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-
-                    {% else %}
-                        <p style="color:#bbb;text-align:center;padding:1rem;">Nenhum histórico registrado.</p>
-                    {% endif %}
-                </div>
-
-                <div class="d-flex justify-content-between align-items-center" style="margin-top:2rem;">
-                    <a href="{% url 'TelaProf:lista_alunos' %}" class="btn-voltar">
-                        <i class="fas fa-arrow-left me-2"></i>Voltar
-                    </a>
-
-                    <button type="submit" class="btn-salvar-config">
-                        <i class="fas fa-save me-2"></i>Salvar Alterações
+                    <button type="button" onclick="changeMonth(1)">
+                        <i class="fas fa-chevron-right"></i>
                     </button>
                 </div>
-            </form>
-        </div>
-    </div>
 
+                <div id="calendar-container" class="calendar-container"></div>
+
+                <input type="hidden" id="presencas_json" name="presencas_json">
+            </div>
+
+            <!-- BOTÃO SALVAR -->
+            <div class="d-flex justify-content-center align-items-center" style="margin-top:2rem; margin-bottom:3rem;">
+                <button type="submit" class="btn-salvar-config">
+                    <i class="fas fa-save me-2"></i>Salvar Alterações
+                </button>
+            </div>
+        </form> <!-- FIM FORM PRINCIPAL -->
+
+        <!-- =============================== -->
+        <!-- FORM DE HISTÓRICO (SEPARADO) -->
+        <!-- =============================== -->
+        <h5 style="color:#b57aff;font-weight:700;margin-bottom:1rem;">
+            <i class="fas fa-history me-2"></i>Histórico de Atividades
+        </h5>
+
+        <form method="POST" id="formHistorico">
+            {% csrf_token %}
+            <input type="hidden" name="adicionar_historico" value="1">
+
+            <div class="glass-bg" style="padding:1rem;margin-bottom:1rem;border-radius:10px;">
+
+                <label style="color:#cba6ff;margin-bottom:0.5rem;">Adicionar nova atividade:</label>
+
+                <div class="row g-2">
+                    <div class="col-md-4">
+                        <input type="date" name="data_historico" id="data_historico" class="inputcarga">
+                    </div>
+
+                    <div class="col-md-4">
+                        <input type="text" name="treino_historico"
+                               class="inputcarga" placeholder="Treino">
+                    </div>
+
+                    <div class="col-md-2">
+                        <input type="text" name="qtd_exercicios"
+                               class="inputcarga" placeholder="Qtd Ex.">
+                    </div>
+
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-success w-100">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <small style="color:#ff9999;display:block;margin-top:0.5rem;font-weight:600;">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    A data DEVE estar marcada como PRESENTE no calendário!
+                </small>
+            </div>
+        </form>
+
+        <!-- TABELA HISTÓRICO -->
+        {% if historico %}
+        <div class="table-responsive">
+            <table class="table-frequencia">
+                <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Treino</th>
+                    <th>Exercícios</th>
+                    <th>Ações</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for hist in historico %}
+                <tr>
+                    <td>{{ hist.data|date:"d/m/Y" }}</td>
+                    <td>{{ hist.Treino }}</td>
+                    <td>{{ hist.qtdexercicios }}</td>
+
+                    <td>
+                        <form method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="remover_historico" value="1">
+                            <input type="hidden" name="historico_id" value="{{ hist.id }}">
+                            <button type="submit"
+                                    class="btn btn-danger btn-sm"
+                                    onclick="return confirm('Deseja remover este histórico?')">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+            <p style="color:#bbb;text-align:center;padding:1rem;">Nenhum histórico registrado.</p>
+        {% endif %}
+
+        <!-- BOTÃO VOLTAR -->
+        <div class="d-flex justify-content-between align-items-center" style="margin-top:2rem;">
+            <a href="{% url 'TelaProf:lista_alunos' %}" class="btn-voltar">
+                <i class="fas fa-arrow-left me-2"></i>Voltar
+            </a>
+        </div>
+
+    </div>
+</div>
+
+<!-- ============================ -->
+<!-- SCRIPTS DO CALENDÁRIO -->
+<!-- ============================ -->
 <script>
     const calendarioData = [
         {% for freq in calendario %}
@@ -245,7 +245,7 @@
         {% endfor %}
     ];
 
-    let currentMonth = {{ mes }};
+    let currentMonth = 1;
     let currentYear = {{ ano }};
 
     const monthNames = [
@@ -305,8 +305,7 @@
 
 Existe um histórico de atividade registrado nesta data.
 
-Remova o histórico primeiro para alterar o status.`
-                        );
+Remova o histórico primeiro para alterar o status.`);
                         return;
                     }
 

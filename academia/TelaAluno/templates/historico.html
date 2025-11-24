@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Histórico Completo</title>
+
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/estilo.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+</head>
+<body class="app-bg" style="padding:2rem;">
+
+    <!-- Título -->
+    <h2 style="color:#cba6ff; font-weight:700; margin-bottom:2rem; text-align:center; font-size:2.2rem;">
+        <i class="fas fa-history me-2"></i>Histórico Completo de Treinos
+    </h2>
+
+    <!-- Botão voltar -->
+    <div style="text-align:center; margin-bottom:2rem;">
+        <a href="{% url 'TelaAluno:telaaluno' %}"
+           style="background:transparent; border:2px solid #b57aff; padding:10px 25px;
+                  border-radius:10px; color:#b57aff; font-weight:bold; transition:.25s;">
+            ⬅ Voltar ao Dashboard
+        </a>
+    </div>
+
+    <!-- Container principal -->
+    <div class="glass-card glass-bg" style="padding:1.8rem; max-width:900px; margin:auto;">
+
+        {% if historico %}
+            {% for atividade in historico %}
+            <!-- Item -->
+            <div class="workout-item glass-bg"
+                 style="display:flex;align-items:center;padding:1rem;border-radius:14px;
+                        margin-bottom:1.2rem; border:1px solid rgba(157,78,221,0.25);">
+
+                <!-- Ícone -->
+                <div class="workout-icon"
+                     style="width:60px;height:60px;border-radius:50%;display:flex;
+                            align-items:center;justify-content:center;
+                            background:linear-gradient(135deg,#6f42c1,#9d4edd);
+                            color:#fff; box-shadow:0 0 12px rgba(157,78,221,0.3);">
+                    <i class="fas fa-dumbbell"></i>
+                </div>
+
+                <!-- Informações -->
+                <div style="flex:1;margin-left:1rem;">
+                    <div style="font-weight:700;color:#e8d9ff;font-size:1.1rem;">
+                        {{ atividade.Treino }}
+                    </div>
+                    <div style="color:#bbb;font-size:.9rem;">
+                        <i class="fas fa-calendar me-1"></i>{{ atividade.data|date:"d/m/Y" }}
+                        <span style="margin-left:1rem;">
+                            <i class="fas fa-check me-1"></i>{{ atividade.qtdexercicios }} exercícios
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Status -->
+                <div style="padding:6px 12px;border-radius:20px;background:linear-gradient(45deg,#28a745,#20c997);
+                            color:#fff;font-weight:700;">
+                    Concluído
+                </div>
+
+            </div>
+            {% endfor %}
+
+        {% else %}
+        <!-- Caso não tenha histórico -->
+        <div style="text-align:center;padding:3rem;color:#bbb;">
+            <i class="fas fa-inbox" style="font-size:3rem;margin-bottom:1rem;opacity:0.5;"></i>
+            <p style="font-size:1.2rem;">Ainda não há atividades registradas.</p>
+        </div>
+        {% endif %}
+    </div>
+
+</body>
+</html>

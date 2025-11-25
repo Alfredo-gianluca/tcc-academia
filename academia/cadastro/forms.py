@@ -7,7 +7,7 @@ class UsuarioForm(forms.ModelForm):
         fields = '__all__'
 
     widgets = {
-        'data_nascimento': forms.DateInput(attrs={'type': 'date'}),
+        'data_nascimento': forms.TextInput(attrs={'placeholder': 'dd/mm/aaaa',}),
         'genero': forms.Select(),
         'observacao': forms.Textarea(attrs={'rows': 4}),
     }

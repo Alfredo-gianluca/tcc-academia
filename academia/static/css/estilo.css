@@ -424,13 +424,6 @@ body {
     }
 }
 
-/* Lists */
-.list {
-    color: #fff;
-    text-align: center;
-    margin: 0 auto;
-}
-
 .form-container {
     max-width: 600px;
     margin: 0 auto;
@@ -1376,3 +1369,35 @@ textarea:focus {
     color: #ffdd89;
 }
 
+.list {
+    color: #fff;
+    margin-left: 200px;
+}
+
+.cima1 {
+    color: #fff;
+    margin-left: 200px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.cima {
+    color: #fff;
+    margin-left: 100px;
+    margin-top: 30px;
+     margin-bottom: 30px;
+}
+
+.baixo1 {
+    color: #fff;
+    margin-left: 420px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.baixo {
+    color: #fff;
+    margin-left: 100px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from cadastro.models import Usuario, CalendarioFrequencia, Cargas, RequisicaoExclusao, HistoricoAtividades
+from cadastro.models import Usuario, CalendarioFrequencia, Cargas, RequisicaoExclusao, HistoricoAtividades, Ficha
 from datetime import datetime
 from calendar import monthrange
 from django.core.exceptions import ValidationError
@@ -17,6 +17,18 @@ def TelaAluno(request):
         'bracos': 0,
         'peito': 0,
         'costas': 0
+    }
+    ficha= {
+        'supino_reto': 0,
+        'supino_inclinado': 0,
+        'crucifixo': 0,
+        'remada_curvada': 0,
+        'puxada_na_barra': 0,
+        'agachamento_livre': 0,
+        'leg_press': 0,
+        'desenvolvimento': 0,
+        'rosca_direta': 0,
+        'triceps_testa': 0,
     }
 
     if usuario_id:
@@ -39,6 +51,34 @@ def TelaAluno(request):
                     'peito': 0,
                     'costas': 0
                 }
+
+            try:
+                ficha_obj = Ficha.objects.get(usuario=usuario)
+                ficha = {
+                    'supino_reto': ficha_obj.supino_reto,
+                    'supino_inclinado': ficha_obj.supino_inclinado,
+                    'crucifixo': ficha_obj.crucifixo,
+                    'remada_curvada': ficha_obj.remada_curvada,
+                    'puxada_na_barra': ficha_obj.puxada_na_barra,
+                    'agachamento_livre': ficha_obj.agachamento_livre,
+                    'leg_press': ficha_obj.leg_press,
+                    'desenvolvimento': ficha_obj.desenvolvimento,
+                    'rosca_direta': ficha_obj.rosca_direta,
+                    'triceps_testa': ficha_obj.triceps_testa,
+                }
+            except Ficha.DoesNotExist:
+                ficha = {
+                    'supino_reto': 0,
+                    'supino_inclinado': 0,
+                    'crucifixo': 0,
+                    'remada_curvada': 0,
+                    'puxada_na_barra': 0,
+                    'agachamento_livre': 0,
+                    'leg_press': 0,
+                    'desenvolvimento': 0,
+                    'rosca_direta': 0,
+                    'triceps_testa': 0,
+                }    
             
             # Busca histórico de atividades (ordenado por data decrescente)
             historico_atividades = HistoricoAtividades.objects.filter(

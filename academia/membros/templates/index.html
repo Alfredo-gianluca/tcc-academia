@@ -71,9 +71,9 @@
                         <h3 class="mb-3">Consultoria Nutricional </h3>
                         <p class="mb-4">Conte com nossa nutricionista parceira para turbinar seus resultados de forma saudável e constante. Ela te ajuda a montar uma alimentação que acompanha teu ritmo, melhora o desempenho e faz cada treino render muito mais.</p>
                         <div class="d-flex gap-3">
-                            <button class="btn btn-custom" >
-                                <i class="fas fa-calendar-alt me-2"></i>Conheça Nossa Parceira
-                            </button>
+                            <a href="#" class="btn btn-custom mt-3" onclick="openWhatsApp()">
+                                <i class="fab fa-whatsapp"></i> Agendar Consulta Gratuita
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -479,5 +479,13 @@
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'js/script.js' %}"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+        function openWhatsApp() {
+            const phoneNumber = "5511999999999"; // Substitua pelo número de telefone desejado
+            const message = "Olá, gostaria de agendar uma consulta nutricional."; // Mensagem padrão
+            const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+    </script>
 </body>
 </html>

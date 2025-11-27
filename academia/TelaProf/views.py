@@ -50,6 +50,7 @@ def editar_aluno(request, aluno_id):
     calendario = CalendarioFrequencia.objects.filter(usuario=aluno).order_by('-data')
     historico = HistoricoAtividades.objects.filter(usuario=aluno).order_by('-data')
     cargas, _ = Cargas.objects.get_or_create(usuario=aluno)
+    ficha , _ = Ficha.objects.get_or_create(usuario=aluno)
 
     mes = int(request.GET.get('mes', datetime.now().month))
     ano = int(request.GET.get('ano', datetime.now().year))
@@ -128,6 +129,17 @@ def editar_aluno(request, aluno_id):
             cargas.peito = request.POST.get('peito') or 0
             cargas.costas = request.POST.get('costas') or 0
             cargas.save()
+            ficha.supino_reto = request.POST.get('supino_reto') or 0
+            ficha.supino_inclinado = request.POST.get('supino_inclinado') or 0
+            ficha.crucifixo = request.POST.get('crucifixo') or 0
+            ficha.remada_curvada = request.POST.get('remada_curvada') or 0
+            ficha.puxada_na_barra = request.POST.get('puxada_na_barra') or 0
+            ficha.agachamento_livre = request.POST.get('agachamento_livre') or 0
+            ficha.leg_press = request.POST.get('leg_press') or 0
+            ficha.desenvolvimento = request.POST.get('desenvolvimento') or 0
+            ficha.rosca_direta = request.POST.get('rosca_direta') or 0
+            ficha.triceps_testa = request.POST.get('triceps_testa') or 0
+            ficha.save()
 
             # Atualiza presenças
             presencas_json = request.POST.get('presencas_json', '{}')
@@ -174,6 +186,7 @@ def editar_aluno(request, aluno_id):
         'calendario': calendario,
         'historico': historico,
         'cargas': cargas,
+        'ficha': ficha,
         'mes': mes,
         'ano': ano,
     })

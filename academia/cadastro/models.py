@@ -67,3 +67,19 @@ class RequisicaoExclusao(models.Model):
     
     def __str__(self):
         return f"Requisição de {self.usuario.nome_completo} - {self.status}"
+
+class Ficha(models.Model):
+    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    supino_reto = models.IntegerField(default=0)
+    supino_inclinado = models.IntegerField(default=0)
+    crucifixo = models.IntegerField(default=0)
+    remada_curvada = models.IntegerField(default=0)
+    puxada_na_barra = models.IntegerField(default=0)
+    agachamento_livre = models.IntegerField(default=0)
+    leg_press = models.IntegerField(default=0)
+    desenvolvimento = models.IntegerField(default=0)
+    rosca_direta = models.IntegerField(default=0)
+    triceps_testa = models.IntegerField(default=0)
+
+    def __str__(self):
+        return f'Ficha de {self.usuario.nome_completo}'

@@ -22,6 +22,7 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="#">Início</a></li>
                     <li class="nav-item"><a class="nav-link" href="#cargas">Cargas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#ficha">Ficha de Treino</a></li>
                     <li class="nav-item"><a class="nav-link" href="#historico">Histórico</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'TelaAluno:nutricao' %}">Nutrição</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'TelaAluno:treinos' %}">Treinos</a></li>
@@ -168,15 +169,73 @@
             </div>
         </div>
 
+        <!-- Ficha de Treino Section -->
         <section class="mb-4" id="ficha">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="glass-card glass-bg">
-                        <h5 class="mb-4" style="color:#b57aff; font-weight:700; font-size:1.8rem;">
-                            <i class="fas fa-file-alt me-2"></i>Ficha de Treino
-                        </h5>
-    
-                            
+            <div class="section-header" style="text-align:center; margin-bottom:1.5rem; align-items:center;">
+                <h5 style="color:#b57aff; font-weight:700; font-size:1.8rem;">
+                    <i class="fas fa-file-alt me-2"></i>Ficha de Treino
+                </h5>  
+
+                <div class="ficha-grid">
+
+                    <div class="ficha-card">
+                        <i class="fas fa-dumbbell ficha-icon"></i>
+                        <span class="ficha-label">Supino reto:</span>
+                        <span class="ficha-value">{{ ficha.supino_reto }} kg</span>
+                    </div>
+
+                    <div class="ficha-card">
+                        <i class="fas fa-dumbbell ficha-icon"></i>
+                        <span class="ficha-label">Supino inclinado:</span>
+                        <span class="ficha-value">{{ ficha.supino_inclinado }} kg</span>
+                    </div>
+
+                    <div class="ficha-card">
+                        <i class="fas fa-dumbbell ficha-icon"></i>
+                        <span class="ficha-label">Crucifixo:</span>
+                        <span class="ficha-value">{{ ficha.crucifixo }} kg</span>
+                    </div>
+
+                    <div class="ficha-card">
+                        <i class="fas fa-dumbbell ficha-icon"></i>
+                        <span class="ficha-label">Remada curvada:</span>
+                        <span class="ficha-value">{{ ficha.remada_curvada }} kg</span>
+                    </div>
+
+                    <div class="ficha-card">
+                        <i class="fas fa-dumbbell ficha-icon"></i>
+                        <span class="ficha-label">Puxada na barra:</span>
+                        <span class="ficha-value">{{ ficha.puxada_barra }} kg</span>
+                    </div>
+
+                    <div class="ficha-card">
+                        <i class="fas fa-dumbbell ficha-icon"></i>
+                        <span class="ficha-label">Agachamento Livre:</span>
+                        <span class="ficha-value">{{ ficha.agachamento_livre }} kg</span>
+                    </div>
+                    <div class="ficha-card">
+                        <i class="fas fa-dumbbell ficha-icon"></i>
+                        <span class="ficha-label">Leg Press:</span>
+                        <span class="ficha-value">{{ ficha.leg_press }} kg</span>
+                    </div>
+                    <div class="ficha-card">
+                        <i class="fas fa-dumbbell ficha-icon"></i>
+                        <span class="ficha-label">Desenvolvimento:</span>
+                        <span class="ficha-value">{{ ficha.desenvolvimento }} kg</span>
+                    </div>
+                    <div class="ficha-card">
+                        <i class="fas fa-dumbbell ficha-icon"></i>
+                        <span class="ficha-label">Rosca Direta:</span>
+                        <span class="ficha-value">{{ ficha.rosca_direta }} kg</span>
+                    </div>
+                    <div class="ficha-card">
+                        <i class="fas fa-dumbbell ficha-icon"></i>
+                        <span class="ficha-label">Tríceps Testa:</span>
+                        <span class="ficha-value">{{ ficha.triceps_testa }} kg</span>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- Workout History Section -->
         <section class="mb-4" id="historico">

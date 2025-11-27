@@ -1376,3 +1376,73 @@ textarea:focus {
     color: #ffdd89;
 }
 
+.ficha-card {
+    background: #1a1a1a; /* cinza escuro elegante */
+    border: 2px solid #9d4edd; /* roxo */
+    border-radius: 14px;
+    padding: 1.2rem 1.5rem;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 0 8px rgba(157, 78, 221, 0.35);
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+
+/* Ícone Cloudflare */
+.ficha-icon {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    filter: drop-shadow(0 0 6px rgba(157, 78, 221, .5));
+}
+
+/* animação hover */
+.ficha-card:hover {
+    transform: translateY(-6px);
+    border-color: #c57fff;
+    box-shadow: 0 0 16px rgba(157, 78, 221, .55);
+}
+
+.ficha-label {
+    font-weight: 700;
+    color: #cba6ff;
+    font-size: 1.1rem;
+}
+
+.ficha-value {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #9d4edd;
+}
+
+.ficha-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(220px, 1fr));
+    gap: 1.2rem;
+    justify-content: center;          /* centraliza itens quando sobrar espaço */
+    align-items: center;
+    margin-top: 1rem;
+}
+
+/* Responsivo — tablet (3 por linha) */
+@media (max-width: 1100px) {
+    .ficha-grid {
+        grid-template-columns: repeat(3, minmax(220px, 1fr));
+    }
+}
+
+/* Responsivo — celular grande (2 por linha) */
+@media (max-width: 768px) {
+    .ficha-grid {
+        grid-template-columns: repeat(2, minmax(180px, 1fr));
+    }
+}
+
+/* Responsivo — celular pequeno (1 por linha) */
+@media (max-width: 480px) {
+    .ficha-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+

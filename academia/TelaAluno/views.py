@@ -141,7 +141,8 @@ def TelaAluno(request):
         'frequencias': frequencias,
         'calendario_dados': calendario_dados,
         'cargas': cargas,
-        'historico_atividades': historico_atividades
+        'historico_atividades': historico_atividades,
+        'ficha': ficha
     })
 
 def nutricao(request):

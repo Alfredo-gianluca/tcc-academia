@@ -161,6 +161,11 @@
                     </div>
 
                     <div class="col-md-2">
+                        <input type="number" name="cargas_historico"
+                               class="inputcarga" placeholder="Cargas (kg)" min="0" step="0.5">
+                    </div>
+
+                    <div class="col-md-2">
                         <button type="submit" class="btn btn-success w-100">
                             <i class="fas fa-plus"></i>
                         </button>
@@ -183,6 +188,7 @@
                     <th>Data</th>
                     <th>Treino</th>
                     <th>Exercícios</th>
+                    <th>Cargas (kg)</th>
                     <th>Ações</th>
                 </tr>
                 </thead>
@@ -193,6 +199,7 @@
                     <td>{{ hist.data|date:"d/m/Y" }}</td>
                     <td>{{ hist.Treino }}</td>
                     <td>{{ hist.qtdexercicios }}</td>
+                    <td>{{ hist.cargas }}</td>
 
                     <td>
                         <form method="POST">

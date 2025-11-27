@@ -41,6 +41,7 @@ class HistoricoAtividades(models.Model):
     data = models.DateField()
     Treino = models.TextField()
     qtdexercicios = models.CharField(max_length=20)
+    cargas = models.IntegerField(default=0)
 
     def __str__(self):
         return f'{self.usuario.nome_completo} - {self.data}'

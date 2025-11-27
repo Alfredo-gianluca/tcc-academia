@@ -66,6 +66,7 @@ def editar_aluno(request, aluno_id):
             data_str = request.POST.get('data_historico')
             treino = request.POST.get('treino_historico')
             qtd = request.POST.get('qtd_exercicios')
+            cargas = request.POST.get('cargas_historico', 0)
 
             # Se clicou no botão mas deixou campos vazios
             if not data_str or not treino or not qtd:

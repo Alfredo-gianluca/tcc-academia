@@ -7,19 +7,19 @@ from .models import CalendarioFrequencia, Cargas
 
 def cadastro(request):
     if request.method == 'POST':
-        form = UsuarioForm(request.POST)
+        form = UsuarioForm(request.POST, request.FILES)
         if form.is_valid():
             usuario = form.save(commit=False)
             usuario.senha = form.cleaned_data['senha']
             usuario.save()
             
-            # Gera as datas automaticamente no calendário
-            inicio = date(2025, 1, 1)   # ajuste o período
+            # Gera datas automaticamente
+            inicio = date(2025, 1, 1)
             fim = date(2025, 12, 31)
             delta = timedelta(days=1)
             data_atual = inicio
 
-            # Gera as cargas iniciais automaticamente
+            # Cria cargas iniciais
             Cargas.objects.create(
                 usuario=usuario,
                 pernas=0,
@@ -29,7 +29,6 @@ def cadastro(request):
             )
 
             while data_atual <= fim:
-                # Remove a condição do weekday para criar todos os dias
                 CalendarioFrequencia.objects.create(
                     usuario=usuario,
                     data=data_atual
@@ -44,5 +43,3 @@ def cadastro(request):
         'form': form,
         'centralizar_logo': True
     })
-
-# Create your views here.

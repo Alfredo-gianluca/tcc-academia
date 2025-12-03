@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Usuario(models.Model):
     GENERO_CHOICES = [
         ('M', 'Masculino'),
@@ -15,6 +16,20 @@ class Usuario(models.Model):
     data_nascimento = models.DateField()
     genero = models.CharField(max_length=1, choices=GENERO_CHOICES)
     observacoes = models.TextField(blank=True)
+    
+    fotoperfil = models.ImageField(
+        upload_to='fotos_perfil/',
+        null=True,
+        blank=True,
+        verbose_name='Foto de Perfil'
+    )
+    
+    def get_foto_perfil(self):
+        from django.templatetags.static import static
+        import os
+        if self.fotoperfil and hasattr(self.fotoperfil, 'path') and os.path.isfile(self.fotoperfil.path):
+            return self.fotoperfil.url
+        return static('img/default.jpg')
 
     def __str__(self):
         return self.nome_completo
@@ -37,9 +52,15 @@ class Cargas(models.Model):
         return f'{self.usuario.nome_completo} - Cargas'
     
 class HistoricoAtividades(models.Model):
+    treino_choices = [
+        ('Pernas', 'Treino de pernas'),
+        ('Braços', 'Treino de braços'),
+        ('Costas', 'Treino de costas'),
+        ('Peito', 'Treino de peito'),
+    ]
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     data = models.DateField()
-    Treino = models.TextField()
+    Treino = models.CharField(max_length=6, choices= treino_choices)
     qtdexercicios = models.CharField(max_length=20)
     cargas = models.IntegerField(default=0)
 

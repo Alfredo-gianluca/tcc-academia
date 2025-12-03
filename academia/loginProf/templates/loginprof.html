@@ -31,8 +31,12 @@
         <form method="post" action="{% url 'loginprof' %}" class="form-login">
             {% csrf_token %}
             <h2 class="mb-4">Acesse sua conta</h2>
-            {% if erro %}
-                <div class="alert alert-danger">{{ erro }}</div>
+            {% if errors %}
+                <div class="alert alert-danger">
+                    {% for e in errors %}
+                        <p>{{ e }}</p>
+                    {% endfor %}
+                </div>
             {% endif %}
             <div class="mb-3">
                 <label for="email" class="form-label">E-mail</label>

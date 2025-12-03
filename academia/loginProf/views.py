@@ -1,28 +1,44 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import redirect, render
 from loginProf.models import Professor
-from django.shortcuts import redirect
 
 def loginprof(request):
-    erro = None  # variável para guardar a mensagem de erro
+    errors = []  # variável para guardar a mensagem de erro
+    email_value = ""
+
+    if request.session.get('professor_autenticado'):
+        return redirect('TelaProf:lista_alunos')
 
     if request.method == 'POST':
         email = request.POST.get('email')
         senha = request.POST.get('senha')
+        email_value = email
 
         try:
-            professor = Professor.objects.get(email=email, senha=senha)
-            return redirect('TelaProf:lista_alunos')  # Redireciona para a lista de alunos após o login
+            professor = Professor.objects.get(email=email)
+            
+            if senha == professor.senha:
+                # Criar sessão da forma correta
+                request.session['professor_autenticado'] = True
+                request.session['professor_id'] = professor.id
+                request.session['professor_nome'] = professor.nome_completo
+
+                return redirect('TelaProf:lista_alunos')
+            else:
+                errors.append("Email ou senha incorretos.")
+
         except Professor.DoesNotExist:
-            erro = "Email ou senha inválidos."
-            return render(request, 'loginprof.html', {
-                'centralizar_logo': True,
-                'erro': erro
-            })
+            errors.append("Email ou senha incorretos.")
 
     return render(request, 'loginprof.html', {
         'centralizar_logo': True,
-        'erro': erro
+        'errors': errors, 
+        'email': email_value
     })
 
+def logoutprof(request):
+    # Apaga todos os dados da sessão do professor
+    request.session.flush()  # limpa toda a sessão
+    
+    # Redireciona para a página de login
+    return redirect('loginprof')
 # Create your views here.

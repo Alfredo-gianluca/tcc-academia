@@ -140,6 +140,9 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
         </div>
+        <a href="{% url 'logoutprof' %}" class="btn btn-danger" style="position: absolute; right: 20px; top: 25px;">
+            Sair
+        </a>
     </nav>
     
     <section class="hero">
@@ -176,31 +179,82 @@
         <!-- Tab de Lista de Alunos -->
         <div id="alunos-tab" class="tab-content {% if aba_ativa == 'alunos' %}active{% endif %}">
             <h2>Lista de Alunos</h2>
-            <table class="table custom-table">
+
+            <!-- Campo de busca automatica -->
+            <div class="d-flex mb-3" style="max-width: 400px;">
+                <input type="text" id="searchInput" 
+                    class="form-control" 
+                    placeholder="Pesquisar aluno por nome...">
+            </div>
+
+            <table class="table custom-table" id="alunosTabela">
                 <thead class="table-dark">
                     <tr class="table-dark">
-                        <th>ID</th>
+                        <th>Foto</th>
                         <th>Nome</th>
                         <th>Email</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody class="table-group-divider">
-                {% for aluno in alunos %}
-                    <tr class="table-dark">
-                        <td class="align-middle">{{ aluno.id }}</td>
-                        <td class="align-middle">{{ aluno.nome_completo }}</td>
-                        <td class="align-middle">{{ aluno.email }}</td>
-                        <td class="align-middle">
-                            <a href="{% url 'TelaProf:editar_aluno' aluno.id %}" class="btn btn-primary">Editar</a>
-                        </td>
-                    </tr>
-                {% empty %}
-                    <tr class="table-dark">
-                        <td colspan="4" class="text-center">Nenhum aluno cadastrado.</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
+                    {% for aluno in alunos %}
+                        <tr class="table-dark">
+                            <td class="align-middle">
+                                <img src="{{ aluno.get_foto_perfil }}" 
+                                    style="width: 50px; height: 50px; object-fit: cover; border-radius: 50%;" 
+                                    alt="Foto de {{ aluno.nome_completo }}">
+                            </td>
+                            <td class="align-middle nome-aluno">{{ aluno.nome_completo }}</td>
+                            <td class="align-middle">{{ aluno.email }}</td>
+                            <td class="align-middle">
+                                <a href="{% url 'TelaProf:editar_aluno' aluno.id %}" class="btn btn-primary btn-sm">Editar</a>
+                                <a class="btn btn-danger btn-sm" href="#" data-bs-toggle="modal" data-bs-target="#modalExcluir{{ aluno.id }}">
+                                    Excluir
+                                </a>
+                                <a href="{% url 'TelaProf:gerar_pdf_aluno' aluno.id %}" class="btn btn-warning btn-sm" target="_blank">
+                                    Gerar PDF
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- ✅ CORRETO: Modal dentro do loop, um para cada aluno -->
+                        <div class="modal fade" id="modalExcluir{{ aluno.id }}" tabindex="-1" aria-labelledby="modalExcluirLabel{{ aluno.id }}" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content" style="background:#2a2a2a; color:white; border:1px solid #444;">
+                                    
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalExcluirLabel{{ aluno.id }}">
+                                            Confirmar Exclusão
+                                        </h5>
+                                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        Tem certeza que deseja excluir o aluno:
+                                        <strong>{{ aluno.nome_completo }}</strong>?<br>
+                                        Esta ação é irreversível.
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+
+                                        <form method="POST">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="aluno_id" value="{{ aluno.id }}">
+                                            <button type="submit" name="delete_aluno" class="btn btn-danger">Excluir</button>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    {% empty %}
+                        <tr class="table-dark">
+                            <td colspan="4" class="text-center">Nenhum aluno cadastrado.</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
             </table>
         </div>
         
@@ -256,13 +310,51 @@
             {% endif %}
         </div>
     </div>
-    
+     
     <footer class="footer text-center">
         <p style="margin-top: 10px;">&copy; 2025 FitCore. Todos os direitos reservados.</p>
     </footer>
     
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
     <script>
+        document.getElementById("searchInput").addEventListener("keyup", function () {
+        let filtro = this.value.toLowerCase();
+        let linhas = document.querySelectorAll("#alunosTabela tbody tr");
+        let encontrou = false;
+
+        linhas.forEach(linha => {
+            // Ignorar a linha de "nenhum aluno encontrado" se existir
+            if (linha.classList.contains("nenhum-resultado")) return;
+
+            let nome = linha.querySelector(".nome-aluno").textContent.toLowerCase();
+
+            if (nome.includes(filtro)) {
+                linha.style.display = "";
+                encontrou = true;
+            } else {
+                linha.style.display = "none";
+            }
+        });
+
+        // Verifica se já existe a linha de "nenhum resultado"
+        let linhaNenhum = document.querySelector(".nenhum-resultado");
+
+        if (!encontrou) {
+            // Criar linha caso não exista
+            if (!linhaNenhum) {
+                let tbody = document.querySelector("#alunosTabela tbody");
+                let novaLinha = document.createElement("tr");
+                novaLinha.classList.add("table-dark", "nenhum-resultado");
+                novaLinha.innerHTML = `
+                    <td colspan="4" class="text-center">Nenhum aluno encontrado.</td>
+                `;
+                tbody.appendChild(novaLinha);
+            }
+        } else {
+            // Se encontrou resultados, remover a linha caso exista
+            if (linhaNenhum) linhaNenhum.remove();
+        }
+    });
         function switchTab(tabName) {
             // Remove active de todos os botões e conteúdos
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));

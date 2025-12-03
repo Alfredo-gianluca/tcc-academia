@@ -9,4 +9,5 @@ urlpatterns = [
     path('treinos/', views.treinos, name='treinos'),
     path('configuracoes/', views.configuracoes, name='configuracoes'),
     path('historico/', views.historico_completo, name='historico'),
+    path('gerar_pdf/<int:usuario_id>/', views.gerar_pdf, name='gerar_pdf'),
 ]

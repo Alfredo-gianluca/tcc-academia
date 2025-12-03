@@ -62,6 +62,11 @@
             {{ aluno.nome_completo }}
         </p>
 
+        <img src="{{ aluno.get_foto_perfil }}" 
+             alt="Foto de Perfil"
+             style="width:120px;height:120px;border-radius:100%;object-fit:cover;margin-bottom:1rem;"
+             class="mx-auto d-block border-purple shadow-lg">
+
         <!-- FORM PRINCIPAL (CARGAS + CALENDÁRIO) -->
         <form method="POST" id="formPrincipal">
             {% csrf_token %}
@@ -213,8 +218,12 @@
                     </div>
 
                     <div class="col-md-4">
-                        <input type="text" name="treino_historico"
-                               class="inputcarga" placeholder="Treino">
+                        <select name="treino_historico" class="inputcarga">
+                            <option value="" disabled selected>Selecione o Treino</option>
+                            <option value="Pernas">Treino de Pernas</option>
+                            <option value="Braços">Treino de Braços</option>
+                            <option value="Costas">Treino de Costas</option>
+                            <option value="Peito">Treino de Peito</option>
                     </div>
 
                     <div class="col-md-2">

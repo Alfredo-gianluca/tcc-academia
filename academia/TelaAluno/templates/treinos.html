@@ -75,10 +75,22 @@
                 padding: 1.5rem;
                 transition: all 0.3s ease;
                 backdrop-filter: blur(10px);
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 1.5rem;
-                align-items: start;
+
+                /* NOVO LAYOUT (COLUNA) */
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+
+                /* REMOVER GRID */
+                width: 100%;
+            }
+
+            .video-card video,
+            .video-card-media video {
+                width: 100%;
+                border-radius: 10px;
+                margin-bottom: 1rem;
             }
 
             .video-card:hover {
@@ -89,26 +101,27 @@
 
             .video-card-media {
                 width: 100%;
-                position: sticky;
-                top: 100px;
+                position: relative !important; /* Remove sticky */
+                top: 0 !important;
             }
 
             .video-card-content {
+                width: 100%;
                 display: flex;
                 flex-direction: column;
-                gap: 0.8rem;
+                align-items: center;
             }
 
             .video-card h3 {
                 color: var(--primary-yellow);
-                margin-bottom: 0.5rem;
+                margin-bottom: 0.8rem;
                 font-size: 1.3rem;
                 font-weight: 600;
             }
 
             .video-card p {
                 color: rgba(255, 255, 255, 0.8);
-                margin: 0;
+                margin-top: 0.5rem;
                 line-height: 1.6;
             }
 
@@ -184,27 +197,46 @@
                 <!-- SUPINO RETO -->
                 <div class="video-card" data-category="peito">
                     <div class="video-card-media">
-                        <video controls>
-                            <source src="{% static 'videos/Supino_Reto.mp4' %}" type="video/mp4">
-                        </video>
+                        <iframe 
+                            src="https://www.youtube.com/embed/8UiTPNj66AU?si=RLs6PIgvdyT15oIq" 
+                            title="YouTube video player" 
+                            frameborder="0" 
+                            allow="
+                                accelerometer; 
+                                autoplay; 
+                                clipboard-write; 
+                                encrypted-media; 
+                                gyroscope; 
+                                picture-in-picture; 
+                                web-share" 
+                            referrerpolicy="strict-origin-when-cross-origin" 
+                            allowfullscreen>
+                        </iframe>
                     </div>
                     <div class="video-card-content">
                         <h3>Supino Reto</h3>
                         <p>Ativa o peitoral médio e anterior dos ombros.</p>
-                        <ul>
-                            <li>4 séries</li>
-                            <li>8-12 repetições</li>
-                            <li>Ritmo controlado</li>
-                        </ul>
                     </div>
                 </div>
 
                 <!-- SUPINO INCLINADO -->
                 <div class="video-card" data-category="peito">
                     <div class="video-card-media">
-                        <video controls>
-                            <source src="{% static 'videos/Supino_Inclinado.mp4' %}" type="video/mp4">
-                        </video>
+                        <iframe 
+                            src="https://www.youtube.com/embed/RGeSgQmO1EU?si=VdWmfMPYkbxroElL" 
+                            title="YouTube video player" 
+                            frameborder="0" 
+                            allow="
+                                accelerometer; 
+                                autoplay; 
+                                clipboard-write; 
+                                encrypted-media; 
+                                gyroscope; 
+                                picture-in-picture; 
+                                web-share" 
+                            referrerpolicy="strict-origin-when-cross-origin" 
+                            allowfullscreen>
+                        </iframe>
                     </div>
                     <div class="video-card-content">
                         <h3>Supino Inclinado</h3>
@@ -215,9 +247,21 @@
                 <!-- CRUCIFIXO -->
                 <div class="video-card" data-category="peito">
                     <div class="video-card-media">
-                        <video controls>
-                            <source src="{% static 'videos/Crucifixo_Halteres.mp4' %}" type="video/mp4">
-                        </video>
+                        <iframe 
+                            src="https://www.youtube.com/embed/H9Yh36fNFpk?si=TexQxwO4c5KH8fCT" 
+                            title="YouTube video player" 
+                            frameborder="0" 
+                            allow="
+                                accelerometer; 
+                                autoplay;  
+                                clipboard-write; 
+                                encrypted-media; 
+                                gyroscope; 
+                                picture-in-picture; 
+                                web-share" 
+                            referrerpolicy="strict-origin-when-cross-origin" 
+                            allowfullscreen>
+                        </iframe>
                     </div>
                     <div class="video-card-content">
                         <h3>Crucifixo com Halteres</h3>
@@ -247,9 +291,21 @@
                 <!-- REMADA CURVADA -->
                 <div class="video-card" data-category="costas">
                     <div class="video-card-media">
-                        <video controls>
-                            <source src="{% static 'videos/Remada_Curvada.mp4' %}" type="video/mp4">
-                        </video>
+                        <iframe 
+                            src="https://www.youtube.com/embed/8hmYxGeYb8I?si=IaHD6L1C9-9PAMmi" 
+                            title="YouTube video player" 
+                            frameborder="0" 
+                            allow="
+                                accelerometer; 
+                                autoplay; 
+                                clipboard-write; 
+                                encrypted-media; 
+                                gyroscope; 
+                                picture-in-picture; 
+                                web-share" 
+                            referrerpolicy="strict-origin-when-cross-origin" 
+                            allowfullscreen>
+                        </iframe>
                     </div>
                     <div class="video-card-content">
                         <h3>Remada Curvada</h3>
@@ -260,9 +316,21 @@
                 <!-- PUXADA ALTA -->
                 <div class="video-card" data-category="costas">
                     <div class="video-card-media">
-                        <video controls>
-                            <source src="{% static 'videos/Puxada_Barra.mp4' %}" type="video/mp4">
-                        </video>
+                       <iframe 
+                            src="https://www.youtube.com/embed/7cCiQUdIXWw?si=PCyBYsOQbj7H-IkD" 
+                            title="YouTube video player" 
+                            frameborder="0" 
+                            allow="
+                                accelerometer; 
+                                autoplay; 
+                                clipboard-write; 
+                                encrypted-media; 
+                                gyroscope; 
+                                picture-in-picture; 
+                                web-share" 
+                            referrerpolicy="strict-origin-when-cross-origin" 
+                            allowfullscreen>
+                        </iframe>   
                     </div>
                     <div class="video-card-content">
                         <h3>Puxada na Barra</h3>
@@ -290,20 +358,44 @@
             <div class="video-grid fade-in">
 
                 <!-- AGACHAMENTO -->
-                <div class="video-card" data-category="pernas">
+                <div class="video-card" data-category="pernas">                    
+                    <iframe 
+                        src="https://www.youtube.com/embed/rM6SDUdl9fs?si=LgX-rYNSElyoF7te" 
+                        title="YouTube video player" 
+                        frameborder="0" 
+                        allow="
+                            accelerometer; 
+                            autoplay; 
+                            clipboard-write; 
+                            encrypted-media; 
+                            gyroscope; 
+                            picture-in-picture; 
+                            web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin" 
+                        allowfullscreen>
+                    </iframe>
                     <h3>Agachamento Livre</h3>
-                    <video controls>
-                        <source src="{% static 'videos/Agachamento_Livre.mp4' %}" type="video/mp4">
-                    </video>
                     <p>Exercício completo para pernas e core.</p>
                 </div>
 
                 <!-- LEG PRESS -->
-                <div class="video-card" data-category="pernas">
+                <div class="video-card" data-category="pernas">                    
+                    <iframe 
+                        src="https://www.youtube.com/embed/waAxlYvtCcI?si=zTCg4jliqFTlTtw-" 
+                        title="YouTube video player" 
+                        frameborder="0" 
+                        allow="
+                            accelerometer; 
+                            autoplay; 
+                            clipboard-write; 
+                            encrypted-media; 
+                            gyroscope; 
+                            picture-in-picture; 
+                            web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin" 
+                        allowfullscreen>
+                    </iframe>
                     <h3>Leg Press</h3>
-                    <video controls>
-                        <source src="{% static 'videos/Leg_Press.mp4' %}" type="video/mp4">
-                    </video>
                     <p>Trabalha quadríceps, glúteo e posterior.</p>
                 </div>
 
@@ -327,11 +419,23 @@
             <div class="video-grid fade-in">
 
                 <!-- DESENVOLVIMENTO -->
-                <div class="video-card" data-category="ombros">
+                <div class="video-card" data-category="ombros">                    
+                    <iframe 
+                        src="https://www.youtube.com/embed/L-iQfHVeuVg?si=k5dq0HRMenW63guu" 
+                        title="YouTube video player" 
+                        frameborder="0" 
+                        allow="
+                            accelerometer; 
+                            autoplay; 
+                            clipboard-write; 
+                            encrypted-media; 
+                            gyroscope; 
+                            picture-in-picture; 
+                            web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin" 
+                        allowfullscreen>
+                    </iframe>
                     <h3>Desenvolvimento</h3>
-                    <video controls>
-                        <source src="{% static 'videos/Desenvolvimento.mp4' %}" type="video/mp4">
-                    </video>
                     <p>Aumenta volume e força dos ombros.</p>
                 </div>
 
@@ -355,11 +459,23 @@
             <div class="video-grid fade-in">
 
                 <!-- ABDOMINAL INFRA -->
-                <div class="video-card" data-category="abdomen">
+                <div class="video-card" data-category="abdomen">                   
+                    <iframe 
+                        src="https://www.youtube.com/embed/74gslROO7uA?si=a1wXg5v7KfQYEohk" 
+                        title="YouTube video player" 
+                        frameborder="0" 
+                        allow="
+                            accelerometer; 
+                            autoplay; 
+                            clipboard-write; 
+                            encrypted-media; 
+                            gyroscope; 
+                            picture-in-picture; 
+                            web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin" 
+                        allowfullscreen>
+                    </iframe>
                     <h3>Abdominal Infra</h3>
-                    <video controls>
-                        <source src="{% static 'videos/Abdominal_Infra.mp4' %}" type="video/mp4">
-                    </video>
                     <p>Ativação intensa do abdômen inferior.</p>
                 </div>
 
@@ -383,20 +499,44 @@
             <div class="video-grid fade-in">
 
                 <!-- ROSCA DIRETA -->
-                <div class="video-card" data-category="bracos">
+                <div class="video-card" data-category="bracos">                    
+                    <iframe 
+                        src="https://www.youtube.com/embed/s4B8UW3BMqk?si=hN7BYfW2NlYdN67I" 
+                        title="YouTube video player" 
+                        frameborder="0" 
+                        allow="
+                            accelerometer; 
+                            autoplay; 
+                            clipboard-write; 
+                            encrypted-media; 
+                            gyroscope; 
+                            picture-in-picture; 
+                            web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin" 
+                        allowfullscreen>
+                    </iframe>
                     <h3>Rosca Direta</h3>
-                    <video controls>
-                        <source src="{% static 'videos/Rosca_Direta.mp4' %}" type="video/mp4">
-                    </video>
                     <p>Isolamento do bíceps.</p>
                 </div>
 
                 <!-- TRÍCEPS TESTA -->
-                <div class="video-card" data-category="bracos">
+                <div class="video-card" data-category="bracos">                    
+                    <iframe 
+                        src="https://www.youtube.com/embed/oqob5MHbzBc?si=B1CjH00RRm0ARP0n" 
+                        title="YouTube video player" 
+                        frameborder="0" 
+                        allow="
+                            accelerometer; 
+                            autoplay; 
+                            clipboard-write; 
+                            encrypted-media; 
+                            gyroscope; 
+                            picture-in-picture; 
+                            web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin" 
+                        allowfullscreen>
+                    </iframe>
                     <h3>Tríceps Testa</h3>
-                    <video controls>
-                        <source src="{% static 'videos/Triceps_Testa.mp4' %}" type="video/mp4">
-                    </video>
                     <p>Fortalece cabeça longa do tríceps.</p>
                 </div>
 
@@ -432,6 +572,15 @@
         </script>
 
 
-
+    <footer class="footer text-center">
+        <div class="footer-content">
+            <a href="https://instagram.com/dra.marinasantos.nutri" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://linkedin.com/in/marina-santos-nutricionista" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://wa.me/5511987654321" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://youtube.com/dra.marinasantos" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://tiktok.com/@dra.marinasantos" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <p class="mb-0">&copy; 2024 FitCore. Todos os direitos reservados.</p>
+        </div>
+    </footer>
     </body>
 </html>

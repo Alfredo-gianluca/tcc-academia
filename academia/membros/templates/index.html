@@ -26,12 +26,23 @@
                     <li class="nav-item"><a class="nav-link" href="#services"><strong>Serviços</strong></a></li>
                     <li class="nav-item"><a class="nav-link" href="#trainers"><strong>Treinadores</strong></a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact"><strong>Contato</strong></a></li>
-                    <li class="nav-item"><a class="nav-link"href="{% url 'login' %}" class="btn btn-outline-light "><strong>Login</strong></a></li>
+                    {% if is_usuario_logged %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'TelaAluno:telaaluno' %}" class="btn btn-outline-light">
+                                <strong>Minha Área</strong>
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login' %}" class="btn btn-outline-light">
+                                <strong>Login</strong>
+                            </a>
+                        </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
     </nav>
-
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="container">

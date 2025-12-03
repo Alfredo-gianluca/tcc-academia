@@ -27,6 +27,7 @@
                     <li class="nav-item"><a class="nav-link" href="{% url 'TelaAluno:nutricao' %}">Nutrição</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'TelaAluno:treinos' %}">Treinos</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'TelaAluno:configuracoes' %}">Configurações</a></li>
+                    <li class="nav-item"><a class="btn btn-danger" href="{% url 'logout_aluno' %}">Sair</a></li>
                 </ul>
             </div>
         </div>
@@ -40,6 +41,11 @@
                 <h4>Bem-vindo de volta,</h4><h4 style="color:#9d4edd; font-weight: bold;"> {{ nome_usuario }}! 💪</h4>
             </div>
             <p>Vamos continuar sua jornada fitness hoje!</p>
+            
+            <!-- Foto de perfil -->
+            <img src="{{ usuario.get_foto_perfil }}" 
+                alt="Foto de Perfil"
+                style="width:120px;height:120px;border-radius:50%;object-fit:cover;margin-top:1rem;">
         </div>
 
         <!-- Calendar Section -->
@@ -236,6 +242,14 @@
                 </div>
             </div>
         </section>
+
+        <div style="height:4rem; text-align:center; margin-bottom:4rem;">
+            <a href="{% url 'TelaAluno:gerar_pdf' usuario.id %}" 
+               class="btn" 
+               style="background:#9d4edd;color:#fff;padding:0.7rem 1.5rem;border-radius:8px;">
+               Baixar Ficha de Treino (PDF)
+            </a>
+        </div>
 
         <!-- Workout History Section -->
         <section class="mb-4" id="historico">

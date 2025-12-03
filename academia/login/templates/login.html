@@ -9,6 +9,7 @@
     <title>Login - FitCore</title>
 </head>
 <body data-bs-spy="scroll" data-bs-target="#navbar">
+
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container d-flex justify-content-center">
             <a class="navbar-brand mx-auto" href="{% url 'membros' %}">FitCore</a>
@@ -30,22 +31,34 @@
         <form method="post" action="{% url 'login' %}" class="form-login">
             {% csrf_token %}
             <h2 class="mb-4">Acesse sua conta</h2>
-            {% if erro %}
-                <div class="alert alert-danger">{{ erro }}</div>
+
+            <!-- BLOCO DE ERROS (igual ao cadastro) -->
+            {% if errors %}
+            <div class="alert alert-danger">
+                <ul class="mb-0">
+                    {% for err in errors %}
+                        <li>{{ err }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
             {% endif %}
+
             <div class="mb-3">
                 <label for="email" class="form-label">E-mail</label>
                 <input type="text" class="form-control" id="email" name="email" required>
             </div>
+
             <div class="mb-3">
                 <label for="senha" class="form-label">Senha</label>
                 <input type="password" class="form-control" id="senha" name="senha" required>
             </div>
-            <button type="submit" class="btn btn entrar "><strong>Entrar</strong></button>
 
-            <p class="mt-3">Não tem uma conta? <a class="cadastro"href="{% url 'cadastro' %}">Cadastre-se</a></p>
+            <button type="submit" class="btn btn entrar"><strong>Entrar</strong></button>
+
+            <p class="mt-3">Não tem uma conta? <a class="cadastro" href="{% url 'cadastro' %}">Cadastre-se</a></p>
         </form>
     </div>
+
     <footer class="footer text-center">
         <div class="social-links">
             <a href="#"><i class="fab fa-instagram"></i></a>
@@ -56,7 +69,6 @@
     </footer>
 
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-    <script src="{% static 'js/script.js' %}"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     
 </body>
